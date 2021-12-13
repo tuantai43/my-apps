@@ -1,0 +1,8 @@
+<p>My Heroes</p>
+<ul>
+  <li *ngFor="let hero of heroes">
+    <button mat-button color="accent" (click)="onSelect(hero)">
+      {{ hero.id }} {{ hero.name }}
+    </button>
+  </li>
+</ul>
