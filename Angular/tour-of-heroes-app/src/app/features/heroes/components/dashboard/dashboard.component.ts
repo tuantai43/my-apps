@@ -5,8 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
-  ngOnInit(): void {
-    console.log('ngOnInit admin layout component');
-  }
-}
+export class DashboardComponent {}

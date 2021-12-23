@@ -42,7 +42,7 @@ testem.log
 package-lock.json
 yarn.lock
 /typings
-
+/.angular
 # System Files
 .DS_Store
 Thumbs.db

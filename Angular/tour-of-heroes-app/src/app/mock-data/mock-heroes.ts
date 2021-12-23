@@ -1,14 +1,16 @@
 import { Hero } from '../models';
 
 export const HEROES: Hero[] = [
-  { id: 11, name: 'Dr Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' },
+  new Hero(11, 'Dr Nice', 'Really Smart'),
+  new Hero(12, 'Narco', 'Really Smart'),
+  new Hero(13, 'Bombasto', 'Really Smart'),
+  new Hero(14, 'Celeritas', 'Really Smart'),
+  new Hero(15, 'Magneta', 'Really Smart'),
+  new Hero(16, 'RubberMan', 'Really Smart'),
+  new Hero(17, 'Dynama', 'Really Smart'),
+  new Hero(18, 'Dr IQ', 'Really Smart'),
+  new Hero(19, 'Magma', 'Really Smart'),
+  new Hero(20, 'Tornado', 'Really Smart'),
 ];
+
+export const POWERS: string[] = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];

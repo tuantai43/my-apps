@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+}
+
+.action {
+  .mat-mini-fab:not(:first-child) {
+    margin-left: 5px;
+  }
+}
+
+.mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+  background-color: #eeeeee;
+}

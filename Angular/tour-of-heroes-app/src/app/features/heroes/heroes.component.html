@@ -1,8 +1,35 @@
 <p>My Heroes</p>
-<ul>
-  <li *ngFor="let hero of heroes">
-    <button mat-button color="accent" (click)="onSelect(hero)">
-      {{ hero.id }} {{ hero.name }}
-    </button>
-  </li>
-</ul>
+<table mat-table [dataSource]="heroes" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+  <ng-container matColumnDef="power">
+    <th mat-header-cell *matHeaderCellDef>Power</th>
+    <td mat-cell *matCellDef="let element">{{ element.power }}</td>
+  </ng-container>
+  <ng-container matColumnDef="alterEgo">
+    <th mat-header-cell *matHeaderCellDef>Alter Ego</th>
+    <td mat-cell *matCellDef="let element">{{ element.alterEgo }}</td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let element" class="action">
+      <button mat-mini-fab color="primary" (click)="onSelect(element)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" (click)="onDelete(element)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<button mat-mini-fab color="primary" (click)="onAdd()">
+  <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+</button>

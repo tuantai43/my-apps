@@ -10,6 +10,7 @@ import { HeroService } from '@app/core';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
+  displayedColumns = ['id', 'name', 'power', 'alterEgo', 'action'];
   constructor(public dialog: MatDialog, private heroService: HeroService) {}
   ngOnInit(): void {
     this.getHeroes();
@@ -18,10 +19,21 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
   }
   onSelect(hero: Hero): void {
-    this.dialog.open(HeroDetailDialogComponent, {
+    const dialogRef = this.dialog.open(HeroDetailDialogComponent, {
       data: {
         hero: { ...hero },
       },
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.success) {
+        this.getHeroes();
+      }
+    });
+  }
+  onDelete(hero: Hero): void {
+    this.heroService.deleteHero(hero.id).subscribe(() => this.getHeroes());
+  }
+  onAdd(): void {
+    this.onSelect({} as Hero);
   }
 }

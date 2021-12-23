@@ -1,12 +1,23 @@
 <h2 mat-dialog-title>Detail Hero</h2>
 <mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="data.hero.name" />
-  </mat-form-field>
+  <form [formGroup]="formHero">
+    <div>
+      <app-base-input label="Name" [fieldControl]="fieldName"></app-base-input>
+    </div>
+    <div>
+      <app-base-input label="Alter Ego" [fieldControl]="fieldAlterEgo"></app-base-input>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Hero Power</mat-label>
+        <mat-select formControlName="power">
+          <mat-option *ngFor="let pow of powers" [value]="pow">{{ pow }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button [mat-dialog-close]="true">Delete</button>
+  <button mat-button (click)="save()">Save</button>
 </mat-dialog-actions>
