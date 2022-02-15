@@ -1,16 +1,15 @@
-import { AbstractControl, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: '',
   template: '',
 })
 export abstract class BaseFormComponent {
   @Input() fieldControl: FormControl = new FormControl();
-  @Input() label: string = '';
+  @Input() label = '';
   @Input() errorList: { [key: string]: string } = {};
 
-  errorMessage: string = '';
+  errorMessage = '';
 
   defaultErrorList: { [key: string]: string } = {
     required: 'You must enter a value',

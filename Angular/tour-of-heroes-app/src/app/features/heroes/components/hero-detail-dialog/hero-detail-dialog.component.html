@@ -11,13 +11,13 @@
       <mat-form-field appearance="fill">
         <mat-label>Hero Power</mat-label>
         <mat-select formControlName="power">
-          <mat-option *ngFor="let pow of powers" [value]="pow">{{ pow }}</mat-option>
+          <mat-option *ngFor="let pow of powers" [value]="pow.id">{{ pow.name }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="{}">Cancel</button>
   <button mat-button (click)="save()">Save</button>
 </mat-dialog-actions>

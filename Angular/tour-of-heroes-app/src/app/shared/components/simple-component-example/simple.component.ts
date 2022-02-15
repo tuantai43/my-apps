@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 @Component({
-  selector: 'appl-simple',
+  selector: 'app-simple',
   templateUrl: './simple.component.html',
 })
 export class SimpleComponent {}

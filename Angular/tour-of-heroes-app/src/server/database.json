@@ -1,0 +1,85 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Iron Man",
+      "alterEgo": "",
+      "power": {
+        "id": 1,
+        "name": "Really Smart"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Thanos",
+      "alterEgo": "",
+      "power": {
+        "id": 4,
+        "name": "Weather Changer"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Phoenix",
+      "alterEgo": "",
+      "power": {
+        "id": 3,
+        "name": "Super Hot"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Lorem",
+      "alterEgo": "",
+      "power": {
+        "id": 2,
+        "name": "Super Flexible"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Spider Man",
+      "alterEgo": null,
+      "power": {
+        "id": 2,
+        "name": "Super Flexible"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Doctor Strange",
+      "alterEgo": null,
+      "power": {
+        "id": 2,
+        "name": "Super Flexible"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Loki",
+      "alterEgo": "None",
+      "power": {
+        "id": 1,
+        "name": "Really Smart"
+      }
+    }
+  ],
+  "powers": [
+    {
+      "id": 1,
+      "name": "Really Smart"
+    },
+    {
+      "id": 2,
+      "name": "Super Flexible"
+    },
+    {
+      "id": 3,
+      "name": "Super Hot"
+    },
+    {
+      "id": 4,
+      "name": "Weather Changer"
+    }
+  ]
+}

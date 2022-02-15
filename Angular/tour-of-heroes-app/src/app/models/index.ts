@@ -1,1 +1,2 @@
-export * from './hero';
+export * from './hero.model';
+export * from './power.model';

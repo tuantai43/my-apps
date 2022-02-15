@@ -11,22 +11,12 @@ import { CoreModule } from './core';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './core/services/in-memory-data.service';
-
 const APP_MODULES = [SharedModule, CoreModule];
 
 const APP_COMPONENTS = [AdminLayoutComponent];
 @NgModule({
   declarations: [AppComponent, ...APP_COMPONENTS],
-  imports: [
-    ...APP_MODULES,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-  ],
+  imports: [...APP_MODULES, BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule],
   exports: [SharedModule],
   providers: [],
   bootstrap: [AppComponent],

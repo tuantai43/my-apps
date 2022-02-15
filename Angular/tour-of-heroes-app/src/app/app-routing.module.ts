@@ -6,14 +6,17 @@ const routes: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
-    loadChildren: () =>
-      import('./features/home/home.module').then((m) => m.HomeModule),
+    loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'heroes',
     component: AdminLayoutComponent,
-    loadChildren: () =>
-      import('./features/heroes/heroes.module').then((m) => m.HeroesModule),
+    loadChildren: () => import('./features/heroes/heroes.module').then((m) => m.HeroesModule),
+  },
+  {
+    path: 'home',
+    component: AdminLayoutComponent,
+    loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
   },
 ];
 
