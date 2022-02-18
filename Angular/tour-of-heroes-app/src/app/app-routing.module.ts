@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'heroes',
     component: AdminLayoutComponent,
-    loadChildren: () => import('./features/heroes/heroes.module').then((m) => m.HeroesModule),
+    loadChildren: () => import('./features/hero/hero.module').then((m) => m.HeroModule),
   },
   {
     path: 'home',
@@ -24,4 +24,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
