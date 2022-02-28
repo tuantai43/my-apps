@@ -1,0 +1,10 @@
+<div class="row">
+  <app-slots [toggleRandom]="toggleRandom"></app-slots>
+  <div class="row">
+    <div class="col">
+      <button mat-raised-button color="primary" (click)="toggleRandom = !toggleRandom">
+        {{ !toggleRandom ? 'Start' : 'Stop' }}
+      </button>
+    </div>
+  </div>
+</div>

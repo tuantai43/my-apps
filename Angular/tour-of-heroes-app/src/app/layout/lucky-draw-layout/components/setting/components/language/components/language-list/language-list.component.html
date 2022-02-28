@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>
+  {{ 'language' | translate }}
+</h2>
+<div mat-dialog-content class="language-list">
+  <ng-container *ngFor="let language of languageList">
+    <button mat-button *ngIf="language.key !== currentLang; else activeLanguage" (click)="switchLanguage(language.key)">
+      <img title="{{ language.name }}" src="{{ language.flag }}" alt="Language {{ language.name }}" />
+      {{ language.name }}
+    </button>
+    <ng-template #activeLanguage>
+      <button mat-stroked-button (click)="switchLanguage(language.key)" cdkFocusInitial>
+        <img title="{{ language.name }}" src="{{ language.flag }}" alt="Language {{ language.name }}" />
+        {{ language.name }}
+      </button>
+    </ng-template>
+  </ng-container>
+</div>
