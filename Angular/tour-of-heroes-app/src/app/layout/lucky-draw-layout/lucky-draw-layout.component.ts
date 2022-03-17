@@ -6,4 +6,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./lucky-draw-layout.component.scss']
 })
 export class LuckyDrawLayoutComponent {
+
 }

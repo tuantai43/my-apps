@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  # MongoDB services
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - ./data/mongo:/data/db
+  # Node Api service
+  api:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      PORT: 3000
+      MONGODB_URL: mongodb://localhost:27017
+      DB_NAME: my_db
+      NAME: TaiPham
+    depends_on:
+      - mongo_db

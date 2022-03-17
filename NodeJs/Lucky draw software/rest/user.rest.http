@@ -1,0 +1,16 @@
+POST http://localhost:3000/user
+content-type: application/xml
+
+# {
+#     "firstName": "Marcos",
+#     "lastName": "Silva",
+#     "email": "marcos.henrique@toptal.com",
+#     "password": "s3cr3tp4sswo4rd"
+# }
+
+<request>
+    <firstName>Marcos</firstName>
+    <lastName>Silva</lastName>
+    <email>marcos.henrique@toptal.com</email>
+    <password>s3cr3tp4sswo4rd</password>
+</request>
