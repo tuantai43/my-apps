@@ -10,8 +10,10 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
     if (err instanceof ErrorException) {
         console.log('Error is known.');
         res.status(err.status).send(err.message);
+    } else if (err) {
+        res.status(500).send(err);
     } else {
         // For unhandled errors.
-        res.status(500).send({ code: ErrorCode.Unknown.key, status: 500 } as ErrorModel);
+        res.status(500).send({ code: ErrorCode.Unknown.key } as ErrorModel);
     }
 };

@@ -1,12 +1,11 @@
 'use strict';
-import { ErrorException } from './utils/error-handler/error-exception';
-import { errorHandler } from './utils/error-handler/error-handler';
-import { ErrorCode } from './utils/error-handler/error-code';
+import { ErrorException } from './src/utils/error-handler/error-exception';
+import { errorHandler } from './src/utils/error-handler/error-handler';
+import { ErrorCode } from './src/utils/error-handler/error-code';
 import express from 'express';
 import mongoose from 'mongoose';
-import userRouter from './users/routes.config';
-import * as UsersController from './users/controllers/users.controller';
-import productRouter from './routes/product.route';
+import userRouter from './src/users/routes.config';
+import productRouter from './src/routes/product.route';
 
 mongoose.connect('mongodb://mongo_db:27017').then(() => {
     console.log('Mongodb connected...');
@@ -15,13 +14,22 @@ mongoose.connect('mongodb://mongo_db:27017').then(() => {
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
+import bodyParser from 'body-parser';
 
 // App
 const app = express();
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 app.use(errorHandler);
 app.use('/products', productRouter);
 app.use('/user', userRouter);
-app.use((req, res, next) => {
+app.get('*', () => {
+    throw new ErrorException(ErrorCode.NotFound);
+});
+app.use(() => {
     throw new ErrorException(ErrorCode.Unknown);
 })
 

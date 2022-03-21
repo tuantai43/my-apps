@@ -9,7 +9,7 @@ services:
       - "27017:27017"
     restart: always
     volumes:
-      - ./data/mongo:/data/db
+      - ./.data/mongo:/data/db
   # Node Api service
   api:
     build: .
