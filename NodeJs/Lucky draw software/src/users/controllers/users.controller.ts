@@ -1,11 +1,11 @@
-import { ErrorException } from '../../utils/error-handler/error-exception';
+import { ErrorException } from '../../common/error-handler/error-exception';
 import { UserModel } from '../models/users.model';
 import { NextFunction, Request, Response } from 'express';
 import crypto from 'crypto';
-import { ErrorCode } from '../../utils/error-handler/error-code';
+import { ErrorCode } from '../../common/error-handler/error-code';
 
 export abstract class UsersController {
-    static insert(req: any, res: any) {
+    static insert(req: Request, res: Response) {
         let salt = crypto.randomBytes(16).toString('base64');
         let hash = crypto.createHmac('sha512', salt)
             .update(req.body.password)

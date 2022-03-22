@@ -1,1 +1,1 @@
-{"version":"1.0.0","name":"lucky_draw_app","dependencies":{"mongoose":{"version":"6.2.4"},"nodemon":{"version":"2.0.15"}}}
+{"version":"1.0.0","name":"lucky_draw_app","dependencies":{"@types/body-parser":{"version":"1.19.2"},"dotenv":{"version":"16.0.0"},"jsonwebtoken":{"version":"8.5.1"},"mongoose":{"version":"6.2.4"},"nodemon":{"version":"2.0.15"}}}

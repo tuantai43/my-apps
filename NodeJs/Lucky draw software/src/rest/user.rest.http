@@ -1,4 +1,6 @@
-POST http://localhost:3000/user
+@baseUrl = http://localhost:3000/user
+###
+POST {{baseUrl}}/user
 content-type: application/json
 
 {
@@ -9,10 +11,10 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:3000/user/62384424782c46d6c55c2dc1
+GET {{baseUrl}}/62384424782c46d6c55c2dc1
 
 ###
-GET http://localhost:3000/user/list
+GET {{baseUrl}}/list
 
 ###
-DELETE http://localhost:3000/user/62384541f3ff44f4947afede
+DELETE {{baseUrl}}/62384541f3ff44f4947afede

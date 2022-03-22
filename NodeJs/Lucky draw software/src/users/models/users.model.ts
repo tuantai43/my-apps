@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 type User = {
     irstName: String,
@@ -52,7 +52,7 @@ export abstract class UserModel {
 
     static removeById(id: string) {
         return new Promise((resolve, reject) => {
-            UserDB.findOneAndDelete({ _id: id }, (err) => {
+            UserDB.findOneAndDelete({ _id: id }, (err: mongoose.NativeError) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -61,5 +61,9 @@ export abstract class UserModel {
             });
         });
 
+    }
+
+    static findByEmail(email: string) {
+        return UserDB.findOne({ email })
     }
 }

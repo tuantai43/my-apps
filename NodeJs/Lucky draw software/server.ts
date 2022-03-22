@@ -1,20 +1,20 @@
 'use strict';
-import { ErrorException } from './src/utils/error-handler/error-exception';
-import { errorHandler } from './src/utils/error-handler/error-handler';
-import { ErrorCode } from './src/utils/error-handler/error-code';
+import { ErrorException } from './src/common/error-handler/error-exception';
+import { errorHandler } from './src/common/error-handler/error-handler';
+import { ErrorCode } from './src/common/error-handler/error-code';
 import express from 'express';
 import mongoose from 'mongoose';
 import userRouter from './src/users/routes.config';
+import authRouter from './src/authorization/routes.config';
 import productRouter from './src/routes/product.route';
+import bodyParser from 'body-parser';
+import 'dotenv/config';
 
 mongoose.connect('mongodb://mongo_db:27017').then(() => {
     console.log('Mongodb connected...');
 })
 
-const PORT = 3000;
-const HOST = '0.0.0.0';
-
-import bodyParser from 'body-parser';
+const PORT = process.env.PORT;
 
 // App
 const app = express();
@@ -26,6 +26,7 @@ app.use(bodyParser.json())
 app.use(errorHandler);
 app.use('/products', productRouter);
 app.use('/user', userRouter);
+app.use('/auth', authRouter);
 app.get('*', () => {
     throw new ErrorException(ErrorCode.NotFound);
 });
@@ -34,5 +35,5 @@ app.use(() => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Running on A http://${HOST}:${PORT}`);
+    console.log('Running on', PORT);
 });
