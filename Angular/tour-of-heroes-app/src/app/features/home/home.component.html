@@ -1,1 +1,15 @@
 <a mat-stroked-button color="accent" routerLink="/lucky-draw">Go Lucky Draw Game</a>
+
+<div class="bg">
+  <div class="centered">
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+  </div>
+  <div class="home-icon"></div>
+</div>
+<app-base-carousel [source]="list" [itemTemplate]="slideContent"></app-base-carousel>
+<ng-template #slideContent let-item="item">
+  <div class="main-content" [style.background-image]="'url(' + item.src + ')'">
+    {{ item.title }}
+  </div>
+</ng-template>

@@ -4,5 +4,12 @@
   "howTo": "Hướng dẫn",
   "pricing": "Phí sử dụng",
   "login": "Đăng nhập",
-  "language": "Ngôn ngữ"
+  "language": "Ngôn ngữ",
+  "forgotPassword": "Forgot Password?",
+  "signUp": "sign up",
+  "signUpDescription": "Don't have account?",
+  "email": "Email",
+  "password": "Password",
+  "e01": "Username is required",
+  "e02": "Password is required"
 }

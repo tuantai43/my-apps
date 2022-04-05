@@ -4,5 +4,12 @@
   "howTo": "如何",
   "pricing": "价钱",
   "login": "登录",
-  "language": "语言"
+  "language": "语言",
+  "forgotPassword": "Forgot Password?",
+  "signUp": "sign up",
+  "signUpDescription": "Don't have account?",
+  "email": "Email",
+  "password": "Password",
+  "e01": "Username is required",
+  "e02": "Password is required"
 }

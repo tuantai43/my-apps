@@ -4,5 +4,12 @@
   "howTo": "Comment",
   "pricing": "Tarification",
   "login": "Connexion",
-  "language": "Langue"
+  "language": "Langue",
+  "forgotPassword": "Forgot Password?",
+  "signUp": "sign up",
+  "signUpDescription": "Don't have account?",
+  "email": "Email",
+  "password": "Password",
+  "e01": "Username is required",
+  "e02": "Password is required"
 }

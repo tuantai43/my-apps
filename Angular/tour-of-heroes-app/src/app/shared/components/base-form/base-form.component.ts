@@ -1,5 +1,5 @@
-import { FormControl } from '@angular/forms';
-import { Component, Input } from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Component, Input} from '@angular/core';
 
 @Component({
   template: '',
@@ -8,11 +8,12 @@ export abstract class BaseFormComponent {
   @Input() fieldControl: FormControl = new FormControl();
   @Input() label = '';
   @Input() errorList: { [key: string]: string } = {};
+  @Input() color: 'primary' | 'accent' | 'warn' = 'primary';
 
   errorMessage = '';
 
   defaultErrorList: { [key: string]: string } = {
-    required: 'You must enter a value',
+    required: 'required',
   };
 
   checkInvalidField(): boolean {

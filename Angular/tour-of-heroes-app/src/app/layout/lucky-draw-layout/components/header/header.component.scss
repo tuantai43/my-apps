@@ -2,7 +2,8 @@ h2 {
   font-size: 2rem;
 }
 
-.header {
+:host {
+  display: block;
   padding: 2rem;
   text-align: center;
 }

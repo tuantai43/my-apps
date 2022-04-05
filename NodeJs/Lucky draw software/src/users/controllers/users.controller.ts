@@ -6,6 +6,7 @@ import { ErrorCode } from '../../common/error-handler/error-code';
 
 export abstract class UsersController {
     static insert(req: Request, res: Response) {
+        console.log('UsersController', 'insert');
         let salt = crypto.randomBytes(16).toString('base64');
         let hash = crypto.createHmac('sha512', salt)
             .update(req.body.password)
@@ -18,14 +19,16 @@ export abstract class UsersController {
             });
     };
     static async getById(req: Request, res: Response, next: NextFunction) {
+        console.log('UsersController', 'getById');
         try {
-            const result = await UserModel.findById(req.params.id);
+            const result = await UserModel.findById(req.params.userId);
             res.status(200).send(result);
         } catch {
             next(new ErrorException(ErrorCode.UserNotFound));
         }
     }
     static async list(req: Request, res: Response, next: NextFunction) {
+        console.log('UsersController', 'list');
         try {
             const result = await UserModel.list();
             res.status(200).send(result);
@@ -35,7 +38,8 @@ export abstract class UsersController {
     }
 
     static removeById(req: Request, res: Response, next: NextFunction) {
-        UserModel.removeById(req.params.id)
+        console.log('UsersController', 'removeById');
+        UserModel.removeById(req.params.userId)
             .then(() => {
                 res.status(204).send({});
             }).catch((err) => {

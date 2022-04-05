@@ -1,6 +1,4 @@
-@baseUrl = http://localhost:3000/user
-###
-POST {{baseUrl}}/user
+POST http://localhost:3000/user
 content-type: application/json
 
 {
@@ -11,10 +9,11 @@ content-type: application/json
 }
 
 ###
-GET {{baseUrl}}/62384424782c46d6c55c2dc1
+GET http://localhost:3000/user/6239b5481018ca5c919e3b3d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjM5YjU0ODEwMThjYTVjOTE5ZTNiM2QiLCJlbWFpbCI6Im1hcmNvcy5oZW5yaXF1ZUB0b3B0YWwuY29tIiwicGVybWlzc2lvbkxldmVsIjoxLCJwcm92aWRlciI6ImVtYWlsIiwibmFtZSI6Ik1hcmNvcyBTaWx2YSIsInJlZnJlc2hLZXkiOiJzbnYyRFJ2SG5wdkN0OUZsd0ZWNi93PT0iLCJpYXQiOjE2NDc5NTAxNjV9.TaYoV2pGRomYaS5GPUFUx4bRbdcMrbkfBRXYGORUQsI
 
 ###
-GET {{baseUrl}}/list
+GET http://localhost:3000/user/list
 
 ###
-DELETE {{baseUrl}}/62384541f3ff44f4947afede
+DELETE http://localhost:3000/user/62384541f3ff44f4947afede

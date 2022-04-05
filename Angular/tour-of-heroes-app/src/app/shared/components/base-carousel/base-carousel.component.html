@@ -1,0 +1,21 @@
+<div class="carousel">
+  <button mat-icon-button class="control" (click)="handleClickPrev()">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <div class="content">
+    <ng-container *ngIf="itemTemplate">
+      <div class="prev-slide" [ngClass]="{ moving: isPrevMoving }">
+        <ng-container *ngTemplateOutlet="itemTemplate; context: { item: source[prevSlide] }"></ng-container>
+      </div>
+      <div class="slide-item">
+        <ng-container *ngTemplateOutlet="itemTemplate; context: { item: source[currentIndex] }"></ng-container>
+      </div>
+      <div class="next-slide" [ngClass]="{ moving: isNextMoving }">
+        <ng-container *ngTemplateOutlet="itemTemplate; context: { item: source[nextSlide] }"></ng-container>
+      </div>
+    </ng-container>
+  </div>
+  <button mat-icon-button class="control" (click)="handleClickNext()">
+    <mat-icon>arrow_forward_ios</mat-icon>
+  </button>
+</div>

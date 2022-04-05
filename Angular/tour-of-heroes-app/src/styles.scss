@@ -1,7 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'themes';
-@import '~bootstrap/dist/css/bootstrap-grid.min.css';
-
 html,
 body {
   height: 100%;
@@ -15,3 +12,11 @@ body {
 .ar {
   direction: rtl;
 }
+
+.mat-form-field,
+.mat-form-field-infix {
+  width: 100%;
+}
+
+@import 'themes';
+@import '~bootstrap/dist/css/bootstrap-grid.min.css';

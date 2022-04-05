@@ -1,0 +1,70 @@
+.control {
+  position: absolute;
+  opacity: 0;
+  transition: 0.5s all;
+  color: white;
+
+  &:first-of-type {
+    left: 1rem;
+  }
+
+  &:last-of-type {
+    right: 1rem;
+  }
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &:hover .control {
+    opacity: 1;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
+
+.slide-item {
+  box-shadow: 0.2rem 0.2rem 0.5rem #1a237e;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: #9fa8da;
+}
+
+.prev-slide,
+.next-slide {
+  position: absolute;
+  width: calc(100% - 2rem);
+  top: 1rem;
+
+  &.moving {
+    animation-name: next;
+    animation-duration: 0.5s;
+  }
+}
+
+.prev-slide {
+  transform: translateX(calc(-100% - 1rem));
+}
+
+.next-slide {
+  transform: translateX(calc(100% + 1rem));
+}
+
+@media (max-width: 1000px) {
+  .control {
+    opacity: 1;
+  }
+}
+
+@keyframes next {
+  to {
+    transform: translateX(0);
+  }
+}

@@ -11,4 +11,8 @@ export abstract class ErrorCode {
     static readonly MissingEmail = new ErrorCodeModel('M_01', 'Missing email field');
     static readonly MissingBody = new ErrorCodeModel('M_02', 'Missing body');
     static readonly MissingPassword = new ErrorCodeModel('M_03', 'Missing password field');
+    static readonly MissingAuthorization = new ErrorCodeModel('A_02', 'Missing authorization');
+    static readonly AuthorizationBearerInvalid = new ErrorCodeModel('A_01', 'Bearer is invalid');
+    static readonly AuthorizationInvalid = new ErrorCodeModel('A_02', 'Authorization is invalid');
+    static readonly ActionDenied = new ErrorCodeModel('P_01', 'Action is denied');
 }

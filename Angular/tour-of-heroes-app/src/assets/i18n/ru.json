@@ -4,5 +4,12 @@
   "howTo": "Как",
   "pricing": "Цены",
   "login": "Авторизоваться",
-  "language": "Язык"
+  "language": "Язык",
+  "forgotPassword": "Forgot Password?",
+  "signUp": "sign up",
+  "signUpDescription": "Don't have account?",
+  "email": "Email",
+  "password": "Password",
+  "e01": "Username is required",
+  "e02": "Password is required"
 }

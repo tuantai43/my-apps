@@ -13,6 +13,8 @@ import {
   LanguageListComponent
 } from './components/setting/components/language/components/language-list/language-list.component';
 import { A11yModule } from '@angular/cdk/a11y';
+import { LoginComponent } from './components/login/login.component';
+import { FormLoginComponent } from './components/login/components/form-login/form-login.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { A11yModule } from '@angular/cdk/a11y';
     SettingComponent,
     MusicComponent,
     LanguageComponent,
-    LanguageListComponent
+    LanguageListComponent,
+    LoginComponent,
+    FormLoginComponent
   ],
   imports: [
     BrowserModule,
