@@ -14,20 +14,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-const APP_MODULES = [SharedModule, CoreModule, AdminLayoutModule, LuckyDrawLayoutModule];
-
-
 @NgModule({
   declarations: [AppComponent],
-  imports: [...APP_MODULES, BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule,
-  TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: httpTranslateLoader,
-      deps: [HttpClient]
-    }
-  })],
-  exports: [SharedModule],
+  imports: [
+    SharedModule,
+    CoreModule,
+    AdminLayoutModule,
+    LuckyDrawLayoutModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
