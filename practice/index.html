@@ -1,0 +1,76 @@
+<html>
+<style>
+    * {
+        user-select: none;
+    }
+
+    *::selection {
+        background: transparent;
+    }
+
+    body {
+        position: relative;
+        margin: 0;
+    }
+
+    .circle {
+        width: 300px;
+        height: 300px;
+        border-radius: 150px;
+        border: 2px solid;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .point {
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        position: fixed;
+        box-sizing: border-box;
+    }
+
+    .circle .point {
+        position: absolute;
+        top: 0;
+        left: calc(50% - 5px);
+    }
+
+</style>
+<body>
+<div class="circle">
+    <div class="point"></div>
+</div>
+<script>
+    class Position {
+        constructor(x, y, element) {
+        }
+    }
+
+    const point1 = new Position();
+    const point2 = new Position();
+
+    point1.element = document.createElement('div');
+    point1.element.className = 'point';
+
+    document.body.appendChild(point1.element);
+
+    point2.element = document.createElement('div');
+    point2.element.className = 'point';
+
+    document.body.appendChild(point2.element);
+    document.addEventListener('mousedown', (e) => {
+        point1.x = e.x;
+        point1.y = e.y;
+        point1.element.style.left = point1.x + 'px';
+        point1.element.style.top = point1.y + 'px';
+    });
+    document.addEventListener('mouseup', (e) => {
+        point2.x = e.x;
+        point2.y = e.y;
+        point2.element.style.left = point2.x + 'px';
+        point2.element.style.top = point2.y + 'px';
+    })
+</script>
+</body>
+</html>

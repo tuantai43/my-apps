@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    body {
+      margin: 0;
+    }
+    div {
+      overflow-x: scroll;
+      position: absolute;
+      width: 100vw;
+      left: 0;
+    }
+    div::-webkit-scrollbar {
+      display: none;
+    }
+    span {
+      white-space: nowrap;
+      display: inline-block;
+      padding-left: calc(100% + 20px);
+      padding-right: 100%;
+    }
+  </style>
+  <body></body>
+  <script>
+    var list = [
+      "1This is a first text.",
+      "2Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "3It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "4This is a last text.",
+    ];
+
+    const loop = (index) => {
+      const container = document.createElement("div");
+      const span = document.createElement("span");
+      span.innerText = list[index];
+      container.append(span);
+      document.body.appendChild(container);
+
+      const interval = setInterval(() => {
+        if (
+          container.scrollLeft ===
+          container.scrollWidth - parseInt(container.clientWidth) - 1
+        ) {
+          clearInterval(interval);
+          container.remove();
+        } else if (
+          container.scrollLeft ===
+          container.scrollWidth - 2 * parseInt(container.clientWidth)
+        ) {
+          loop((index + 1) % list.length);
+        }
+        container.scrollLeft =
+          (parseInt(container.scrollLeft) + 1) %
+          (container.scrollWidth - parseInt(container.clientWidth));
+      }, 10);
+    };
+    loop(0);
+  </script>
+</html>
