@@ -1,16 +1,34 @@
 POST http://localhost:3000/user
 content-type: application/json
+Origin: http://localhost:4200
+
+{
+    "firstName": "Admin",
+    "lastName": "Admin",
+    "email": "admin@lucky.com",
+    "password": "s3cr3tp4sswo4rd"
+}
+###
+POST http://localhost:3000/user
+content-type: application/json
+Origin: http://localhost:4200
 
 {
     "firstName": "Marcos",
     "lastName": "Silva",
-    "email": "marcos.henrique@toptal.com",
+    "email": "marcos.henrique1@toptal.com",
     "password": "s3cr3tp4sswo4rd"
 }
 
+### admin
+GET http://localhost:3000/user/62541d15db413e8d30da68d3
+Origin: http://localhost:4200
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjU0MWQxNWRiNDEzZThkMzBkYTY4ZDMiLCJwZXJtaXNzaW9uTGV2ZWwiOjEsImlhdCI6MTY0OTY5NjAxOCwiZXhwIjoxNjQ5Njk2MDc4fQ.u8V4lraHlDzaeLIUus-f2hRY0afDx5u4oqSn2jzrnBU
+
 ###
 GET http://localhost:3000/user/6239b5481018ca5c919e3b3d
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjM5YjU0ODEwMThjYTVjOTE5ZTNiM2QiLCJlbWFpbCI6Im1hcmNvcy5oZW5yaXF1ZUB0b3B0YWwuY29tIiwicGVybWlzc2lvbkxldmVsIjoxLCJwcm92aWRlciI6ImVtYWlsIiwibmFtZSI6Ik1hcmNvcyBTaWx2YSIsInJlZnJlc2hLZXkiOiJzbnYyRFJ2SG5wdkN0OUZsd0ZWNi93PT0iLCJpYXQiOjE2NDc5NTAxNjV9.TaYoV2pGRomYaS5GPUFUx4bRbdcMrbkfBRXYGORUQsI
+Origin: http://localhost:4200
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjM5YjU0ODEwMThjYTVjOTE5ZTNiM2QiLCJlbWFpbCI6Im1hcmNvcy5oZW5yaXF1ZUB0b3B0YWwuY29tIiwicGVybWlzc2lvbkxldmVsIjoxLCJwcm92aWRlciI6ImVtYWlsIiwibmFtZSI6Ik1hcmNvcyBTaWx2YSIsInJlZnJlc2hLZXkiOiJZU1QySFViSGQrY1h5RzZaVVN6SFJBPT0iLCJpYXQiOjE2NDk2NjU3Mzd9.9CMcwUgr3CFJLxx7x5nIc4TuO6s293Xfdt53NVRCbH4
 
 ###
 GET http://localhost:3000/user/list

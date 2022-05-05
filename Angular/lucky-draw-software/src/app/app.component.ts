@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -13,14 +13,12 @@ export class AppComponent implements OnDestroy {
   lang: string = 'en';
 
   constructor(private translate: TranslateService) {
-    translate.addLangs(['en', 'vi']);
-    translate.setDefaultLang(this.lang);
-    translate.onLangChange
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((res) => {
-        this.lang = res.lang;
-        document.documentElement.lang = this.lang;
-      })
+    this.translate.addLangs(['en', 'vi']);
+    this.translate.setDefaultLang(this.lang);
+    this.translate.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((res) => {
+      this.lang = res.lang;
+      document.documentElement.lang = this.lang;
+    });
   }
 
   ngOnDestroy() {

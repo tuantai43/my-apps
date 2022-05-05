@@ -1,26 +1,32 @@
-import { ErrorCode } from "./error-code";
+import { ErrorCode } from './error-code';
+import { ErrorCodeModel } from './error-code.model';
 
 class Type {
-    constructor(public status: number, public keys: string[]) {
-    }
+  constructor(public status: number, public keys: string[]) {}
 }
+
+const mapKeyError = (errorList: ErrorCodeModel[]) => {
+  return errorList.map((item) => item.key);
+};
+
 export abstract class ErrorType {
-    public static List = [
-        new Type(400, [
-            ErrorCode.UserInvalid.key,
-            ErrorCode.MissingEmail.key,
-            ErrorCode.MissingPassword.key,
-            ErrorCode.MissingBody.key,
-        ]),
-        new Type(401, [
-            ErrorCode.MissingAuthorization.key,
-            ErrorCode.AuthorizationInvalid.key
-        ]),
-        new Type(403, [
-            ErrorCode.AuthorizationBearerInvalid.key,
-            ErrorCode.ActionDenied.key,
-        ]),
-        new Type(404, [ErrorCode.NotFound.key, ErrorCode.UserNotFound.key]),
-        new Type(500, [ErrorCode.Unknown.key])
-    ]
+  public static List = [
+    new Type(
+      400,
+      mapKeyError([
+        ErrorCode.UserInvalid,
+        ErrorCode.MissingEmail,
+        ErrorCode.MissingPassword,
+        ErrorCode.MissingBody,
+        ErrorCode.UserNotFound,
+        ErrorCode.EmailUsed,
+        ErrorCode.MissingRefreshToken,
+        ErrorCode.RefreshTokenInvalid,
+      ])
+    ),
+    new Type(401, mapKeyError([ErrorCode.MissingAuthorization, ErrorCode.AuthorizationInvalid, ErrorCode.LoginFail])),
+    new Type(403, mapKeyError([ErrorCode.AuthorizationBearerInvalid, ErrorCode.ActionDenied])),
+    new Type(404, mapKeyError([ErrorCode.NotFound])),
+    new Type(500, mapKeyError([ErrorCode.Unknown])),
+  ];
 }

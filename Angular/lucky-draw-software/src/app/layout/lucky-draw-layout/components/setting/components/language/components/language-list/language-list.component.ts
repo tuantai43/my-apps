@@ -1,15 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
-import {TranslateService} from '@ngx-translate/core';
-import {LanguageModel} from '../../language.model';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageModel } from '../../language.model';
 
 @Component({
   selector: 'app-language-list',
   templateUrl: './language-list.component.html',
-  styleUrls: ['./language-list.component.scss']
+  styleUrls: ['./language-list.component.scss'],
 })
 export class LanguageListComponent implements OnInit {
-
   languageList: LanguageModel[] = [
     new LanguageModel('en', 'English', '/assets/images/flag/en.svg'),
     new LanguageModel('vi', 'Việt', '/assets/images/flag/vi.svg'),
@@ -22,23 +21,19 @@ export class LanguageListComponent implements OnInit {
     new LanguageModel('fr', 'Français', '/assets/images/flag/fr.svg'),
     new LanguageModel('de', 'Deutsch', '/assets/images/flag/de.svg'),
     new LanguageModel('tr', 'Türkçe', '/assets/images/flag/tr.png'),
-  ]
+  ];
 
   currentLang = 'en';
 
-  constructor(public dialogRef: MatDialogRef<LanguageListComponent>, public translate: TranslateService) {
-  }
+  constructor(public dialogRef: MatDialogRef<LanguageListComponent>, public translate: TranslateService) {}
 
   ngOnInit() {
-    console.log(this.translate.defaultLang)
     this.currentLang = this.translate.currentLang;
   }
 
   switchLanguage(key: string) {
     this.translate.use(key);
     this.currentLang = key;
-    sessionStorage.setItem('language', this.currentLang);
     this.dialogRef.close();
   }
-
 }

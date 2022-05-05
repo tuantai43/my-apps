@@ -1,7 +1,38 @@
-POST http://localhost:3000/auth
+POST http://localhost:3000/auth/login
 content-type: application/json
+Origin: http://localhost:4200
+
+{
+    "email": "admin@lucky.com",
+    "password": "s3cr3tp4sswo4rd"
+}
+
+###
+POST http://localhost:3000/auth/login
+content-type: application/json
+Origin: http://localhost:4200
 
 {
     "email": "marcos.henrique@toptal.com",
     "password": "s3cr3tp4sswo4rd"
+}
+
+###
+POST http://localhost:3000/auth/login
+content-type: application/json
+Origin: http://localhost:4200
+
+{
+    "email": "",
+    "password": "s3cr3tp4sswo4rd"
+}
+
+###
+POST http://localhost:3000/auth/refresh
+Content-Type: application/json
+Origin: http://localhost:4200
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjU0MWQxNWRiNDEzZThkMzBkYTY4ZDMiLCJwZXJtaXNzaW9uTGV2ZWwiOjEsImlhdCI6MTY0OTY5NjAxOCwiZXhwIjoxNjQ5Njk2MDc4fQ.u8V4lraHlDzaeLIUus-f2hRY0afDx5u4oqSn2jzrnBU
+
+{
+    "accessRefreshToken": "dm5RaHhqcllabWZRNDVoRUVvWkxKZlprajlQbCtPQy9VaEVmNy9PNjZTYXA0NHhLMVgyWHU4ZzlsVHlvR056VVMyYUFOWXdxdVF0RVM3a3Z6MUNYS2c9PQ=="
 }

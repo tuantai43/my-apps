@@ -8,6 +8,7 @@
   "forgotPassword": "Forgot Password?",
   "signUp": "sign up",
   "signUpDescription": "Don't have account?",
+  "loginDescription": "Already have ab account?",
   "email": "Email",
   "password": "Password",
   "e01": "Username is required",

@@ -5,11 +5,6 @@ import { LuckyDrawLayoutComponent } from '@app/layout/lucky-draw-layout/lucky-dr
 
 const routes: Routes = [
   {
-    path: '',
-    component: AdminLayoutComponent,
-    loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
-  },
-  {
     path: 'heroes',
     component: AdminLayoutComponent,
     loadChildren: () => import('./features/hero/hero.module').then((m) => m.HeroModule),
@@ -20,7 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'lucky-draw',
+    path: '',
     component: LuckyDrawLayoutComponent,
     loadChildren: () => import('./features/lucky-draw/lucky-draw.module').then((m) => m.LuckyDrawModule),
   },

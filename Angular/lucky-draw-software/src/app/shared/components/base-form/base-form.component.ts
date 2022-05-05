@@ -1,5 +1,5 @@
-import {FormControl} from '@angular/forms';
-import {Component, Input} from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Component, Input } from '@angular/core';
 
 @Component({
   template: '',
@@ -14,6 +14,8 @@ export abstract class BaseFormComponent {
 
   defaultErrorList: { [key: string]: string } = {
     required: 'required',
+    maxlength: 'maxlength: XXX',
+    minlength: 'minlength: XXX',
   };
 
   checkInvalidField(): boolean {
@@ -30,6 +32,9 @@ export abstract class BaseFormComponent {
         } else {
           this.errorMessage = errorKey;
         }
+      }
+      if (errorKey === 'maxlength' || errorKey === 'minlength') {
+        this.errorMessage = this.errorMessage.replace('XXX', this.fieldControl.errors?.[errorKey].requiredLength);
       }
     }
     return invalid;

@@ -1,0 +1,32 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.ar {
+  direction: rtl;
+}
+
+.mat-form-field,
+.mat-form-field-infix {
+  width: 100%;
+}
+
+.text {
+  &--lowercase {
+    text-transform: lowercase;
+  }
+
+  &--capitalize {
+    text-transform: capitalize;
+  }
+}
+
+.directives.loading {
+  overflow: hidden;
+}

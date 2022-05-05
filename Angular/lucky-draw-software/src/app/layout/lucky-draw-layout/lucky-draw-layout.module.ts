@@ -7,35 +7,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from '@app/shared';
 import { SettingComponent } from './components/setting/setting.component';
 import { MusicComponent } from './components/setting/components/music/music.component';
-import { LanguageComponent } from './components/setting/components/language/language.component';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-  LanguageListComponent
-} from './components/setting/components/language/components/language-list/language-list.component';
 import { A11yModule } from '@angular/cdk/a11y';
-import { LoginComponent } from './components/login/login.component';
-import { FormLoginComponent } from './components/login/components/form-login/form-login.component';
-
+import { AuthModule } from '@app/auth/auth.module';
+import { LanguageModule } from './components/setting/components/language/language.module';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    LuckyDrawLayoutComponent,
-    FooterComponent,
-    SettingComponent,
-    MusicComponent,
-    LanguageComponent,
-    LanguageListComponent,
-    LoginComponent,
-    FormLoginComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    SharedModule,
-    TranslateModule,
-    A11yModule
-  ]
+  declarations: [HeaderComponent, LuckyDrawLayoutComponent, FooterComponent, SettingComponent, MusicComponent],
+  imports: [BrowserModule, RouterModule, SharedModule, TranslateModule, AuthModule, LanguageModule, A11yModule],
 })
-export class LuckyDrawLayoutModule {
-}
+export class LuckyDrawLayoutModule {}

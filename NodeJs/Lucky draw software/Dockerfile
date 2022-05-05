@@ -5,5 +5,4 @@ COPY package*.json /usr/src/app
 RUN npm cache verify
 RUN npm ci
 COPY . /usr/src/app
-EXPOSE 3000
-CMD ["npm","start"]
+CMD ["npm", "run", "start"]
