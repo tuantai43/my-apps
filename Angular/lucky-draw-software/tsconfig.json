@@ -26,6 +26,9 @@
       "@app/*": [
         "src/app/*"
       ],
+      "@fa-management-layout/*": [
+        "src/app/layout/fa-management-layout/components/*"
+      ],
       "@env/*": [
         "src/environments/*"
       ]

@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'fa-management',
+    loadChildren: () => import('./features/fa-management/fa-management.module').then((m) => m.FaManagementModule),
+  },
+  {
     path: '',
     component: LuckyDrawLayoutComponent,
     loadChildren: () => import('./features/lucky-draw/lucky-draw.module').then((m) => m.LuckyDrawModule),
