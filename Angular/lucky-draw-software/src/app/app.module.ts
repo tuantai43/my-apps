@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 // modules of apps
 import { SharedModule } from './shared';
@@ -13,6 +13,9 @@ import { LuckyDrawLayoutModule } from '@app/layout/lucky-draw-layout/lucky-draw-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,22 +25,25 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     AdminLayoutModule,
     LuckyDrawLayoutModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabledBlocking',
+    }),
     BrowserAnimationsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,
-        deps: [HttpClient]
-      }
-    })
+        deps: [HttpClient],
+      },
+    }),
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {

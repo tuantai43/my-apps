@@ -26,11 +26,14 @@
       "@app/*": [
         "src/app/*"
       ],
-      "@fa-management-layout/*": [
-        "src/app/layout/fa-management-layout/components/*"
+      "@fa-management/layout": [
+        "src/app/layout/fa-management-layout"
       ],
       "@env/*": [
         "src/environments/*"
+      ],
+      "@fa-management/store/*": [
+        "src/app/features/fa-management/libs/store/*"
       ]
     }
   },
