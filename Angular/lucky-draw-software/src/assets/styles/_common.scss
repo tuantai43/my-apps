@@ -30,3 +30,20 @@ body {
 .directives.loading {
   overflow: hidden;
 }
+
+@mixin message {
+  padding: 1rem;
+  margin-bottom: var(--spacing);
+}
+
+.error-message {
+  @include message();
+  color: var(--w-500);
+  background-color: var(--w-100);
+}
+
+.success-message {
+  @include message();
+  color: var(--a-900);
+  background-color: var(--a-100);
+}

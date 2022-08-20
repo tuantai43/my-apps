@@ -4,10 +4,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './fa-management.routing';
 import { StoreCoreModule } from '@fa-management/store/core';
-import { FaManagementLayoutModule } from '@app/layout/fa-management-layout';
+import { LayoutModule } from './modules/layout';
 
 @NgModule({
   declarations: [DashboardComponent],
-  imports: [CommonModule, StoreCoreModule, FaManagementLayoutModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, StoreCoreModule, LayoutModule, RouterModule.forChild(routes)],
 })
 export class FaManagementModule {}

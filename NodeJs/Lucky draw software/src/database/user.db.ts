@@ -53,8 +53,11 @@ export abstract class UserDb {
     return UserSchema.findOne({
       email,
     }).then((result) => {
-      result = result.toJSON();
-      return result as UserModel;
+      if (result) {
+        result = result.toJSON();
+        return result as UserModel;
+      }
+      return null;
     });
   }
 

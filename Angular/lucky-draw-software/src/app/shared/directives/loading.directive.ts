@@ -16,11 +16,9 @@ import {
 })
 export class LoadingDirective {
   domLoading: HTMLElement | undefined;
-  private isLoading = false;
   @Input()
-  set appLoading(value: boolean) {
-    this.isLoading = value;
-    this.generateLoading();
+  set appLoading(value: boolean | null) {
+    this.generateLoading(!!value);
   }
 
   constructor(
@@ -30,8 +28,8 @@ export class LoadingDirective {
     private appRef: ApplicationRef
   ) {}
 
-  private generateLoading() {
-    if (this.isLoading) {
+  private generateLoading(loading: boolean) {
+    if (loading) {
       this.el.nativeElement.classList.add('loading', 'directives');
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(BaseLoadingComponent);
       const componentRef = componentFactory.create(this.injector);

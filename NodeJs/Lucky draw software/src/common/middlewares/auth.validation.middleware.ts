@@ -14,9 +14,22 @@ export abstract class AuthValidationMiddleware {
         if (authorization[0] !== 'Bearer') {
           next(new ErrorException(ErrorCode.AuthorizationBearerInvalid));
         } else {
-          req.body.jwt = Jwt.verify(authorization[1], enviroment.jwtSecret);
-          console.log('validJWTNeeded', 'success');
-          next();
+          try {
+            req.body.jwt = Jwt.verify(authorization[1], enviroment.jwtSecret, {
+              ignoreExpiration: true,
+            });
+            try {
+              req.body.jwt = Jwt.verify(authorization[1], enviroment.jwtSecret);
+              console.log('validJWTNeeded', 'success');
+              next();
+            } catch (err) {
+              console.log('validAuthorizationHeader', 'Access token expired');
+              next(new ErrorException(ErrorCode.AuthorizationExpired));
+            }
+          } catch (err) {
+            console.log('validAuthorizationHeader', 'Access token is invalid');
+            next(new ErrorException(ErrorCode.AuthorizationInvalid));
+          }
         }
       } catch (err) {
         console.log('validAuthorizationHeader', 'Access token is invalid');

@@ -1,0 +1,12 @@
+<ng-container *ngIf="isLogged$ | async; else noneToken">
+  <button mat-button (click)="doLogout()" class="loading">
+    <mat-icon>logout</mat-icon>
+    {{ 'logout' | translate }}
+  </button>
+</ng-container>
+<ng-template #noneToken>
+  <button mat-button (click)="openLogin()" class="loading">
+    <mat-icon>login</mat-icon>
+    {{ 'login' | translate }}
+  </button>
+</ng-template>

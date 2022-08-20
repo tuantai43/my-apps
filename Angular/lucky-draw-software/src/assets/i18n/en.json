@@ -4,6 +4,7 @@
   "howTo": "How-to",
   "pricing": "Pricing",
   "login": "Login",
+  "logout": "Logout",
   "language": "Language",
   "forgotPassword": "Forgot Password?",
   "signUp": "sign up",
@@ -12,5 +13,7 @@
   "email": "Email",
   "password": "Password",
   "e01": "Username is required",
-  "e02": "Password is required"
+  "e02": "Password is required",
+  "94BF": "Email or Password is incorrect!",
+  "signUpSuccess": "Thank you for register"
 }

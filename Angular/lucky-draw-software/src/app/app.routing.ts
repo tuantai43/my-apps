@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
-import { LuckyDrawLayoutComponent } from '@app/layout/lucky-draw-layout/lucky-draw-layout.component';
 
 export const routes: Routes = [
   {
@@ -19,7 +18,6 @@ export const routes: Routes = [
   },
   {
     path: 'lucky-draw',
-    component: LuckyDrawLayoutComponent,
     loadChildren: () => import('./features/lucky-draw/lucky-draw.module').then((m) => m.LuckyDrawModule),
   },
 ];

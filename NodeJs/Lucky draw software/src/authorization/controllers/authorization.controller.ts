@@ -25,6 +25,7 @@ export abstract class AuthorizationController {
           accessToken,
           refreshToken: refreshToken,
           info: {
+            userId,
             firstName,
             lastName,
             email,
@@ -52,6 +53,7 @@ export abstract class AuthorizationController {
         accessToken: generateToken(userId, req.body.jwt.permissionLevel),
         refreshToken: req.body.accessRefreshToken,
         info: {
+          userId,
           firstName,
           lastName,
           email,

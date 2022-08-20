@@ -26,8 +26,17 @@
       "@app/*": [
         "src/app/*"
       ],
+      "@lucky-draw/store/*": [
+        "src/app/features/lucky-draw/libs/store/*"
+      ],
+      "@lucky-draw/services": [
+        "src/app/features/lucky-draw/libs/services"
+      ],
+      "@lucky-draw/interceptors": [
+        "src/app/features/lucky-draw/libs/interceptors"
+      ],
       "@fa-management/layout": [
-        "src/app/layout/fa-management-layout"
+        "src/app/features/fa-management/modules/fa-management-layout"
       ],
       "@env/*": [
         "src/environments/*"

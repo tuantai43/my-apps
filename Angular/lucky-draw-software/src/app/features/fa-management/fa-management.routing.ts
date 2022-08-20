@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from '@fa-management/layout';
+import { LayoutComponent } from '@app/features/fa-management/modules/layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [

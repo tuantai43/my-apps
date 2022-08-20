@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from '@app/features/fa-management/modules/layout';
+import { HomeComponent } from './components/home/home.component';
+import { LayoutComponent } from './modules/layout/layout.component';
 
 export const routes: Routes = [
   {
@@ -8,6 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        component: HomeComponent,
       },
     ],
   },
