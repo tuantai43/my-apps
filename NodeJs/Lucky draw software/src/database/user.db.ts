@@ -38,10 +38,10 @@ export abstract class UserDb {
     });
   }
 
-  static updateAccessRefreshToken(email: string, token: string) {
+  static updateAccessRefreshToken(userId: string, token: string) {
     return UserSchema.updateOne(
       {
-        email,
+        _id: userId,
       },
       {
         accessRefreshToken: token,

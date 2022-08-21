@@ -44,7 +44,6 @@ export abstract class VerifyUserMiddleware {
           let salt = passwordFields[0];
           let hash = crypto.createHmac('sha512', salt).update(req.body.password).digest('base64');
           if (hash === passwordFields[1]) {
-            console.log(user);
             req.body = {
               userId: user._id,
               email: user.email,
@@ -73,7 +72,7 @@ export abstract class VerifyUserMiddleware {
     try {
       UserDb.findById(req.body.jwt.userId).then((user) => {
         if (user) {
-          if (user.accessRefreshToken !== req.body.accessRefreshToken) {
+          if (!user.accessRefreshToken || user.accessRefreshToken !== req.body.accessRefreshToken) {
             console.log('isAccessRefreshTokenMatch', 'access refresh token is not match');
             next(new ErrorException(ErrorCode.RefreshTokenInvalid));
           } else {

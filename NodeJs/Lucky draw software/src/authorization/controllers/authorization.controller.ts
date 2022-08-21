@@ -16,7 +16,7 @@ export abstract class AuthorizationController {
       const salt = crypto.randomBytes(16).toString('base64');
       const hash = crypto.createHmac('sha512', salt).update(refreshId).digest('base64');
       const refreshToken = Buffer.from(hash).toString('base64');
-      const result = await UserDb.updateAccessRefreshToken(email, refreshToken);
+      const result = await UserDb.updateAccessRefreshToken(userId, refreshToken);
       const accessToken = generateToken(userId, permissionLevel);
       if (result.modifiedCount === 1) {
         console.log('login', 'update access refresh token', 'success');
@@ -59,6 +59,22 @@ export abstract class AuthorizationController {
           email,
         },
       });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async logout(req: Request, res: Response, next: NextFunction) {
+    console.log('AuthorizationController', 'logout');
+    try {
+      const result = await UserDb.updateAccessRefreshToken(req.body.userId, '');
+      if (result.modifiedCount === 1) {
+        console.log('logout', 'success');
+        res.status(200).json();
+      } else {
+        console.log('logout', 'fail');
+        res.status(400).json();
+      }
     } catch (err) {
       next(err);
     }

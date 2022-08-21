@@ -1,4 +1,5 @@
 import express from 'express';
+import { AuthPermissionMiddleware } from '../common/middlewares/auth.permission.middleware';
 import { AuthValidationMiddleware } from '../common/middlewares/auth.validation.middleware';
 import { UsersController } from '../users/controllers/users.controller';
 import { AuthorizationController } from './controllers/authorization.controller';
@@ -18,6 +19,12 @@ authRouter.post('/refresh', [
   VerifyUserMiddleware.hasAccessRefreshToken,
   VerifyUserMiddleware.isAccessRefreshTokenMatch,
   AuthorizationController.refreshToken,
+]);
+
+authRouter.put('/logout', [
+  AuthValidationMiddleware.validJWTWithoutExpireNeeded,
+  AuthPermissionMiddleware.sameUserCantDoThisAction,
+  AuthorizationController.logout,
 ]);
 
 export default authRouter;

@@ -44,7 +44,8 @@ export abstract class AuthPermissionMiddleware {
     const userId = req.body.jwt.userId;
     console.log('sameUserCantDoThisAction', 'jwt.userId', req.body.jwt.userId);
     console.log('sameUserCantDoThisAction', 'userId', req.params.userId);
-    if (req.params.userId !== userId) {
+    console.log();
+    if ((req.params && req.params.userId === userId) || (req.body && req.body.userId === userId)) {
       return next();
     } else {
       return next(new ErrorException(ErrorCode.ActionDenied));
