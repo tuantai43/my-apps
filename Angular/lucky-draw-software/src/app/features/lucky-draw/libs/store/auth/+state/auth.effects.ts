@@ -5,7 +5,6 @@ import { AuthService } from '@lucky-draw/services';
 import {
   AuthActions,
   AuthActionTypes,
-  DoLogout,
   LoadedToken,
   LoadRefreshToken,
   Registered,
@@ -143,10 +142,14 @@ export class AuthEffects {
     this.action$.pipe(
       ofType(AuthActionTypes.DoLogout),
       concatMap(() => {
+        const userId = sessionStorage.getItem(AuthSession.UserId) || '';
         sessionStorage.removeItem(AuthSession.Token);
         sessionStorage.removeItem(AuthSession.RefreshToken);
         sessionStorage.removeItem(AuthSession.UserId);
-        return of(new ResetAuth());
+        return this.authService.logout(userId).pipe(
+          map(() => new ResetAuth()),
+          catchError(() => of(new ResetAuth()))
+        );
       })
     )
   );

@@ -62,6 +62,10 @@ export class AuthService {
     );
   }
 
+  logout(userId: string) {
+    return this.http.put(`${this.API}/logout`, { userId });
+  }
+
   user(id: string, token: string) {
     return this.http.get<UserResponse>(`${environment.baseUrlApi}/user/${id}`, {
       headers: {
