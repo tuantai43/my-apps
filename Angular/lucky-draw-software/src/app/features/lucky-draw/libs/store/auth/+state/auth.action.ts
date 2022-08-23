@@ -12,6 +12,9 @@ export enum AuthActionTypes {
   Registered = '[AuthActionTypes] Registered',
   DoLogout = '[AuthActionTypes] Do logout',
   ResetAuth = '[AuthActionTypes] Reset auth',
+  LoadAuth = '[AuthActionTypes] Load auth',
+  LoadedAuth = '[AuthActionTypes] Loaded Auth',
+  LoadedUser = '[AuthActionTypes] Loaded user',
 }
 
 export class UpdateLoading implements Action {
@@ -34,13 +37,17 @@ export class LoadRefreshToken implements Action {
 
 export class LoadedToken implements Action {
   readonly type = AuthActionTypes.LoadedToken;
+  constructor(public token: string, public refreshToken: string, public userId: string) {}
+}
+
+export class LoadedAuth implements Action {
+  readonly type = AuthActionTypes.LoadedAuth;
   constructor(
     public token: string,
     public refreshToken: string,
     public userId: string,
     public firstName: string,
-    public lastName: string,
-    public isLogged: boolean
+    public lastName: string
   ) {}
 }
 
@@ -63,8 +70,19 @@ export class DoLogout implements Action {
   readonly type = AuthActionTypes.DoLogout;
 }
 
+export class LoadAuth implements Action {
+  readonly type = AuthActionTypes.LoadAuth;
+  constructor(public userId: string) {}
+}
+
 export class ResetAuth implements Action {
   readonly type = AuthActionTypes.ResetAuth;
+}
+
+export class LoadedUser implements Action {
+  readonly type = AuthActionTypes.LoadedUser;
+
+  constructor(public firstName: string, public lastName: string) {}
 }
 
 export type AuthActions =
@@ -77,4 +95,7 @@ export type AuthActions =
   | Registered
   | LoadRefreshToken
   | DoLogout
-  | ResetAuth;
+  | LoadAuth
+  | ResetAuth
+  | LoadedAuth
+  | LoadedUser;

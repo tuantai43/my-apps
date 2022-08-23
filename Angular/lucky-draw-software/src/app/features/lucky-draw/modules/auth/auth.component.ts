@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormLoginComponent } from './components/form-login/form-login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthFacade } from '@lucky-draw/store/auth';
@@ -8,17 +8,19 @@ import { AuthFacade } from '@lucky-draw/store/auth';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
   isLogged$ = this.authFacade.isLogged$;
 
-  constructor(private dialog: MatDialog, private authFacade: AuthFacade) {}
-
-  ngOnInit() {
-    this.authFacade.loadToken();
+  constructor(private dialog: MatDialog, private authFacade: AuthFacade) {
+    this.authFacade.loadAuth();
   }
 
   doLogout() {
     this.authFacade.doLogout();
+  }
+
+  test() {
+    this.authFacade.loadAuth();
   }
 
   openLogin() {

@@ -6,6 +6,7 @@ export interface AuthState {
   loading: boolean;
   error: string;
   token: string;
+  loadedToken: boolean;
   isLogged: boolean;
   refreshToken: string;
   registered: boolean;
@@ -18,6 +19,7 @@ const initialState = (): AuthState => ({
   loading: false,
   error: '',
   token: '',
+  loadedToken: false,
   isLogged: false,
   refreshToken: '',
   registered: false,
@@ -34,11 +36,28 @@ export function authReducer(state = initialState(), action: AuthActions): AuthSt
     case AuthActionTypes.LoadedToken: {
       return {
         ...state,
+        token: action.token,
+        refreshToken: action.refreshToken,
+        userId: action.userId,
+        loadedToken: true,
+      };
+    }
+    case AuthActionTypes.LoadedAuth: {
+      return {
+        ...state,
         loading: false,
         isLogged: true,
         token: action.token,
         refreshToken: action.refreshToken,
         userId: action.userId,
+        firstName: action.firstName,
+        lastName: action.lastName,
+      };
+    }
+    case AuthActionTypes.LoadedUser: {
+      return {
+        ...state,
+        isLogged: true,
         firstName: action.firstName,
         lastName: action.lastName,
       };

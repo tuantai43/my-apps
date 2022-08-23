@@ -5,7 +5,9 @@ import { AuthService } from '@lucky-draw/services';
 import {
   AuthActions,
   AuthActionTypes,
+  LoadedAuth,
   LoadedToken,
+  LoadedUser,
   LoadRefreshToken,
   Registered,
   ResetAuth,
@@ -19,10 +21,6 @@ enum AuthSession {
   RefreshToken = 'rtk',
 }
 
-enum ErrorCode {
-  TokenExpired = 'HASL',
-}
-
 @Injectable()
 export class AuthEffects {
   loadToken$ = createEffect(() =>
@@ -32,54 +30,58 @@ export class AuthEffects {
         const token = sessionStorage.getItem(AuthSession.Token) || '';
         const refreshToken = sessionStorage.getItem(AuthSession.RefreshToken) || '';
         const userId = sessionStorage.getItem(AuthSession.UserId) || '';
-        if (token) {
-          return this.authService.user(userId, token).pipe(
-            map(
-              (response) => new LoadedToken(token, refreshToken, userId, response.firstName, response.lastName, true)
-            ),
-            catchError((error: HttpErrorResponse) => {
-              if (error.error && error.error.code && error.error.code === ErrorCode.TokenExpired) {
-                return of(new LoadRefreshToken());
-              }
-              sessionStorage.removeItem(AuthSession.Token);
-              sessionStorage.removeItem(AuthSession.RefreshToken);
-              sessionStorage.removeItem(AuthSession.UserId);
-              return of(new UpdateError());
-            })
-          );
-        }
-        return of(new UpdateError());
+        return of(new LoadedToken(token, refreshToken, userId));
+        // if (token) {
+        //   // return this.authService.user(userId, token).pipe(
+        //   //   map((response) => new LoadedToken(token, refreshToken, userId, response.firstName, response.lastName, true))
+        //   //   // catchError((error: HttpErrorResponse) => {
+        //   //   //   if (error.error && error.error.code && error.error.code === ErrorCode.TokenExpired) {
+        //   //   //     return of(new LoadRefreshToken());
+        //   //   //   }
+        //   //   //   sessionStorage.removeItem(AuthSession.Token);
+        //   //   //   sessionStorage.removeItem(AuthSession.RefreshToken);
+        //   //   //   sessionStorage.removeItem(AuthSession.UserId);
+        //   //   //   return of(new UpdateError());
+        //   //   // })
+        //   // );
+        // }
+        // return of(new UpdateError());
       })
     )
   );
 
-  loadRefreshToken = createEffect(() =>
+  loadAuth$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(AuthActionTypes.LoadAuth),
+      concatMap(({ userId }) => {
+        return this.authService.user(userId).pipe(
+          map((response) => {
+            return new LoadedUser(response.firstName, response.lastName);
+          })
+        );
+      })
+    )
+  );
+
+  loadRefreshToken$ = createEffect(() =>
     this.action$.pipe(
       ofType(AuthActionTypes.LoadRefreshToken),
       concatMap(() => {
-        const token = sessionStorage.getItem(AuthSession.Token) || '';
         const refreshToken = sessionStorage.getItem(AuthSession.RefreshToken) || '';
         const userId = sessionStorage.getItem(AuthSession.UserId) || '';
         if (refreshToken) {
-          return this.authService.refreshToken(refreshToken, token).pipe(
+          return this.authService.refreshToken(refreshToken).pipe(
             map((response) => {
               sessionStorage.setItem(AuthSession.Token, response.accessToken);
               sessionStorage.setItem(AuthSession.RefreshToken, response.refreshToken);
               sessionStorage.setItem(AuthSession.UserId, response.info.userId);
-              return new LoadedToken(
+              return new LoadedAuth(
                 response.accessToken,
                 response.refreshToken,
-                userId,
+                response.info.userId,
                 response.info.firstName,
-                response.info.lastName,
-                true
+                response.info.lastName
               );
-            }),
-            catchError(() => {
-              sessionStorage.removeItem(AuthSession.Token);
-              sessionStorage.removeItem(AuthSession.RefreshToken);
-              sessionStorage.removeItem(AuthSession.UserId);
-              return of(new UpdateError('Error'));
             })
           );
         }
@@ -98,13 +100,12 @@ export class AuthEffects {
             sessionStorage.setItem(AuthSession.Token, response.accessToken);
             sessionStorage.setItem(AuthSession.RefreshToken, response.refreshToken);
             sessionStorage.setItem(AuthSession.UserId, response.info.userId);
-            return new LoadedToken(
+            return new LoadedAuth(
               response.accessToken,
               response.refreshToken,
               response.info.userId,
               response.info.firstName,
-              response.info.lastName,
-              true
+              response.info.lastName
             );
           }),
           catchError((error: HttpErrorResponse) => {

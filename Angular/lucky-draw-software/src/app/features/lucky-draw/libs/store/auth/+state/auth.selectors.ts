@@ -11,4 +11,6 @@ export const authQuery = {
   getError: createSelector(getAuthState, (state) => state.error),
   getRegistered: createSelector(getAuthState, (state) => state.registered),
   getFullName: createSelector(getAuthState, (state) => `${state.firstName} ${state.lastName}`),
+  getUserId: createSelector(getAuthState, (state) => state.userId),
+  isLoadedToken: createSelector(getAuthState, (state) => state.loadedToken),
 };

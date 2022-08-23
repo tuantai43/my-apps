@@ -48,29 +48,17 @@ export class AuthService {
     });
   }
 
-  refreshToken(refreshToken: string, token: string) {
-    return this.http.post<LoginResponse>(
-      `${this.API}/refresh`,
-      {
-        accessRefreshToken: refreshToken,
-      },
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  refreshToken(refreshToken: string) {
+    return this.http.post<LoginResponse>(`${this.API}/refresh`, {
+      accessRefreshToken: refreshToken,
+    });
   }
 
   logout(userId: string) {
     return this.http.put(`${this.API}/logout`, { userId });
   }
 
-  user(id: string, token: string) {
-    return this.http.get<UserResponse>(`${environment.baseUrlApi}/user/${id}`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
+  user(id: string) {
+    return this.http.get<UserResponse>(`${environment.baseUrlApi}/user/${id}`);
   }
 }

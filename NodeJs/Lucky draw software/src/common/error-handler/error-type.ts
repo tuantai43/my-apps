@@ -25,7 +25,10 @@ export abstract class ErrorType {
       ])
     ),
     new Type(401, mapKeyError([ErrorCode.MissingAuthorization, ErrorCode.AuthorizationInvalid, ErrorCode.LoginFail])),
-    new Type(403, mapKeyError([ErrorCode.AuthorizationBearerInvalid, ErrorCode.ActionDenied])),
+    new Type(
+      403,
+      mapKeyError([ErrorCode.AuthorizationBearerInvalid, ErrorCode.AuthorizationExpired, ErrorCode.ActionDenied])
+    ),
     new Type(404, mapKeyError([ErrorCode.NotFound])),
     new Type(500, mapKeyError([ErrorCode.Unknown])),
   ];

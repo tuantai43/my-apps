@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { catchError, first, mergeMap, Observable, tap, throwError } from 'rxjs';
+import { catchError, filter, first, mergeMap, Observable, switchMap, take, tap, throwError } from 'rxjs';
 import { AuthFacade } from '@lucky-draw/store/auth';
+import { ErrorCode } from '../utils';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authFacade: AuthFacade) {}
 
@@ -12,33 +13,57 @@ export class AuthInterceptor implements HttpInterceptor {
       first(),
       mergeMap((token) => {
         if (token) {
-          return next
-            .handle(
-              request.clone({
-                setHeaders: {
-                  authorization: `Bearer ${token}`,
-                },
-              })
-            )
-            .pipe(
-              tap({
-                next: (event) => {
-                  console.log('abc');
-                  console.log(event);
-                },
-                error: (error) => {
-                  console.log('mn');
-                  console.log(error);
-                },
-              }),
-              catchError((error) => {
-                console.log(error);
-                return throwError(error);
-              })
-            );
+          const authReq = this.addToken(request, token);
+          return next.handle(authReq).pipe(
+            catchError((res) => {
+              if (res.error && res.error.code) {
+                switch (res.error.code) {
+                  case ErrorCode.TokenExpired: {
+                    return this.handleExpiredToken(request, next, token);
+                  }
+                  case ErrorCode.TokenInvalid:
+                  case ErrorCode.RefreshTokenInvalid: {
+                    this.authFacade.doLogout();
+                  }
+                }
+              }
+              return throwError(res);
+            })
+          );
         }
         return next.handle(request);
       })
     );
+  }
+
+  private handleExpiredToken(
+    request: HttpRequest<unknown>,
+    next: HttpHandler,
+    oldToken: string
+  ): Observable<HttpEvent<unknown>> {
+    this.authFacade.loadRefreshToken();
+    return this.authFacade.token$.pipe(
+      filter((token) => !!token && token !== oldToken),
+      take(1),
+      switchMap((token) => next.handle(this.addToken(request, token))),
+      catchError((res) => {
+        this.authFacade.doLogout();
+        return throwError(res);
+      })
+    );
+  }
+
+  // private addRefreshToken (request: HttpRequest<unknown>, token: string) {
+  //   return request.clone({
+  //     setHeaders
+  //   })
+  // }
+
+  private addToken(request: HttpRequest<unknown>, token: string) {
+    return request.clone({
+      setHeaders: {
+        authorization: `Bearer ${token}`,
+      },
+    });
   }
 }
