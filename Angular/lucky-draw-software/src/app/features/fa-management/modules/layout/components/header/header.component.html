@@ -1,1 +1,8 @@
-<p>header works!</p>
+<button mat-button color="primary" (click)="toggleSidebar()">
+  <div [ngClass]="{ 'hamburger-menu': true, active: openSidebar }">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</button>
+<h2>FA MANAGEMENT</h2>

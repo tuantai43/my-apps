@@ -1,0 +1,8 @@
+:host {
+  display: flex;
+  height: var(--header-height);
+  position: sticky;
+  top: 0;
+  color: var(--p-700);
+  background-color: var(--p-50);
+}

@@ -1,0 +1,7 @@
+<mat-selection-list [multiple]="false">
+  <ng-container *ngFor="let route of routes">
+    <mat-list-option [value]="route.url" *appActionButton="route.actionType">
+      <a [routerLink]="[route.url]">{{ route.name }}</a>
+    </mat-list-option>
+  </ng-container>
+</mat-selection-list>

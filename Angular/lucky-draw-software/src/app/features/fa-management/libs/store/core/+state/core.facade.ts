@@ -9,7 +9,9 @@ export class CoreFacade {
   roles$ = this.store.select(coreQuery.getLoadedRoles);
   isLoadedRoles$ = this.store.select(coreQuery.isLoadedRoles);
 
-  constructor(private store: Store<CoreState>) {}
+  constructor(private store: Store<CoreState>) {
+    this.loadRoles();
+  }
 
   loadRoles() {
     this.store.dispatch(new LoadRoles());

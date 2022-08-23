@@ -43,6 +43,9 @@
       ],
       "@fa-management/store/*": [
         "src/app/features/fa-management/libs/store/*"
+      ],
+      "@fa-management/directives": [
+        "src/app/features/fa-management/libs/directives"
       ]
     }
   },

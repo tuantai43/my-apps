@@ -3,6 +3,7 @@ import { CoreActions, CoreActionTypes } from './core.action';
 export const coreFeatureKey = 'core';
 
 export enum UserRole {
+  All = 'All',
   FaManager = 'FM',
   DiliveryManager = 'DM',
   ClassAdmin = 'CA',
