@@ -124,5 +124,5 @@ $my-theme: mat.define-light-theme(
 @include mat.all-component-themes($my-theme);
 
 /* You can add global styles to this file, and also import other style files */
-@import './assets//styles/common';
+@import './assets/styles/common';
 @import '~bootstrap/dist/css/bootstrap-grid.min.css';

@@ -36,7 +36,7 @@
         "src/app/features/lucky-draw/libs/interceptors"
       ],
       "@fa-management/layout": [
-        "src/app/features/fa-management/modules/fa-management-layout"
+        "src/app/features/fa-management/modules/layout"
       ],
       "@env/*": [
         "src/environments/*"
@@ -46,6 +46,9 @@
       ],
       "@fa-management/directives": [
         "src/app/features/fa-management/libs/directives"
+      ],
+      "@fa-management/utils/*": [
+        "src/app/features/fa-management/libs/utils/*"
       ]
     }
   },

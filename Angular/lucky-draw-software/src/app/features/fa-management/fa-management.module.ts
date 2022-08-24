@@ -7,6 +7,9 @@ import { StoreCoreModule } from '@fa-management/store/core';
 import { LayoutModule } from './modules/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { DirectiveModule } from './libs/directives';
+import { TranslateLoader, TranslateModule, TranslateStore } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -15,8 +18,20 @@ import { DirectiveModule } from './libs/directives';
     StoreCoreModule,
     LayoutModule,
     RouterModule.forChild(routes),
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
     MatButtonModule,
     DirectiveModule,
   ],
+  providers: [TranslateStore],
 })
 export class FaManagementModule {}
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/fa-management/', '.json');
+}

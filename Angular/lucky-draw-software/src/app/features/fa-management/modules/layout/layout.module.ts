@@ -12,6 +12,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { StoreCoreModule } from '@fa-management/store/core';
 import { MatListModule } from '@angular/material/list';
 import { DirectiveModule } from '@fa-management/directives';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent, NavigationComponent],
@@ -19,6 +20,7 @@ import { DirectiveModule } from '@fa-management/directives';
     CommonModule,
     RouterModule,
     StoreCoreModule,
+    TranslateModule,
     MatListModule,
     MatSidenavModule,
     MatButtonModule,

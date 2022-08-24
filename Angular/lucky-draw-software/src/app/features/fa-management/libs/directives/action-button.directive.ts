@@ -92,7 +92,6 @@ export class ActionButtonDirective {
         take(1)
       )
       .subscribe((roles) => {
-        console.log(roles);
         const action = this.accept.find((a) => a.actionType === actionType);
         if (action && (action.roles.includes(UserRole.All) || roles.find((r) => action.roles.includes(r)))) {
           this.viewContainer.createEmbeddedView(this.templateRef);
