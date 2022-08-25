@@ -1,0 +1,27 @@
+@import 'variable';
+@import 'mixins';
+
+:host {
+  display: flex;
+  margin-top: var(--spacing);
+  @include gap();
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  @include gap();
+}
+
+.mat-form-field {
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 100%;
+}
+
+@media (min-width: $md) {
+  .mat-form-field {
+    width: max((100% - 2 * var(--spacing)) / 3, 200px);
+  }
+}

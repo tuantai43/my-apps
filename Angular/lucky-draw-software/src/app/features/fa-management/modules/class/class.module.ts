@@ -12,22 +12,32 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SearchComponent } from './components/search/search.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { StoreClassModule } from '@fa-management/store/class';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [ListComponent],
+  declarations: [ListComponent, SearchComponent],
   imports: [
     CommonModule,
     TranslateModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
+    StoreClassModule,
     MatDividerModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
     MatNativeDateModule,
-    // MatMomentDateModule,
+    MatTableModule,
     MatDatepickerModule,
+    MatPaginatorModule,
+    CdkTableModule,
   ],
 })
 export class ClassModule {}

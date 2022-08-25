@@ -6,5 +6,8 @@
   "status": "Status",
   "search": "Search",
   "fromDate": "From Date",
-  "toDate": "To Date"
+  "toDate": "To Date",
+  "classCode": "Class Code",
+  "startDate": "Actual Start Date",
+  "endDate": "Actual End Date"
 }
