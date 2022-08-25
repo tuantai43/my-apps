@@ -9,5 +9,19 @@
   "toDate": "To Date",
   "classCode": "Class Code",
   "startDate": "Actual Start Date",
-  "endDate": "Actual End Date"
+  "endDate": "Actual End Date",
+  "addClass": "New Class",
+  "updateClass": "Update Class",
+  "removeClass": "Cancel Class",
+  "draft": "Draft",
+  "inProgress": "In Progress",
+  "submitted": "Submitted",
+  "cancelled": "Cancelled",
+  "enrolled": "Enrolled",
+  "location.HN": "Ha Noi",
+  "location.DN": "Da Nang",
+  "location.QN": "Quy Nhon",
+  "location.HCM": "Ho Chi Minh",
+  "location.CT": "Can Tho",
+  "tableNoData": "No data"
 }

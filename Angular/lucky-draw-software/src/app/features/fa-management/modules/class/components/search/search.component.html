@@ -1,20 +1,23 @@
 <div class="filter-group">
   <mat-form-field appearance="fill">
     <mat-label translate="location"></mat-label>
-    <select matNativeControl [formControl]="nativeSelectFormControl">
-      <option value="" translate="all"></option>
+    <select matNativeControl [(ngModel)]="dataSearch.location">
+      <option [value]="0" translate="all"></option>
+      <option *ngFor="let location of locations$ | async" [value]="location.id">{{ location.name | translate }}</option>
     </select>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label translate="className"></mat-label>
-    <select matNativeControl [formControl]="nativeSelectFormControl">
+    <select matNativeControl [(ngModel)]="dataSearch.className">
       <option value="" translate="all"></option>
+      <option *ngFor="let name of classNames$ | async" [value]="name">{{ name }}</option>
     </select>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label translate="status"></mat-label>
-    <select matNativeControl [formControl]="nativeSelectFormControl">
-      <option value="" translate="all"></option>
+    <select matNativeControl [(ngModel)]="dataSearch.status">
+      <option [value]="0" translate="all"></option>
+      <option *ngFor="let status of statuses$ | async" [value]="status" [translate]="status | status"></option>
     </select>
   </mat-form-field>
   <mat-form-field appearance="fill">
@@ -42,7 +45,7 @@
   <div class="mat-form-field"></div>
 </div>
 <div>
-  <button mat-stroked-button color="primary">
+  <button mat-stroked-button color="primary" (click)="onSearch()">
     <mat-icon>search</mat-icon>
     {{ 'search' | translate }}
   </button>

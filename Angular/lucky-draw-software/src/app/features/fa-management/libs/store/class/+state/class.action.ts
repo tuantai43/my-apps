@@ -1,9 +1,10 @@
 import { Action } from '@ngrx/store';
-import { Class } from './class.reducer';
+import { Class, DataSearch } from './class.reducer';
 
 export enum ClassActionTypes {
   LoadClass = '[ClassActionTypes] Load classes',
   LoadedClass = '[ClassActionTypes] Loaded classes',
+  UpdateDataSearch = '[ClassActionTypes] Update data search',
 }
 
 export class LoadClass implements Action {
@@ -15,4 +16,9 @@ export class LoadedClass implements Action {
   constructor(public classes: Class[]) {}
 }
 
-export type ClassActions = LoadClass | LoadedClass;
+export class UpdateDataSearch implements Action {
+  readonly type = ClassActionTypes.UpdateDataSearch;
+  constructor(public dataSearch: DataSearch) {}
+}
+
+export type ClassActions = LoadClass | LoadedClass | UpdateDataSearch;

@@ -47,6 +47,9 @@
       "@fa-management/directives": [
         "src/app/features/fa-management/libs/directives"
       ],
+      "@fa-management/pipes": [
+        "src/app/features/fa-management/libs/pipes"
+      ],
       "@fa-management/utils/*": [
         "src/app/features/fa-management/libs/utils/*"
       ]

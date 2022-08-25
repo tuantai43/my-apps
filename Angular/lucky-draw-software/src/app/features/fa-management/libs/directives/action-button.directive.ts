@@ -76,6 +76,14 @@ export class ActionButtonDirective {
       actionType: ActionType.CreateClass,
       roles: [UserRole.FaManager, UserRole.DiliveryManager, UserRole.SystemAdmin],
     },
+    {
+      actionType: ActionType.UpdateClass,
+      roles: [UserRole.FaManager, UserRole.DiliveryManager, UserRole.SystemAdmin],
+    },
+    {
+      actionType: ActionType.CancelClass,
+      roles: [UserRole.FaManager, UserRole.DiliveryManager, UserRole.SystemAdmin],
+    },
   ];
 
   constructor(
