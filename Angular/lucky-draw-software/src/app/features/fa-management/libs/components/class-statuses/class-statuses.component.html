@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill">
+  <mat-label translate="status"></mat-label>
+  <select matNativeControl [ngModel]="selected" (ngModelChange)="onChange($event)">
+    <option [value]="0" translate="all"></option>
+    <option *ngFor="let status of statuses$ | async" [value]="status" [translate]="status | classStatus"></option>
+  </select>
+</mat-form-field>

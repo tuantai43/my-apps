@@ -13,22 +13,27 @@ export class LocationEffects {
           new LoadedLocation([
             {
               id: 1,
+              code: 'HN',
               name: 'location.HN',
             },
             {
               id: 2,
+              code: 'DN',
               name: 'location.DN',
             },
             {
               id: 3,
+              code: 'QN',
               name: 'location.QN',
             },
             {
               id: 4,
+              code: 'HCM',
               name: 'location.HCM',
             },
             {
               id: 5,
+              code: 'CT',
               name: 'location.CT',
             },
           ])

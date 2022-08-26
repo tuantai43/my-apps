@@ -1,0 +1,96 @@
+<mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title translate="createClass.general"> </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div [formGroup]="generalForm" class="content">
+    <!-- Class Code -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="classCode"></mat-label>
+      <input matInput formControlName="code" />
+    </mat-form-field>
+    <!-- Class Name-->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="className"></mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <!-- Status -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="status"></mat-label>
+      <input matInput formControlName="status" />
+    </mat-form-field>
+    <!-- Planned Trainee No -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="createClass.plannedTrainee"></mat-label>
+      <input matInput formControlName="plannedTraineeNo" />
+    </mat-form-field>
+    <!-- Accepted Traniee No -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="createClass.acceptedTrainee"></mat-label>
+      <input matInput formControlName="acceptedTraineeNo" />
+    </mat-form-field>
+    <!-- Actual Trainee No -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="createClass.actualTrainee"></mat-label>
+      <input matInput formControlName="actualTraineeNo" />
+    </mat-form-field>
+    <!-- Expected Start Date -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.expectedStart"></mat-label>
+      <input matInput [matDatepicker]="startDate" formControlName="expectedStartDate" />
+      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+      <mat-datepicker #startDate>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+    <!-- Expected End Date -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.expectedEnd"></mat-label>
+      <input matInput [matDatepicker]="endDate" formControlName="expectedEndDate" />
+      <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+      <mat-datepicker #endDate>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+    <!-- Location -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="location"></mat-label>
+      <select matNativeControl formControlName="location">
+        <option value=""></option>
+        <option *ngFor="let location of locations$ | async" [value]="location.id">
+          {{ location.name | translate }}
+        </option>
+      </select>
+    </mat-form-field>
+    <!-- Detailed Location -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.detailedLocation"></mat-label>
+      <input matInput formControlName="detailedLocation" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.budgetCode"></mat-label>
+      <input matInput formControlName="budgetCode" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.estimatedBudget"></mat-label>
+      <input matInput formControlName="estimatedBudget" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.classAdmin"></mat-label>
+      <input matInput formControlName="classAdmin" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.learningPath"></mat-label>
+      <input matInput formControlName="learningPath" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
+      <mat-label translate="history"></mat-label>
+      <input matInput formControlName="history" />
+    </mat-form-field>
+  </div>
+</mat-expansion-panel>

@@ -1,3 +1,5 @@
+@import 'variable';
+
 @mixin message {
   padding: 1rem;
   margin-bottom: var(--spacing);
@@ -9,4 +11,39 @@
 
 @mixin gap {
   gap: var(--spacing);
+}
+
+@mixin margin($position: 'all') {
+  @if $position == 'top' {
+    margin-top: var(--spacing);
+  } @else if $position == 'bottom' {
+    margin-top: var(--spacing);
+  } @else if $position == 'left' {
+    margin-left: var(--spacing);
+  } @else if $position == 'right' {
+    margin-right: var(--spacing);
+  } @else {
+    margin: var(--spacing);
+  }
+}
+
+@mixin padding($position: 'all') {
+  @if $position == 'top' {
+    padding-top: var(--spacing);
+  } @else if $position == 'bottom' {
+    padding-top: var(--spacing);
+  } @else if $position == 'left' {
+    padding-left: var(--spacing);
+  } @else if $position == 'right' {
+    padding-right: var(--spacing);
+  } @else {
+    padding: var(--spacing);
+  }
+}
+
+@mixin width($columns) {
+  width: 100%;
+  @media (min-width: $md) {
+    width: max((100% - ($columns - 1) * var(--spacing)) / $columns, 200px);
+  }
 }

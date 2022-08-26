@@ -1,11 +1,5 @@
 <div class="filter-group">
-  <mat-form-field appearance="fill">
-    <mat-label translate="location"></mat-label>
-    <select matNativeControl [(ngModel)]="dataSearch.location">
-      <option [value]="0" translate="all"></option>
-      <option *ngFor="let location of locations$ | async" [value]="location.id">{{ location.name | translate }}</option>
-    </select>
-  </mat-form-field>
+  <app-locations [(selected)]="dataSearch.location"></app-locations>
   <mat-form-field appearance="fill">
     <mat-label translate="className"></mat-label>
     <select matNativeControl [(ngModel)]="dataSearch.className">
@@ -13,13 +7,7 @@
       <option *ngFor="let name of classNames$ | async" [value]="name">{{ name }}</option>
     </select>
   </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label translate="status"></mat-label>
-    <select matNativeControl [(ngModel)]="dataSearch.status">
-      <option [value]="0" translate="all"></option>
-      <option *ngFor="let status of statuses$ | async" [value]="status" [translate]="status | status"></option>
-    </select>
-  </mat-form-field>
+  <app-class-statuses [(selected)]="dataSearch.status"></app-class-statuses>
   <mat-form-field appearance="fill">
     <mat-label translate="fromDate"></mat-label>
     <input matInput [matDatepicker]="fromDate" />

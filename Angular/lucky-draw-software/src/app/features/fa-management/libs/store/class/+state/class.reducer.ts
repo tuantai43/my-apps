@@ -1,7 +1,7 @@
 import { ClassActions, ClassActionTypes } from './class.action';
 
 export const classFeatureKey = 'class';
-export enum StatusClass {
+export enum ClassStatus {
   InProgress = 1,
   Enrolled = 2,
   Submitted = 3,
@@ -9,15 +9,25 @@ export enum StatusClass {
   Cancelled = 5,
 }
 
-export interface Class {
+export interface ClassView {
   id: number;
   code: string;
   name: string;
   startDate: string;
   endDate: string;
-  location: number;
-  status: StatusClass;
+  location: number | string;
+  status: ClassStatus;
 }
+
+export const initialClass = (): ClassView => ({
+  id: -1,
+  code: '',
+  name: '',
+  startDate: '',
+  endDate: '',
+  location: -1,
+  status: ClassStatus.Draft,
+});
 
 export interface DataSearch {
   location: number;
@@ -26,7 +36,7 @@ export interface DataSearch {
 }
 
 export interface ClassState {
-  classes: Class[];
+  classes: ClassView[];
   isLoadedClass: boolean;
   dataSearch: DataSearch;
 }

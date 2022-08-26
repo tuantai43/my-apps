@@ -1,0 +1,9 @@
+@import 'mixins';
+
+.mat-tab-group {
+  @include margin('top');
+}
+
+.app-information {
+  @include padding();
+}

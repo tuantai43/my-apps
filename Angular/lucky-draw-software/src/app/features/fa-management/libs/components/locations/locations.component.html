@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill" color="primary">
+  <mat-label translate="location"></mat-label>
+  <select matNativeControl [ngModel]="selected" (ngModelChange)="onChange($event)">
+    <option [value]="0" translate="all"></option>
+    <option *ngFor="let location of locations$ | async" [value]="location.id">{{ location.name | translate }}</option>
+  </select>
+</mat-form-field>
