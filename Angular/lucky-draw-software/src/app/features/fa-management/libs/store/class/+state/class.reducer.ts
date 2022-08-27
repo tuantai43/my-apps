@@ -15,8 +15,8 @@ export interface ClassView {
   name: string;
   startDate: string;
   endDate: string;
-  location: number | string;
-  status: ClassStatus;
+  location?: number | string;
+  status?: ClassStatus;
 }
 
 export const initialClass = (): ClassView => ({
@@ -25,8 +25,8 @@ export const initialClass = (): ClassView => ({
   name: '',
   startDate: '',
   endDate: '',
-  location: -1,
-  status: ClassStatus.Draft,
+  location: undefined,
+  status: undefined,
 });
 
 export interface DataSearch {

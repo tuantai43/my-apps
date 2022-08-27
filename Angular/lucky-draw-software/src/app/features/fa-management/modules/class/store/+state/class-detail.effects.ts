@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatMap, of } from 'rxjs';
 import { ClassActions, ClassDetailsActionTypes, LoadedClass } from './class-detail.action';
+import { ClassType } from './class-detail.reducer';
 
 @Injectable()
 export class ClassDetailsEffects {
@@ -29,6 +30,8 @@ export class ClassDetailsEffects {
             expectedStartDate: '',
             learningPath: '',
             history: '',
+            type: ClassType.Fresher,
+            skill: 'Angular',
           })
         )
       )

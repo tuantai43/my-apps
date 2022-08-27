@@ -13,27 +13,27 @@ export class LocationEffects {
           new LoadedLocation([
             {
               id: 1,
-              code: 'HN',
+              acronym: 'HN',
               name: 'location.HN',
             },
             {
               id: 2,
-              code: 'DN',
+              acronym: 'DN',
               name: 'location.DN',
             },
             {
               id: 3,
-              code: 'QN',
+              acronym: 'QN',
               name: 'location.QN',
             },
             {
               id: 4,
-              code: 'HCM',
+              acronym: 'HCM',
               name: 'location.HCM',
             },
             {
               id: 5,
-              code: 'CT',
+              acronym: 'CT',
               name: 'location.CT',
             },
           ])

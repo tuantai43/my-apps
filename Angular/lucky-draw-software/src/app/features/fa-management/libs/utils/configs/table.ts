@@ -1,3 +1,3 @@
 export const ConfigTable = {
-  pageSizeOptions: [5, 10, 25, 100],
+  pageSizeOptions: [10, 20, 30, 50, 100],
 };

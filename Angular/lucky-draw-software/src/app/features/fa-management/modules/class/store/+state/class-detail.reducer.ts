@@ -3,34 +3,43 @@ import { ClassActions, ClassDetailsActionTypes } from './class-detail.action';
 
 export const classFeatureKey = 'classDetails';
 
+export enum ClassType {
+  Fresher = 'FR',
+  Campus = 'CP',
+}
+
 export interface ClassDetails extends ClassView {
-  plannedTraineeNo: number;
-  acceptedTraineeNo: number;
-  actualTraineeNo: number;
+  plannedTraineeNo?: number;
+  acceptedTraineeNo?: number;
+  actualTraineeNo?: number;
   expectedStartDate: string;
   expectedEndDate: string;
   detailedLocation: string;
-  budgetCode: string;
+  budgetCode?: string;
   estimatedBudget: string;
-  classAdmin: number;
+  classAdmin?: number;
   learningPath: string;
   history: string;
+  type?: ClassType;
+  skill: string;
 }
 
 export const initialClassDetail = (): ClassDetails => ({
   ...initialClass(),
-  plannedTraineeNo: -1,
-  acceptedTraineeNo: -1,
-  actualTraineeNo: -1,
+  plannedTraineeNo: undefined,
+  acceptedTraineeNo: undefined,
+  actualTraineeNo: undefined,
   expectedStartDate: '',
   expectedEndDate: '',
   location: '',
   detailedLocation: '',
   budgetCode: '',
   estimatedBudget: '',
-  classAdmin: -1,
+  classAdmin: undefined,
   learningPath: '',
   history: '',
+  type: undefined,
+  skill: '',
 });
 
 export interface ClassDetailsState {
