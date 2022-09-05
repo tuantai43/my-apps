@@ -80,7 +80,7 @@
     <!-- Estimated Budget -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.estimatedBudget"></mat-label>
-      <input matInput formControlName="estimatedBudget" (blur)="transformAmount()" />
+      <input matInput formControlName="estimatedBudget" appCurrency />
     </mat-form-field>
     <!-- Class Admin -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">

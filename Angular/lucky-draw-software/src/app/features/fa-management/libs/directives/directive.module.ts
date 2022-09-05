@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ActionButtonDirective } from './action-button.directive';
 import { CurrencyDirective } from './currency.directive';
 
-const DIRECTIVES = [ActionButtonDirective];
+const DIRECTIVES = [ActionButtonDirective, CurrencyDirective];
 
 @NgModule({
-  declarations: [...DIRECTIVES, CurrencyDirective],
+  declarations: [...DIRECTIVES],
   imports: [CommonModule],
   exports: [...DIRECTIVES],
 })
