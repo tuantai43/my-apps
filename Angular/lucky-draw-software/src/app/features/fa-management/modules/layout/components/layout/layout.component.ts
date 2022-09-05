@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -19,6 +19,7 @@ export class LayoutComponent implements OnDestroy {
       this.lang = res.lang;
       document.documentElement.lang = this.lang;
     });
+    document.documentElement.className = 'fa-management';
   }
 
   ngOnDestroy() {

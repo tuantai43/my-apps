@@ -4,6 +4,7 @@ import { ClassFacade } from '@fa-management/store/class';
 
 @Component({
   selector: 'app-class-statuses',
+  host: { class: 'app-class-statuses' },
   templateUrl: './class-statuses.component.html',
   styleUrls: ['./class-statuses.component.scss'],
 })

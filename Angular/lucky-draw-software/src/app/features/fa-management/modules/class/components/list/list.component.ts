@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ActionType } from '@app/features/fa-management/libs/directives';
 import { ClassFacade } from '@app/features/fa-management/libs/store/class';
 import { ClassView } from '@app/features/fa-management/libs/store/class/+state/class.reducer';
-import { ConfigTable } from '@app/features/fa-management/libs/utils/configs';
+import { CONFIG_TABLE } from '@app/features/fa-management/libs/utils/configs';
 import { SelectionTable } from '@app/features/fa-management/libs/utils/functions';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -14,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class ListComponent implements OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  readonly configTable = ConfigTable;
+  readonly configTable = CONFIG_TABLE;
   actionType = ActionType;
   destroy$ = new Subject();
   selectionTable = new SelectionTable<ClassView>([], [], true);

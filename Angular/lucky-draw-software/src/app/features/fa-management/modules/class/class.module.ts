@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { routes } from './class.routing';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -38,6 +38,8 @@ import { GeneralComponent } from './components/general/general.component';
 import { AuditComponent } from './components/audit/audit.component';
 import { BudgetComponent } from './components/budget/budget.component';
 import { DetailComponent } from './components/detail/detail.component';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { FORMAT_DATE } from '@fa-management/utils/configs';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,14 @@ import { DetailComponent } from './components/detail/detail.component';
     MatExpansionModule,
     CdkTableModule,
   ],
-  providers: [ClassDetailsFacade],
+  providers: [
+    ClassDetailsFacade,
+    CurrencyPipe,
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: FORMAT_DATE.SELECT_DATE,
+    },
+  ],
 })
 export class ClassModule {}

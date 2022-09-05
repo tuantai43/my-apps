@@ -5,7 +5,7 @@ import { ClassStatus } from '@fa-management/store/class';
   name: 'classStatus',
 })
 export class ClassStatusPipe implements PipeTransform {
-  transform(value: ClassStatus, ...args: unknown[]): string {
+  transform(value: ClassStatus | undefined, ...args: unknown[]): string {
     switch (value) {
       case ClassStatus.InProgress: {
         return 'inProgress';

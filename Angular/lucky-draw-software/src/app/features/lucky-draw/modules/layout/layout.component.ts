@@ -20,6 +20,7 @@ export class LayoutComponent implements OnDestroy {
       this.lang = res.lang;
       document.documentElement.lang = this.lang;
     });
+    document.documentElement.className = 'lucky-draw';
   }
 
   ngOnDestroy() {

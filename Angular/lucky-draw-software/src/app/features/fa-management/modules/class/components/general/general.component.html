@@ -6,12 +6,12 @@
     <!-- Class Code -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="classCode"></mat-label>
-      <input matInput formControlName="code" />
+      <input matInput [value]="code$ | async" disabled />
     </mat-form-field>
     <!-- Class Name-->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="className"></mat-label>
-      <input matInput formControlName="name" />
+      <input matInput [value]="className$ | async" disabled />
     </mat-form-field>
     <!-- Status -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
@@ -36,7 +36,7 @@
     <!-- Expected Start Date -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.expectedStart"></mat-label>
-      <input matInput [matDatepicker]="startDate" formControlName="expectedStartDate" />
+      <input matInput [matDatepicker]="startDate" formControlName="expectedStartDate" [min]="currentDate" />
       <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
       <mat-datepicker #startDate>
         <mat-datepicker-actions>
@@ -48,7 +48,7 @@
     <!-- Expected End Date -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.expectedEnd"></mat-label>
-      <input matInput [matDatepicker]="endDate" formControlName="expectedEndDate" />
+      <input matInput [matDatepicker]="endDate" formControlName="expectedEndDate" [min]="currentDate" />
       <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
       <mat-datepicker #endDate>
         <mat-datepicker-actions>
@@ -72,22 +72,28 @@
       <mat-label translate="createClass.detailedLocation"></mat-label>
       <input matInput formControlName="detailedLocation" />
     </mat-form-field>
+    <!-- Budget Code -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.budgetCode"></mat-label>
       <input matInput formControlName="budgetCode" />
     </mat-form-field>
+    <!-- Estimated Budget -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.estimatedBudget"></mat-label>
-      <input matInput formControlName="estimatedBudget" />
+      <input matInput formControlName="estimatedBudget" (blur)="transformAmount()" />
     </mat-form-field>
+    <!-- Class Admin -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.classAdmin"></mat-label>
       <input matInput formControlName="classAdmin" />
     </mat-form-field>
+    <!-- Learning Path -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.learningPath"></mat-label>
       <input matInput formControlName="learningPath" />
+      <mat-hint translate="createClass.learningPath.hint"></mat-hint>
     </mat-form-field>
+    <!-- History -->
     <mat-form-field appearance="fill" color="primary">
       <mat-label translate="history"></mat-label>
       <input matInput formControlName="history" />

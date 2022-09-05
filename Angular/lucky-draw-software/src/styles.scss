@@ -126,4 +126,6 @@ $my-theme: mat.define-light-theme(
 /* You can add global styles to this file, and also import other style files */
 @import 'mixins';
 @import './assets/styles/common';
+@import './assets/styles/themes/lucky-draw.scss';
+@import './assets/styles/themes/fa-management.scss';
 @import '~bootstrap/dist/css/bootstrap-grid.min.css';
