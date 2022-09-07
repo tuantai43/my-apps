@@ -1,8 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { locationFeatureKey, LocationState } from './location.reducer';
+import { featureKey, LocationState } from './location.reducer';
 
-const getLocationState = createFeatureSelector<LocationState>(locationFeatureKey);
+const getLocationState = createFeatureSelector<LocationState>(featureKey);
 
 export const locationQuery = {
-  getLocations: createSelector(getLocationState, (state) => state.locations),
+  getList: createSelector(getLocationState, (state) => state.list),
 };

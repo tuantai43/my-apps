@@ -11,7 +11,7 @@ export class LocationsComponent {
   @Input() selected: number | string = 0;
   @Output() selectedChange = new EventEmitter<number>();
 
-  locations$ = this.locationFacade.locations$;
+  locations$ = this.locationFacade.list$;
 
   constructor(private locationFacade: LocationFacade) {}
 

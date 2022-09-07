@@ -1,11 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { classFeatureKey, ClassState } from './class.reducer';
+import { featureKey, InitState } from './class.reducer';
 
-const getClassState = createFeatureSelector<ClassState>(classFeatureKey);
+const getClassState = createFeatureSelector<InitState>(featureKey);
 
 export const classQuery = {
-  getLoadedClasses: createSelector(getClassState, (state: ClassState) =>
-    state.classes.filter((c) => {
+  getLoadedList: createSelector(getClassState, (state: InitState) =>
+    state.list.filter((c) => {
       const { className, status, location } = state.dataSearch;
       return (
         (!className || className === c.name) &&
@@ -14,7 +14,7 @@ export const classQuery = {
       );
     })
   ),
-  getStatuses: createSelector(getClassState, (state) => Array.from(new Set(state.classes.map((i) => i.status).sort()))),
-  getClassNames: createSelector(getClassState, (state) => Array.from(new Set(state.classes.map((i) => i.name).sort()))),
-  isLoadedClasses: createSelector(getClassState, (state) => state.isLoadedClass),
+  getStatuses: createSelector(getClassState, (state) => Array.from(new Set(state.list.map((i) => i.status).sort()))),
+  getClassNames: createSelector(getClassState, (state) => Array.from(new Set(state.list.map((i) => i.name).sort()))),
+  isLoadedList: createSelector(getClassState, (state) => state.isLoadedList),
 };

@@ -21,9 +21,9 @@ export class ListComponent implements OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['select', 'index', 'code', 'name', 'startDate', 'endDate', 'location', 'status'];
 
   constructor(private classFacade: ClassFacade) {
-    this.classFacade.loadedClass();
+    this.classFacade.loadList();
     this.classFacade.resetSearch();
-    this.classFacade.classes$.pipe(takeUntil(this.destroy$)).subscribe((classes) => {
+    this.classFacade.list$.pipe(takeUntil(this.destroy$)).subscribe((classes) => {
       this.selectionTable.dataSource.data = classes;
     });
   }

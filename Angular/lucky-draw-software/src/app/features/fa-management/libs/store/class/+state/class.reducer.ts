@@ -1,6 +1,6 @@
-import { ClassActions, ClassActionTypes } from './class.action';
+import { ClassActions, ActionTypes } from './class.action';
 
-export const classFeatureKey = 'class';
+export const featureKey = 'class';
 export enum ClassStatus {
   InProgress = 1,
   Enrolled = 2,
@@ -35,15 +35,15 @@ export interface DataSearch {
   status: number;
 }
 
-export interface ClassState {
-  classes: ClassView[];
-  isLoadedClass: boolean;
+export interface InitState {
+  list: ClassView[];
+  isLoadedList: boolean;
   dataSearch: DataSearch;
 }
 
-const initialState = (): ClassState => ({
-  classes: [],
-  isLoadedClass: false,
+const initialState = (): InitState => ({
+  list: [],
+  isLoadedList: false,
   dataSearch: {
     location: 0,
     className: '',
@@ -51,19 +51,19 @@ const initialState = (): ClassState => ({
   },
 });
 
-export function classReducer(state = initialState(), action: ClassActions): ClassState {
+export function reducer(state = initialState(), action: ClassActions): InitState {
   switch (action.type) {
-    case ClassActionTypes.LoadClass: {
+    case ActionTypes.LoadList: {
       return state;
     }
-    case ClassActionTypes.LoadedClass: {
+    case ActionTypes.LoadedList: {
       return {
         ...state,
-        isLoadedClass: true,
-        classes: action.classes,
+        isLoadedList: true,
+        list: action.list,
       };
     }
-    case ClassActionTypes.UpdateDataSearch: {
+    case ActionTypes.UpdateDataSearch: {
       return {
         ...state,
         dataSearch: action.dataSearch,

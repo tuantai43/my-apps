@@ -1,18 +1,18 @@
 import { Action } from '@ngrx/store';
 import { Location } from './location.reducer';
 
-export enum LocationActionTypes {
-  LoadLocation = '[LocationActionTypes] Load locations',
-  LoadedLocation = '[LocationActionTypes] Loaded locations',
+export enum ActionTypes {
+  LoadList = '[LocationActionTypes] Load locations',
+  LoadedList = '[LocationActionTypes] Loaded locations',
 }
 
-export class LoadLocation implements Action {
-  readonly type = LocationActionTypes.LoadLocation;
+export class LoadList implements Action {
+  readonly type = ActionTypes.LoadList;
 }
 
-export class LoadedLocation implements Action {
-  readonly type = LocationActionTypes.LoadedLocation;
-  constructor(public locations: Location[]) {}
+export class LoadedList implements Action {
+  readonly type = ActionTypes.LoadedList;
+  constructor(public list: Location[]) {}
 }
 
-export type LocationActions = LoadLocation | LoadedLocation;
+export type LocationActions = LoadList | LoadedList;

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatMap, of } from 'rxjs';
-import { ClassActions, ClassActionTypes, LoadedClass } from './class.action';
+import { ClassActions, ActionTypes, LoadedList } from './class.action';
 
 @Injectable()
-export class ClassEffects {
+export class Effects {
   loadRoles$ = createEffect(() =>
     this.action$.pipe(
-      ofType(ClassActionTypes.LoadClass),
+      ofType(ActionTypes.LoadList),
       concatMap(() =>
         of(
-          new LoadedClass([
+          new LoadedList([
             {
               id: 1,
               code: 'HN_FR',

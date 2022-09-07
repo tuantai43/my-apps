@@ -1,6 +1,6 @@
-import { LocationActions, LocationActionTypes } from './location.action';
+import { LocationActions, ActionTypes } from './location.action';
 
-export const locationFeatureKey = 'location';
+export const featureKey = 'location';
 
 export interface Location {
   id: number;
@@ -9,25 +9,25 @@ export interface Location {
 }
 
 export interface LocationState {
-  locations: Location[];
-  isLoadedLocation: boolean;
+  list: Location[];
+  isLoadedList: boolean;
 }
 
 const initialState = (): LocationState => ({
-  locations: [],
-  isLoadedLocation: false,
+  list: [],
+  isLoadedList: false,
 });
 
-export function locationReducer(state = initialState(), action: LocationActions): LocationState {
+export function reducer(state = initialState(), action: LocationActions): LocationState {
   switch (action.type) {
-    case LocationActionTypes.LoadLocation: {
+    case ActionTypes.LoadList: {
       return state;
     }
-    case LocationActionTypes.LoadedLocation: {
+    case ActionTypes.LoadedList: {
       return {
         ...state,
-        isLoadedLocation: true,
-        locations: action.locations,
+        isLoadedList: true,
+        list: action.list,
       };
     }
     default: {

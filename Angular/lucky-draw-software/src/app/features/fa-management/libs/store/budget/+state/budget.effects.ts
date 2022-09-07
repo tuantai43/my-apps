@@ -4,7 +4,7 @@ import { concatMap, of } from 'rxjs';
 import { BudgetActions, ActionTypes, LoadedList } from './budget.action';
 
 @Injectable()
-export class effects {
+export class Effects {
   loadRoles$ = createEffect(() =>
     this.action$.pipe(
       ofType(ActionTypes.LoadList),

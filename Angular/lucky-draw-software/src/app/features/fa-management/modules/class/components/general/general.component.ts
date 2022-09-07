@@ -28,7 +28,7 @@ export class GeneralComponent implements OnInit, OnDestroy {
     this.generalForm.patchValue(value || {});
   }
 
-  locations$ = this.locationFacade.locations$;
+  locations$ = this.locationFacade.list$;
   budgets$ = this.budgetFacade.list$;
   admins$ = this.classAdminFacade.list$;
   destroy$ = new Subject();
