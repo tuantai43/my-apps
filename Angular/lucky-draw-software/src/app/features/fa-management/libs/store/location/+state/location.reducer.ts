@@ -2,14 +2,14 @@ import { LocationActions, ActionTypes } from './location.action';
 
 export const featureKey = 'location';
 
-export interface Location {
+export interface LocationView {
   id: number;
   acronym: string;
   name: string;
 }
 
 export interface LocationState {
-  list: Location[];
+  list: LocationView[];
   isLoadedList: boolean;
 }
 

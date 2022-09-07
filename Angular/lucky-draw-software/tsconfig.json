@@ -41,6 +41,9 @@
       "@env/*": [
         "src/environments/*"
       ],
+      "@fa-management/services": [
+        "src/app/features/fa-management/libs/services"
+      ],
       "@fa-management/store/*": [
         "src/app/features/fa-management/libs/store/*"
       ],

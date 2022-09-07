@@ -84,17 +84,17 @@ export class GeneralComponent implements OnInit, OnDestroy {
   }
 
   get history$(): Observable<string> {
-    if (this.class?.updatedDate) {
+    if (this.class?.updatedAt) {
       return this.translateService
         .get('createClass.history.updated', {
-          date: formatDate(this.class.updatedDate, FORMAT_DATE.HISTORY, this.locale),
+          date: formatDate(this.class.updatedAt, FORMAT_DATE.HISTORY, this.locale),
           account: this.class.updatedBy,
         })
         .pipe(take(1));
-    } else if (this.class?.createdDate) {
+    } else if (this.class?.createdAt) {
       return this.translateService
         .get('createClass.history.created', {
-          date: formatDate(this.class.createdDate, FORMAT_DATE.HISTORY, this.locale),
+          date: formatDate(this.class.createdAt, FORMAT_DATE.HISTORY, this.locale),
           account: this.class.createdBy,
         })
         .pipe(take(1));
@@ -111,6 +111,7 @@ export class GeneralComponent implements OnInit, OnDestroy {
     @Inject(LOCALE_ID) public locale: string
   ) {
     this.classAdminFacade.loadList();
+    this.budgetFacade.loadList();
   }
 
   ngOnInit(): void {

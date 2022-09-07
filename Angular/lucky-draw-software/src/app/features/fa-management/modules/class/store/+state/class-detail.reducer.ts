@@ -20,9 +20,9 @@ export interface ClassDetails extends ClassView {
   classAdmin?: number[];
   learningPath: string;
   createdBy: string;
-  createdDate?: string;
+  createdAt?: string;
   updatedBy?: string;
-  updatedDate?: string;
+  updatedAt?: string;
   type?: ClassType;
   skill: string;
 }
@@ -34,7 +34,7 @@ export const initialClassDetail = (): ClassDetails => ({
   estimatedBudget: '',
   learningPath: '',
   createdBy: '',
-  createdDate: '',
+  createdAt: '',
   skill: '',
 });
 

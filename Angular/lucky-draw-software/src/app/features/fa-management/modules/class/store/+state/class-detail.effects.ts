@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as moment from 'moment';
 import { concatMap, of } from 'rxjs';
 import { ClassActions, ClassDetailsActionTypes, LoadedClass } from './class-detail.action';
 import { ClassType } from './class-detail.reducer';
-import { FORMAT_DATE } from '@fa-management/utils/configs';
 
 @Injectable()
 export class ClassDetailsEffects {
@@ -26,13 +24,13 @@ export class ClassDetailsEffects {
             actualTraineeNo: 17,
             budgetCode: 2,
             classAdmin: [1],
-            detailedLocation: 'ABC',
+            detailedLocation: '11F, FPT Building',
             estimatedBudget: '327690000',
             expectedEndDate: new Date('2022/11/01'),
             expectedStartDate: new Date('2022/08/01'),
             learningPath: 'FR_Java_01_Developer',
             createdBy: 'TaiPT3',
-            createdDate: '2022/09/17',
+            createdAt: '2022/09/17',
             type: ClassType.Fresher,
             skill: 'Angular',
           })

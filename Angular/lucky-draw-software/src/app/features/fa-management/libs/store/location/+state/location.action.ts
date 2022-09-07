@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Location } from './location.reducer';
+import { LocationView } from './location.reducer';
 
 export enum ActionTypes {
   LoadList = '[LocationActionTypes] Load locations',
@@ -12,7 +12,7 @@ export class LoadList implements Action {
 
 export class LoadedList implements Action {
   readonly type = ActionTypes.LoadedList;
-  constructor(public list: Location[]) {}
+  constructor(public list: LocationView[]) {}
 }
 
 export type LocationActions = LoadList | LoadedList;
