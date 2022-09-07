@@ -22,8 +22,11 @@ export class ClassStatusPipe implements PipeTransform {
       case ClassStatus.Cancelled: {
         return 'cancelled';
       }
-      default: {
+      case ClassStatus.Draft: {
         return 'draft';
+      }
+      default: {
+        return '';
       }
     }
   }

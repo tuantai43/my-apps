@@ -3,8 +3,8 @@
 <mat-tab-group>
   <mat-tab [label]="'createClass.information' | translate">
     <button (click)="reset()">Reset</button>
+    <button (click)="load()">load</button>
     <app-information [class]="class$ | async"></app-information>
   </mat-tab>
   <mat-tab [label]="'createClass.trainee' | translate">Content 2</mat-tab>
-  <mat-tab label="Third">Content 3</mat-tab>
 </mat-tab-group>

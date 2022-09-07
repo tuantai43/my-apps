@@ -12,33 +12,29 @@ export interface ClassDetails extends ClassView {
   plannedTraineeNo?: number;
   acceptedTraineeNo?: number;
   actualTraineeNo?: number;
-  expectedStartDate: string;
-  expectedEndDate: string;
+  expectedStartDate?: Date;
+  expectedEndDate?: Date;
   detailedLocation: string;
-  budgetCode?: string;
+  budgetCode?: number;
   estimatedBudget: string;
-  classAdmin?: number;
+  classAdmin?: number[];
   learningPath: string;
-  history: string;
+  createdBy: string;
+  createdDate?: string;
+  updatedBy?: string;
+  updatedDate?: string;
   type?: ClassType;
   skill: string;
 }
 
 export const initialClassDetail = (): ClassDetails => ({
   ...initialClass(),
-  plannedTraineeNo: undefined,
-  acceptedTraineeNo: undefined,
-  actualTraineeNo: undefined,
-  expectedStartDate: '',
-  expectedEndDate: '',
   location: '',
   detailedLocation: '',
-  budgetCode: '',
   estimatedBudget: '',
-  classAdmin: undefined,
   learningPath: '',
-  history: '',
-  type: undefined,
+  createdBy: '',
+  createdDate: '',
   skill: '',
 });
 

@@ -1,7 +1,9 @@
-import { CurrencyPipe, formatDate } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { Inject } from '@angular/core';
 import { Component, Input, OnInit, OnDestroy, LOCALE_ID } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ClassAdminFacade } from '@fa-management/store/admin';
+import { BudgetFacade } from '@fa-management/store/budget';
 import { LocationFacade } from '@fa-management/store/location';
 import { FORMAT_DATE } from '@fa-management/utils/configs';
 import { TranslateService } from '@ngx-translate/core';
@@ -27,31 +29,13 @@ export class GeneralComponent implements OnInit, OnDestroy {
   }
 
   locations$ = this.locationFacade.locations$;
-  testPrice = '';
+  budgets$ = this.budgetFacade.list$;
+  admins$ = this.classAdminFacade.list$;
   destroy$ = new Subject();
   acronym: string = '';
-  currentDate = new Date();
   mClass: ClassDetails | null = initialClassDetail();
   generalForm = this.formBuilder.group({
-    status: [
-      {
-        value: '',
-        disabled: true,
-      },
-    ],
     plannedTraineeNo: '',
-    acceptedTraineeNo: [
-      {
-        value: '',
-        disabled: true,
-      },
-    ],
-    actualTraineeNo: [
-      {
-        value: '',
-        disabled: true,
-      },
-    ],
     expectedStartDate: ['', Validators.required],
     expectedEndDate: ['', Validators.required],
     location: ['', Validators.required],
@@ -62,6 +46,13 @@ export class GeneralComponent implements OnInit, OnDestroy {
     learningPath: ['', Validators.required],
     history: '',
   });
+
+  get currentDate(): Date | null {
+    if (this.class?.createdBy) {
+      return null;
+    }
+    return new Date();
+  }
 
   get code$(): Observable<string> {
     if (this.class?.code) {
@@ -92,13 +83,35 @@ export class GeneralComponent implements OnInit, OnDestroy {
     return of('');
   }
 
+  get history$(): Observable<string> {
+    if (this.class?.updatedDate) {
+      return this.translateService
+        .get('createClass.history.updated', {
+          date: formatDate(this.class.updatedDate, FORMAT_DATE.HISTORY, this.locale),
+          account: this.class.updatedBy,
+        })
+        .pipe(take(1));
+    } else if (this.class?.createdDate) {
+      return this.translateService
+        .get('createClass.history.created', {
+          date: formatDate(this.class.createdDate, FORMAT_DATE.HISTORY, this.locale),
+          account: this.class.createdBy,
+        })
+        .pipe(take(1));
+    }
+    return of('');
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private locationFacade: LocationFacade,
+    private budgetFacade: BudgetFacade,
+    private classAdminFacade: ClassAdminFacade,
     private translateService: TranslateService,
-    private currencyPipe: CurrencyPipe,
     @Inject(LOCALE_ID) public locale: string
-  ) {}
+  ) {
+    this.classAdminFacade.loadList();
+  }
 
   ngOnInit(): void {
     this.generalForm
@@ -112,11 +125,6 @@ export class GeneralComponent implements OnInit, OnDestroy {
           this.acronym = location.acronym;
         }
       });
-  }
-
-  transformAmount() {
-    const { estimatedBudget } = this.generalForm.value as ClassDetails;
-    this.generalForm.get('estimatedBudget')?.setValue(this.currencyPipe.transform(estimatedBudget));
   }
 
   ngOnDestroy(): void {

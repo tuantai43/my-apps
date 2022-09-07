@@ -44,5 +44,7 @@
   "createClass.learningPath.hint": "Format: [Type of class]_[Skill]_[Serial number of skill]_[Position]",
   "createClass.classCode.format": "{{acronym}}_{{type}}_{{skill}}_{{year}}_{{number}}",
   "createClass.className.format": "Fresher {{position}} {{skill}}",
+  "createClass.history.created": "{{date}} - Created by {{account}}",
+  "createClass.history.updated": "{{date}} - Updated by {{account}}",
   "history": "History"
 }

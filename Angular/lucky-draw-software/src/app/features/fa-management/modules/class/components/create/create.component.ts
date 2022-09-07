@@ -36,4 +36,8 @@ export class CreateComponent implements OnInit {
   reset() {
     this.classDetailsFacade.resetClass();
   }
+
+  load() {
+    this.classDetailsFacade.loadedClass();
+  }
 }

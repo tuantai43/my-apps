@@ -6,17 +6,17 @@
     <!-- Class Code -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="classCode"></mat-label>
-      <input matInput [value]="code$ | async" disabled />
+      <input matInput [value]="code$ | async" readonly />
     </mat-form-field>
     <!-- Class Name-->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="className"></mat-label>
-      <input matInput [value]="className$ | async" disabled />
+      <input matInput [value]="className$ | async" readonly />
     </mat-form-field>
     <!-- Status -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="status"></mat-label>
-      <input matInput formControlName="status" />
+      <input matInput [value]="class?.status | classStatus | translate" readonly />
     </mat-form-field>
     <!-- Planned Trainee No -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
@@ -26,12 +26,12 @@
     <!-- Accepted Traniee No -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="createClass.acceptedTrainee"></mat-label>
-      <input matInput formControlName="acceptedTraineeNo" />
+      <input matInput [value]="class?.acceptedTraineeNo || ''" readonly />
     </mat-form-field>
     <!-- Actual Trainee No -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="createClass.actualTrainee"></mat-label>
-      <input matInput formControlName="actualTraineeNo" />
+      <input matInput [value]="class?.actualTraineeNo || ''" readonly />
     </mat-form-field>
     <!-- Expected Start Date -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
@@ -75,7 +75,12 @@
     <!-- Budget Code -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.budgetCode"></mat-label>
-      <input matInput formControlName="budgetCode" />
+      <select matNativeControl formControlName="budgetCode">
+        <option value=""></option>
+        <option *ngFor="let budget of budgets$ | async" [value]="budget.id">
+          {{ budget.name }}
+        </option>
+      </select>
     </mat-form-field>
     <!-- Estimated Budget -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
@@ -85,7 +90,11 @@
     <!-- Class Admin -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.classAdmin"></mat-label>
-      <input matInput formControlName="classAdmin" />
+      <mat-select formControlName="classAdmin" multiple>
+        <mat-option *ngFor="let admin of admins$ | async" [value]="admin.id">
+          {{ admin.account }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <!-- Learning Path -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
@@ -96,7 +105,7 @@
     <!-- History -->
     <mat-form-field appearance="fill" color="primary">
       <mat-label translate="history"></mat-label>
-      <input matInput formControlName="history" />
+      <input matInput [value]="history$ | async" readonly />
     </mat-form-field>
   </div>
 </mat-expansion-panel>

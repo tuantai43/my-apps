@@ -20,6 +20,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 
 import { StoreClassModule } from '@fa-management/store/class';
 import { StoreLocationModule } from '@fa-management/store/location';
+import { StoreBudgetModule } from '@fa-management/store/budget';
+import { StoreClassAdminModule } from '@fa-management/store/admin';
 
 import { ComponentModule } from '@fa-management/components';
 import { DirectiveModule } from '@fa-management/directives';
@@ -40,6 +42,7 @@ import { BudgetComponent } from './components/budget/budget.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { FORMAT_DATE } from '@fa-management/utils/configs';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,8 @@ import { FORMAT_DATE } from '@fa-management/utils/configs';
     RouterModule.forChild(routes),
     StoreModule.forFeature(classFeatureKey, classDetailsReducer),
     EffectsModule.forFeature([ClassDetailsEffects]),
+    StoreBudgetModule,
+    StoreClassAdminModule,
     StoreClassModule,
     StoreLocationModule,
     DirectiveModule,
@@ -68,6 +73,7 @@ import { FORMAT_DATE } from '@fa-management/utils/configs';
     MatDividerModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,

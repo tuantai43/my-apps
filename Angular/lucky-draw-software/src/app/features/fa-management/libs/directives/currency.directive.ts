@@ -15,7 +15,7 @@ export class CurrencyDirective {
     this.format(this.el.nativeElement.value); // format any initial values
   }
 
-  @HostListener('input', ['$event.target.value']) onInput(e: string) {
+  @HostListener('ngModelChange', ['$event']) onInput(e: string) {
     this.format(e);
   }
 

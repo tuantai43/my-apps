@@ -1,5 +1,6 @@
 export const FORMAT_DATE = {
   CODE_CLASS: 'YY',
+  HISTORY: 'dd-MMM-YYYY',
   SELECT_DATE: {
     parse: {
       dateInput: ['DD-MM-YYYY'],
