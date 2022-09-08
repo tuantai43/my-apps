@@ -1,0 +1,19 @@
+@import 'variable';
+@import 'mixins';
+
+.actions {
+  display: flex;
+  @include gap();
+}
+
+.mat-column-index {
+  width: 5%;
+  text-align: center;
+}
+.mat-column-emplId {
+  text-align: center;
+}
+.mat-column-emplId.mat-cell{
+  color: var(--p-A700);
+  cursor: pointer;
+}

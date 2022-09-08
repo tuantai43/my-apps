@@ -124,5 +124,20 @@
   "popup.ok": "OK",
   "popup.cancel": "Cancel",
   "popup.confirmation.title": "Confirm",
-  "popup.confirmation.content": "Are you sure to submit?"
+  "popup.confirmation.content": "Are you sure to submit?",
+  "traineeListing": "Trainee Listing",
+  "emplId": "Employee ID",
+  "account": "Account",
+  "name": "Name",
+  "dob": "Day of Birth",
+  "phone": "Number Phone",
+  "email": "Email Address",
+  "gender": "Gender",
+  "university": "University",
+  "faculty": "Faculty",
+  "updateTrainee": "Update Trainee",
+  "deleteTrainee": "Detele Trainee",
+  "traineeProfile": "Trainee Profile",
+  "traineeProfile.information": "Trainee Information",
+  "traineeProfile.result": "Trainee Result"
 }

@@ -1,0 +1,186 @@
+<mat-card-title>Personal Infotmation</mat-card-title>
+<div class="wrapper-infor" [formGroup]="informationForm">
+  <table class="table" border="1">
+    <tr>
+      <th>Empl ID</th>
+      <td>
+        <mat-form-field class="form-control control-emplid" appearance="fill">
+          <input matInput formControlName="emplId">
+        </mat-form-field>
+      </td>
+      <th>Type</th>
+      <td>
+        <mat-form-field class="form-control control-account" appearance="fill">
+          <input matInput formControlName="account">
+        </mat-form-field>
+      </td>
+      <th>Status</th>
+      <td>
+        <mat-form-field class="form-control control-status" appearance="fill">
+          <input matInput formControlName="status">
+        </mat-form-field>
+      </td>
+      <th>Allocation Status</th>
+      <td>
+        <mat-form-field class="form-control control-allocation-status" appearance="fill">
+          <input matInput formControlName="allocationStatus">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <th>Account</th>
+      <td colspan="3">
+        <mat-form-field class="form-control control-account" appearance="fill">
+          <input matInput formControlName="account">
+        </mat-form-field>
+      </td>
+      <th>Name *</th>
+      <td colspan="3">
+        <mat-form-field class="form-control control-name control-{{mode}}" appearance="fill">
+          <input matInput formControlName="name">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td colspan="3">
+        <ng-container *ngIf="mode === 'edit'; else viewGender">
+            <mat-radio-group aria-label="Select an option" formControlName="gender">
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+        </ng-container>
+        <ng-template #viewGender>
+          <mat-form-field class="form-control control-gender" appearance="fill">
+            <input matInput formControlName="gender">
+          </mat-form-field>
+        </ng-template>
+      </td>
+      <th>DOB *</th>
+      <td colspan="3">
+        <mat-form-field class="form-control control-dob control-{{mode}}" appearance="fill">
+          <input matInput formControlName="dob">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <th>University</th>
+      <td colspan="3">
+        <ng-container *ngIf="mode === 'edit'; else viewUni">  
+          <mat-form-field class="form-control control-university" color="primary">
+            <mat-select formControlName="university" (selectionChange)="selectionChange($event)">
+              <mat-option value=""></mat-option>
+              <mat-option *ngFor="let uni of arrUnivers" [value]="uni.value">{{uni.label}}</mat-option>
+              <!--DOING...-->
+              <mat-option >
+                <input matInput formControlName="faculty">
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+        <ng-template #viewUni>
+          <mat-form-field class="form-control control-phone" appearance="fill">
+            <input matInput formControlName="university">
+          </mat-form-field>
+        </ng-template>
+      </td>
+      <th>Faculty</th>
+      <td colspan="3">
+        <ng-container *ngIf="mode === 'edit'; else viewFaculty">  
+          <mat-form-field class="form-control control-faculty" color="primary">
+            <mat-select formControlName="faculty">
+              <mat-option value=""></mat-option>
+              <mat-option *ngFor="let item of arrFaculty" [value]="item.value">{{ item.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+        <ng-template #viewFaculty>
+          <mat-form-field class="form-control control-phone" appearance="fill">
+            <input matInput formControlName="faculty">
+          </mat-form-field>
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <th>Phone *</th>
+      <td colspan="3">
+        <mat-form-field class="form-control control-phone control-{{mode}}" appearance="fill">
+          <input matInput formControlName="phone">
+        </mat-form-field>
+      </td>
+      <th>Email *</th>
+      <td colspan="3">
+        <mat-form-field class="form-control control-email control-{{mode}}" appearance="fill">
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <th>Salary Paid *</th>
+      <td colspan="3">
+        <mat-form-field class="form-control control-salaryPaid control-{{mode}}" appearance="fill">
+          <input matInput formControlName="salaryPaid">
+        </mat-form-field>
+      </td>
+      <th>TPB Account</th>
+      <td colspan="3">
+        <mat-form-field class="form-control control-tpb-account control-{{mode}}" appearance="fill">
+          <input matInput formControlName="tpBankAccount">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <th>allowance Group</th>
+      <td colspan="3">
+        <ng-container *ngIf="mode === 'edit'; else viewAL">     
+          <mat-form-field class="form-control control-allowance-group" color="primary">
+            <mat-select matNativeControl formControlName="allowanceGroup">
+              <mat-option value=""></mat-option>
+              <mat-option *ngFor="let item of arrFaculty" [value]="item.value">{{ item.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+        <ng-template #viewAL>
+          <mat-form-field class="form-control control-commitment" appearance="fill">
+            <input matInput formControlName="allowanceGroup">
+          </mat-form-field>
+        </ng-template>
+      </td>
+      <th>Commitment</th>
+      <td colspan="3">
+        <mat-form-field class="form-control control-commitment" appearance="fill">
+          <input matInput formControlName="commitment">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <th>History</th>
+      <td colspan="7">
+        <mat-form-field class="form-control control-history" appearance="fill">
+          <input matInput formControlName="history">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="actions">
+  <ng-container *ngIf="mode === 'view'; else btnSubmit">
+    <button mat-stroked-button color="primary" (click)="onUpdate()">
+      <mat-icon>update</mat-icon>
+      {{ 'updateTrainee' | translate }}
+    </button>
+  </ng-container>
+  <ng-template #btnSubmit>
+    <button mat-button mat-flat-button color="primary" (click)="onUpdate()">
+      {{ 'submit' | translate }}
+    </button>
+  </ng-template>
+  <button mat-stroked-button color="warn" *ngIf="mode === 'view'" (click)="onDelete()">
+    <mat-icon>delete</mat-icon>
+    {{ 'deleteTrainee' | translate }}
+  </button>
+  <button mat-stroked-button color="accent" (click)="onClose()">
+      <mat-icon>undo</mat-icon>
+      {{ 'close' | translate }}
+  </button>
+</div>

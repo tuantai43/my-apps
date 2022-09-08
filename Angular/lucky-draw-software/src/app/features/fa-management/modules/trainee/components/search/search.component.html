@@ -1,0 +1,39 @@
+<div class="filter-group">
+  <mat-form-field class="input-control employee-control" appearance="fill">
+    <mat-label translate="emplId"></mat-label>
+    <input matInput [(ngModel)]="dataSearch.emplId">
+  </mat-form-field>
+  <mat-form-field class="input-control account-control" appearance="fill">
+    <mat-label translate="account"></mat-label>
+    <input matInput [(ngModel)]="dataSearch.account">
+  </mat-form-field>
+  <mat-form-field class="input-control name-control" appearance="fill">
+    <mat-label translate="name"></mat-label>
+    <input matInput [(ngModel)]="dataSearch.name">
+  </mat-form-field>
+  <mat-form-field class="input-control dob-control" appearance="fill">
+    <mat-label translate="dob"></mat-label>
+    <input matInput [matDatepicker]="fromDate" [(ngModel)]="dataSearch.dob"/>
+    <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+    <mat-datepicker #fromDate>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="input-control phone-control" appearance="fill">
+    <mat-label translate="phone"></mat-label>
+    <input matInput [(ngModel)]="dataSearch.phone">
+  </mat-form-field>
+  <mat-form-field class="input-control email-control" appearance="fill">
+    <mat-label translate="email"></mat-label>
+    <input matInput [(ngModel)]="dataSearch.email">
+  </mat-form-field>
+</div>
+<div>
+  <button mat-stroked-button color="primary" (click)="onSearch()">
+    <mat-icon>search</mat-icon>
+    {{ 'search' | translate }}
+  </button>
+</div>

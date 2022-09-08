@@ -1,12 +1,79 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { StoreTraineeModule } from '../../libs/store/trainee';
+import { RouterModule } from '@angular/router';
+import { routes } from './trainee.routing';
+import { StoreModule } from '@ngrx/store';
+import { TraineeDetailsFacade, traineeDetailsReducer, traineeFeatureKey } from './store';
+import { TraineeDetailsEffects } from './store/+state/trainee-detail.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { ListComponent } from './components/list/list.component';
+import { InformationComponent } from './components/information/information.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TranslateModule } from '@ngx-translate/core';
+import { SearchComponent } from './components/search/search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ResultComponent } from './components/result/result.component';
+import { MatCardModule } from '@angular/material/card';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { FORMAT_DATE } from '../../libs/utils/configs';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ListComponent,
+    InformationComponent,
+    SearchComponent,
+    ProfileComponent,
+    ResultComponent
+  ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    StoreTraineeModule,
+    TranslateModule,
+    RouterModule.forChild(routes),
+    StoreModule.forFeature(traineeFeatureKey, traineeDetailsReducer),
+    EffectsModule.forFeature([TraineeDetailsEffects]),
+    MatDividerModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatPaginatorModule,
+    MatTabsModule,
+    MatExpansionModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatCardModule,
+    MatRadioModule
+  ],
+  providers: [
+    TraineeDetailsFacade,
+    CurrencyPipe,
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: FORMAT_DATE.SELECT_DATE,
+    },
+  ],
 })
 export class TraineeModule { }
