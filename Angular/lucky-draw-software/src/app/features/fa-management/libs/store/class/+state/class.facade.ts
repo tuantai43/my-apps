@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { BaseFacade } from '../../+base';
 import { LoadList, UpdateDataSearch } from './class.action';
-import { InitState, DataSearch } from './class.reducer';
+import { InitState, DataSearch, ClassView } from './class.reducer';
 import { classQuery } from './class.selectors';
 
 @Injectable()
-export class ClassFacade {
-  list$ = this.store.select(classQuery.getLoadedList);
+export class ClassFacade extends BaseFacade<InitState, ClassView> {
   statuses$ = this.store.select(classQuery.getStatuses);
   classNames$ = this.store.select(classQuery.getClassNames);
-  isLoadedList$ = this.store.select(classQuery.isLoadedList);
 
-  constructor(private store: Store<InitState>) {}
+  constructor(store: Store<InitState>) {
+    super(store, store.select(classQuery.getLoadedList), store.select(classQuery.isLoadedList));
+  }
 
   loadList() {
     this.store.dispatch(new LoadList());

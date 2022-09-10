@@ -1,15 +1,14 @@
-import { LocationActions, ActionTypes } from './location.action';
+import { DeliveryTypeActions, ActionTypes } from './delivery-type.action';
 
-export const featureKey = 'location';
+export const featureKey = 'deliveryType';
 
-export interface LocationView {
+export interface DeliveryType {
   id: number;
-  acronym: string;
   name: string;
 }
 
 export interface InitState {
-  list: LocationView[];
+  list: DeliveryType[];
   isLoadedList: boolean;
 }
 
@@ -18,7 +17,7 @@ const initialState = (): InitState => ({
   isLoadedList: false,
 });
 
-export function reducer(state = initialState(), action: LocationActions): InitState {
+export function reducer(state = initialState(), action: DeliveryTypeActions): InitState {
   switch (action.type) {
     case ActionTypes.LoadList: {
       return state;

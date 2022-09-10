@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ClassDetails, initialClassDetail } from '../../store';
 
 @Component({
@@ -9,6 +10,7 @@ import { ClassDetails, initialClassDetail } from '../../store';
 })
 export class InformationComponent implements OnInit {
   @Input() class: ClassDetails | null = initialClassDetail();
+  @Input() form: FormGroup = new FormGroup({});
 
   constructor() {}
 

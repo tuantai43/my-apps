@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { featureKey, InitState } from './location.reducer';
+import { featureKey, InitState } from './sub-subject-type.reducer';
 
 const getInitState = createFeatureSelector<InitState>(featureKey);
 
 export const query = {
-  getList: createSelector(getInitState, (state) => state.list),
+  getLoadedList: createSelector(getInitState, (state: InitState) => state.list),
   isLoadedList: createSelector(getInitState, (state) => state.isLoadedList),
 };

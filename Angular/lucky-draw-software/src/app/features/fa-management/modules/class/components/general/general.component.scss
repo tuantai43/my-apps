@@ -1,21 +1,4 @@
-@import 'mixins';
-
-.content {
-  display: flex;
-  flex-wrap: wrap;
-  @include gap();
-}
-
 .mat-form-field {
   flex-grow: 1;
   flex-shrink: 1;
-  width: 100%;
-}
-
-.columns-2 {
-  @include width(2);
-}
-
-.columns-3 {
-  @include width(3);
 }

@@ -2,4 +2,36 @@
   <mat-expansion-panel-header>
     <mat-panel-title translate="createClass.detail"> </mat-panel-title>
   </mat-expansion-panel-header>
+  <div [formGroup]="detailForm" class="flex-wrap gap">
+    <!-- Subject Type -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="subjectType"></mat-label>
+      <select matNativeControl formControlName="subjectType">
+        <option value=""></option>
+        <option *ngFor="let subjectType of subjectTypes$ | async" [value]="subjectType.id">
+          {{ subjectType.name | translate }}
+        </option>
+      </select>
+    </mat-form-field>
+    <!-- Sub Subject Type -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="subSubjectType"></mat-label>
+      <select matNativeControl formControlName="subSubjectType">
+        <option value=""></option>
+        <option *ngFor="let subSubjectType of subSubjectTypes$ | async" [value]="subSubjectType.id">
+          {{ subSubjectType.name | translate }}
+        </option>
+      </select>
+    </mat-form-field>
+    <!-- Delivery Type -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="deliveryType"></mat-label>
+      <select matNativeControl formControlName="deliveryType">
+        <option value=""></option>
+        <option *ngFor="let deliveryType of deliveryTypes$ | async" [value]="deliveryType.id">
+          {{ deliveryType.name | translate }}
+        </option>
+      </select>
+    </mat-form-field>
+  </div>
 </mat-expansion-panel>

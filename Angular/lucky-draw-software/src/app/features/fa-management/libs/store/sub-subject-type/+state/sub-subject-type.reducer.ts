@@ -1,15 +1,14 @@
-import { LocationActions, ActionTypes } from './location.action';
+import { SubSubjectTypeActions, ActionTypes } from './sub-subject-type.action';
 
-export const featureKey = 'location';
+export const featureKey = 'subSubjectType';
 
-export interface LocationView {
+export interface SubSubjectType {
   id: number;
-  acronym: string;
   name: string;
 }
 
 export interface InitState {
-  list: LocationView[];
+  list: SubSubjectType[];
   isLoadedList: boolean;
 }
 
@@ -18,7 +17,7 @@ const initialState = (): InitState => ({
   isLoadedList: false,
 });
 
-export function reducer(state = initialState(), action: LocationActions): InitState {
+export function reducer(state = initialState(), action: SubSubjectTypeActions): InitState {
   switch (action.type) {
     case ActionTypes.LoadList: {
       return state;

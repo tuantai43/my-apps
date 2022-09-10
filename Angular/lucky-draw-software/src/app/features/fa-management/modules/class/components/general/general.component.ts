@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Inject } from '@angular/core';
 import { Component, Input, OnInit, OnDestroy, LOCALE_ID } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ClassAdminFacade } from '@fa-management/store/admin';
 import { BudgetFacade } from '@fa-management/store/budget';
 import { LocationFacade } from '@fa-management/store/location';
@@ -18,34 +18,14 @@ import { ClassDetails, initialClassDetail } from '../../store';
   styleUrls: ['./general.component.scss'],
 })
 export class GeneralComponent implements OnInit, OnDestroy {
-  @Input()
-  get class() {
-    return this.mClass;
-  }
-
-  set class(value) {
-    this.mClass = value;
-    this.generalForm.patchValue(value || {});
-  }
+  @Input() generalForm: FormGroup = new FormGroup({});
+  @Input() class: ClassDetails | null = initialClassDetail();
 
   locations$ = this.locationFacade.list$;
   budgets$ = this.budgetFacade.list$;
   admins$ = this.classAdminFacade.list$;
   destroy$ = new Subject();
   acronym: string = '';
-  mClass: ClassDetails | null = initialClassDetail();
-  generalForm = this.formBuilder.group({
-    plannedTraineeNo: '',
-    expectedStartDate: ['', Validators.required],
-    expectedEndDate: ['', Validators.required],
-    location: ['', Validators.required],
-    detailedLocation: '',
-    budgetCode: ['', Validators.required],
-    estimatedBudget: ['', Validators.required],
-    classAdmin: ['', Validators.required],
-    learningPath: ['', Validators.required],
-    history: '',
-  });
 
   get currentDate(): Date | null {
     if (this.class?.createdBy) {
@@ -103,7 +83,6 @@ export class GeneralComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private formBuilder: FormBuilder,
     private locationFacade: LocationFacade,
     private budgetFacade: BudgetFacade,
     private classAdminFacade: ClassAdminFacade,

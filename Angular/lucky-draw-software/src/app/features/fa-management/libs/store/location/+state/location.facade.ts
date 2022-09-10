@@ -1,26 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs';
+import { BaseFacade } from '../../+base';
 import { LoadList } from './location.action';
-import { LocationState } from './location.reducer';
-import { locationQuery } from './location.selectors';
+import { InitState, LocationView } from './location.reducer';
+import { query } from './location.selectors';
 
 @Injectable()
-export class LocationFacade {
-  list$ = this.store.select(locationQuery.getList);
-  constructor(private store: Store<LocationState>) {
+export class LocationFacade extends BaseFacade<InitState, LocationView> {
+  constructor(store: Store<InitState>) {
+    super(store, store.select(query.getList), store.select(query.isLoadedList));
     this.loadList();
   }
 
   loadList() {
-    this.store.dispatch(new LoadList());
+    this.getAll(new LoadList());
   }
 
   findById(id: number) {
-    return this.list$.pipe(map((locations) => locations.find((location) => location.id === id)));
-  }
-
-  findBy(by: 'id' | 'acronym' | 'name', value: string) {
-    return this.list$.pipe(map((locations) => locations.find((location) => location[by].toString() === value)));
+    return this.findBy('id', id);
   }
 }

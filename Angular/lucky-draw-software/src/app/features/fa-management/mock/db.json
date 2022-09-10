@@ -98,6 +98,40 @@
       "name": "CTC_Uni"
     }
   ],
+  "delivery-types": [
+    {
+      "id": 1,
+      "name": "deliveryType.01"
+    },
+    {
+      "id": 2,
+      "name": "deliveryType.02"
+    },
+    {
+      "id": 3,
+      "name": "deliveryType.03"
+    },
+    {
+      "id": 4,
+      "name": "deliveryType.04"
+    },
+    {
+      "id": 5,
+      "name": "deliveryType.05"
+    },
+    {
+      "id": 6,
+      "name": "deliveryType.06"
+    },
+    {
+      "id": 7,
+      "name": "deliveryType.07"
+    },
+    {
+      "id": 8,
+      "name": "deliveryType.08"
+    }
+  ],
   "locations": [
     {
       "id": 1,
@@ -123,6 +157,74 @@
       "id": 5,
       "acronym": "CT",
       "name": "location.CT"
+    }
+  ],
+  "sub-subject-types": [
+    {
+      "id": 1,
+      "name": "subSubjectType.01"
+    },
+    {
+      "id": 2,
+      "name": "subSubjectType.02"
+    },
+    {
+      "id": 3,
+      "name": "subSubjectType.03"
+    },
+    {
+      "id": 4,
+      "name": "subSubjectType.04"
+    },
+    {
+      "id": 5,
+      "name": "subSubjectType.05"
+    },
+    {
+      "id": 6,
+      "name": "subSubjectType.06"
+    },
+    {
+      "id": 7,
+      "name": "subSubjectType.07"
+    },
+    {
+      "id": 8,
+      "name": "subSubjectType.08"
+    }
+  ],
+  "subject-types": [
+    {
+      "id": 1,
+      "name": "subjectType.01"
+    },
+    {
+      "id": 2,
+      "name": "subjectType.02"
+    },
+    {
+      "id": 3,
+      "name": "subjectType.03"
+    },
+    {
+      "id": 4,
+      "name": "subjectType.04"
+    },
+    {
+      "id": 5,
+      "name": "subjectType.05"
+    },
+    {
+      "id": 6,
+      "name": "subjectType.06"
+    },
+    {
+      "id": 7,
+      "name": "subjectType.07"
+    },
+    {
+      "id": 8,
+      "name": "subjectType.08"
     }
   ]
 }

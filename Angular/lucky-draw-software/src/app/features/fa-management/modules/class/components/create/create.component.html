@@ -4,7 +4,7 @@
   <mat-tab [label]="'createClass.information' | translate">
     <button (click)="reset()">Reset</button>
     <button (click)="load()">load</button>
-    <app-information [class]="class$ | async"></app-information>
+    <app-information [class]="class$ | async" [form]="form"></app-information>
   </mat-tab>
   <mat-tab [label]="'createClass.trainee' | translate">Content 2</mat-tab>
 </mat-tab-group>
