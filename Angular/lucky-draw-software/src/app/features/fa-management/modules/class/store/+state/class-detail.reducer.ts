@@ -25,6 +25,14 @@ export interface ClassDetails extends ClassView {
   updatedAt?: string;
   type?: ClassType;
   skill: string;
+  subjectType?: number;
+  subSubjectType?: number;
+  deliveryType?: number;
+  formatType?: number;
+  scope?: number;
+  supplier: string;
+  actualStartDate?: Date;
+  actualEndDate?: Date;
 }
 
 export const initialClassDetail = (): ClassDetails => ({
@@ -36,6 +44,7 @@ export const initialClassDetail = (): ClassDetails => ({
   createdBy: '',
   createdAt: '',
   skill: '',
+  supplier: '',
 });
 
 export interface ClassDetailsState {

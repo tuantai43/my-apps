@@ -33,5 +33,52 @@
         </option>
       </select>
     </mat-form-field>
+    <!-- Format Type -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="formatType"></mat-label>
+      <select matNativeControl formControlName="deliveryType">
+        <option value=""></option>
+        <option *ngFor="let formatType of formatType$ | async" [value]="formatType.id">
+          {{ formatType.name | translate }}
+        </option>
+      </select>
+    </mat-form-field>
+    <!-- Scope -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="scope"></mat-label>
+      <select matNativeControl formControlName="scope">
+        <option value=""></option>
+        <option *ngFor="let scope of scopes$ | async" [value]="scope.id">
+          {{ scope.name | translate }}
+        </option>
+      </select>
+    </mat-form-field>
+    <!-- Supplier / Partner -->
+    <mat-form-field appearance="fill" color="primary" class="columns-3">
+      <mat-label translate="createClass.supplier"></mat-label>
+      <input matInput formControlName="supplier" />
+    </mat-form-field>
+    <!-- Expected Start Date -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.actualStart"></mat-label>
+      <input matInput [matDatepicker]="startDate" formControlName="actualStartDate" readonly="readonly" />
+      <mat-datepicker #startDate>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+    <!-- Expected End Date -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.actualEnd"></mat-label>
+      <input matInput [matDatepicker]="endDate" formControlName="actualEndDate" readonly="readonly" />
+      <mat-datepicker #endDate>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
   </div>
 </mat-expansion-panel>

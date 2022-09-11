@@ -36,6 +36,8 @@
   "createClass.actualTrainee": "Actual Trainee No",
   "createClass.expectedStart": "Expected Start Date",
   "createClass.expectedEnd": "Expected End Date",
+  "createClass.actualStart": "Actual Start Date",
+  "createClass.actualEnd": "Actual End Date",
   "createClass.detailedLocation": "Detailed Location",
   "createClass.budgetCode": "Budget Code",
   "createClass.estimatedBudget": "Estimated Budget",
@@ -73,5 +75,14 @@
   "deliveryType.05": "Certificate",
   "deliveryType.06": "Club",
   "deliveryType.07": "OJT",
-  "deliveryType.08": "Others"
+  "deliveryType.08": "Others",
+  "formatType": "Format Type",
+  "formatType.01": "Online",
+  "formatType.02": "Offline",
+  "formatType.03": "Blended",
+  "scope": "Scope",
+  "scope.01": "Company",
+  "scope.02": "Unit",
+  "scope.03": "Outside",
+  "createClass.supplier": "Supplier / Partner"
 }

@@ -33,6 +33,7 @@ export class ClassDetailsEffects {
             createdAt: '2022/09/17',
             type: ClassType.Fresher,
             skill: 'Angular',
+            supplier: '',
           })
         )
       )

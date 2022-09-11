@@ -25,6 +25,11 @@ export class CreateComponent implements OnInit {
     subjectType: '',
     subSubjectType: '',
     deliveryType: '',
+    formatType: '',
+    scope: '',
+    supplier: '',
+    actualStartDate: '',
+    actualEndDate: '',
   });
 
   constructor(private formBuilder: FormBuilder, private classDetailsFacade: ClassDetailsFacade) {}

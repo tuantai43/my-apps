@@ -226,5 +226,33 @@
       "id": 8,
       "name": "subjectType.08"
     }
+  ],
+  "format-types": [
+    {
+      "id": 1,
+      "name": "formatType.01"
+    },
+    {
+      "id": 2,
+      "name": "formatType.02"
+    },
+    {
+      "id": 3,
+      "name": "formatType.03"
+    }
+  ],
+  "scopes": [
+    {
+      "id": 1,
+      "name": "scopes.01"
+    },
+    {
+      "id": 2,
+      "name": "scopes.02"
+    },
+    {
+      "id": 3,
+      "name": "scopes.03"
+    }
   ]
 }
