@@ -6,3 +6,5 @@ export * from './sub-subject-type.service';
 export * from './subject-type.service';
 export * from './format-type.service';
 export * from './scope.service';
+export * from './trainer.service';
+export * from './class-admin.service';

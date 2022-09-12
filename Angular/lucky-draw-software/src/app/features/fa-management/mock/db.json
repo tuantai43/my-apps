@@ -254,5 +254,39 @@
       "id": 3,
       "name": "scopes.03"
     }
+  ],
+  "trainers": [
+    {
+      "id": 1,
+      "account": "TaiPT",
+      "name": "Pham Tuan Tai"
+    },
+    {
+      "id": 2,
+      "account": "HauNX",
+      "name": "Nguyen Xuan Hau"
+    },
+    {
+      "id": 3,
+      "account": "HuyPL1",
+      "name": "Phan Le Huy"
+    }
+  ],
+  "admins": [
+    {
+      "id": 1,
+      "account": "TaiPT",
+      "name": "Pham Tuan Tai"
+    },
+    {
+      "id": 2,
+      "account": "HauNX",
+      "name": "Nguyen Xuan Hau"
+    },
+    {
+      "id": 3,
+      "account": "HuyPL1",
+      "name": "Phan Le Huy"
+    }
   ]
 }

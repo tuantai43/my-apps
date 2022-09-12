@@ -5,7 +5,7 @@ import { SubSubjectTypeFacade } from '@fa-management/store/sub-subject-type';
 import { DeliveryTypeFacade } from '@fa-management/store/delivery-type';
 import { FormatTypeFacade } from '@fa-management/store/format-type';
 import { ScopeFacade } from '@fa-management/store/scope';
-
+import { TrainerFacade } from '@fa-management/store/trainer';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -19,18 +19,21 @@ export class DetailComponent implements OnInit {
   deliveryTypes$ = this.deliveryTypeFacade.list$;
   formatType$ = this.formatTypeFacade.list$;
   scopes$ = this.scopeFacade.list$;
+  trainers$ = this.trainerFacade.list$;
 
   constructor(
     private subjectTypeFacade: SubjectTypeFacade,
     private subSubjectTypeFacade: SubSubjectTypeFacade,
     private deliveryTypeFacade: DeliveryTypeFacade,
     private formatTypeFacade: FormatTypeFacade,
-    private scopeFacade: ScopeFacade
+    private scopeFacade: ScopeFacade,
+    private trainerFacade: TrainerFacade
   ) {
     this.subjectTypeFacade.loadList();
     this.subSubjectTypeFacade.loadList();
     this.deliveryTypeFacade.loadList();
     this.formatTypeFacade.loadList();
+    this.trainerFacade.loadList();
   }
 
   ngOnInit(): void {}

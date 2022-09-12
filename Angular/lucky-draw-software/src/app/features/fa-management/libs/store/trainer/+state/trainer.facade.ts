@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BaseFacade } from '../../+base';
-import { LoadList } from './admin.action';
-import { ClassAdmin, InitState } from './admin.reducer';
-import { query } from './admin.selectors';
+import { LoadList } from './trainer.action';
+import { InitState, Trainer } from './trainer.reducer';
+import { query } from './trainer.selectors';
 
 @Injectable()
-export class ClassAdminFacade extends BaseFacade<InitState, ClassAdmin> {
+export class TrainerFacade extends BaseFacade<InitState, Trainer> {
   constructor(store: Store<InitState>) {
     super(store, store.select(query.getLoadedList), store.select(query.isLoadedList));
   }

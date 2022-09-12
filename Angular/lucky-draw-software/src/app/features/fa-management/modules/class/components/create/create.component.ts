@@ -30,6 +30,10 @@ export class CreateComponent implements OnInit {
     supplier: '',
     actualStartDate: '',
     actualEndDate: '',
+    masterTrainer: '',
+    trainer: [],
+    curriculum: '',
+    remarks: '',
   });
 
   constructor(private formBuilder: FormBuilder, private classDetailsFacade: ClassDetailsFacade) {}

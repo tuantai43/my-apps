@@ -80,5 +80,34 @@
         </mat-datepicker-actions>
       </mat-datepicker>
     </mat-form-field>
+    <!-- Master Trainer -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.masterTrainer"></mat-label>
+      <select matNativeControl formControlName="masterTrainer">
+        <option value=""></option>
+        <option *ngFor="let masterTrainer of trainers$ | async" [value]="masterTrainer.id">
+          {{ masterTrainer.account }}
+        </option>
+      </select>
+    </mat-form-field>
+    <!-- Class Admin -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.trainer"></mat-label>
+      <mat-select formControlName="trainer" multiple>
+        <mat-option *ngFor="let trainer of trainers$ | async" [value]="trainer.id">
+          {{ trainer.account }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- Curriculum -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.curriculum"></mat-label>
+      <input matInput formControlName="curriculum" />
+    </mat-form-field>
+    <!-- Remarks -->
+    <mat-form-field appearance="fill" color="primary" class="columns-2">
+      <mat-label translate="createClass.remarks"></mat-label>
+      <input matInput formControlName="remarks" />
+    </mat-form-field>
   </div>
 </mat-expansion-panel>

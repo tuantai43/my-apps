@@ -27,6 +27,7 @@ import { StoreSubjectTypeModule } from '@fa-management/store/subject-type';
 import { StoreDeliveryTypeModule } from '@fa-management/store/delivery-type';
 import { StoreFormatTypeModule } from '@fa-management/store/format-type';
 import { StoreScopeModule } from '@fa-management/store/scope';
+import { StoreTrainerModule } from '@fa-management/store/trainer';
 
 import { ComponentModule } from '@fa-management/components';
 import { DirectiveModule } from '@fa-management/directives';
@@ -78,6 +79,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     StoreFormatTypeModule,
     StoreScopeModule,
     StoreSubjectTypeModule,
+    StoreTrainerModule,
     DirectiveModule,
     PipeModule,
     MatDividerModule,
