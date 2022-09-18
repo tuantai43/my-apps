@@ -23,4 +23,25 @@
     display: flex;
     @include gap();
   }
+  .radio-edit-common {
+    display: flex;
+    padding: 0 15px;
+
+    mat-radio-button {
+      width: 48%
+    }
+  }
+
+  .special-row{
+    display: flex;
+  }
+
+  .form-control{
+    min-width: 150px;
+  }
+
+  .control-label{
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
 }

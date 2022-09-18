@@ -139,5 +139,13 @@
   "deleteTrainee": "Detele Trainee",
   "traineeProfile": "Trainee Profile",
   "traineeProfile.information": "Trainee Information",
-  "traineeProfile.result": "Trainee Result"
+  "traineeProfile.result": "Trainee Result",
+  "traineeResult.milestone": "Milestone Configuration",
+  "traineeResult.attendanceStatus": "Attendance Status",
+  "traineeResult.topic": "Topic Mark",
+  "traineeResult.rewardAndPenalty": "Reward & Penalty",
+  "traineeResult.gpa": "GPA",
+  "traineeResult.commitment": "Commitment",
+  "traineeResult.allowance": "Allowance",
+  "traineeResult.allocation": "Allocation"
 }

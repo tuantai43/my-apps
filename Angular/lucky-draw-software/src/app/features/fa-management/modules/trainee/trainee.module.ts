@@ -31,6 +31,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { FORMAT_DATE } from '../../libs/utils/configs';
 import { MatRadioModule } from '@angular/material/radio';
+import { MilestoneConfigComponent } from './components/milestone-config/milestone-config.component';
+import { AttendanceStatusComponent } from './components/attendance-status/attendance-status.component';
+import { TopicMarkComponent } from './components/topic-mark/topic-mark.component';
+import { RewardPenaltyComponent } from './components/reward-penalty/reward-penalty.component';
+import { GpaComponent } from './components/gpa/gpa.component';
+import { CommitmentComponent } from './components/commitment/commitment.component';
+import { AllowanceComponent } from './components/allowance/allowance.component';
+import { AllocationComponent } from './components/allocation/allocation.component';
 
 
 @NgModule({
@@ -39,7 +47,15 @@ import { MatRadioModule } from '@angular/material/radio';
     InformationComponent,
     SearchComponent,
     ProfileComponent,
-    ResultComponent
+    ResultComponent,
+    MilestoneConfigComponent,
+    AttendanceStatusComponent,
+    TopicMarkComponent,
+    RewardPenaltyComponent,
+    GpaComponent,
+    CommitmentComponent,
+    AllowanceComponent,
+    AllocationComponent
   ],
   imports: [
     CommonModule,

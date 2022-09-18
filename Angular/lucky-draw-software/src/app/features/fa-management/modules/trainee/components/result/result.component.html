@@ -1,1 +1,39 @@
-<p>result works!</p>
+<mat-tab-group>
+  <!--loop tab here-->
+  <mat-tab label="Class 1">
+    <app-trainee-milestone-config 
+      class="milestone"
+      [mode]="mode"
+      [formResult]="formResult"
+      [isEditControl]="isEditControl"
+    ></app-trainee-milestone-config>
+    <!-- <app-trainee-attendance-status class="attendance"></app-trainee-attendance-status>
+    <app-trainee-topic-mark class="topic"></app-trainee-topic-mark>
+    <app-trainee-reward-penalty class="reward-penalty"></app-trainee-reward-penalty>
+    <app-trainee-gpa class="gpa"></app-trainee-gpa>
+    <app-trainee-commitment class="commitment"></app-trainee-commitment>
+    <app-trainee-allowance class="allowance"></app-trainee-allowance>
+    <app-trainee-allocation class="allocation"></app-trainee-allocation> -->
+  </mat-tab>
+</mat-tab-group>
+<div class="actions">
+  <ng-container *ngIf="mode === 'view'; else btnSubmit">
+    <button mat-stroked-button color="primary" (click)="onUpdate()">
+      <mat-icon>update</mat-icon>
+      {{ 'updateTrainee' | translate }}
+    </button>
+  </ng-container>
+  <ng-template #btnSubmit>
+    <button mat-button mat-flat-button color="primary" (click)="onUpdate()">
+      {{ 'submit' | translate }}
+    </button>
+  </ng-template>
+  <button mat-stroked-button color="warn" *ngIf="mode === 'view'" (click)="onDelete()">
+    <mat-icon>delete</mat-icon>
+    {{ 'deleteTrainee' | translate }}
+  </button>
+  <button mat-stroked-button color="accent" (click)="onClose()">
+      <mat-icon>undo</mat-icon>
+      {{ 'close' | translate }}
+  </button>
+</div>

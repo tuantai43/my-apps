@@ -1,0 +1,45 @@
+@import 'mixins';
+
+:host{
+  .mat-tab-group {
+    @include margin('top');
+  }
+
+  .milestone {
+    @include padding();
+  }
+  
+  .attendance {
+    @include padding();
+  }
+
+  .topic {
+    @include padding();
+  }
+
+  .reward-penalty {
+    @include padding();
+  }
+  
+  .gpa {
+    @include padding();
+  }
+
+  .commitment {
+    @include padding();
+  }
+
+  .allowance {
+    @include padding();
+  }
+
+  .allocation {
+    @include padding();
+  }
+
+  .actions {
+    margin-top: 20px;
+    display: flex;
+    @include gap();
+  }
+}

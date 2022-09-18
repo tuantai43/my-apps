@@ -4,29 +4,34 @@
     <tr>
       <th>Empl ID</th>
       <td>
-        <mat-form-field class="form-control control-emplid" appearance="fill">
+        <!-- <mat-form-field class="form-control control-emplid" appearance="fill">
           <input matInput formControlName="emplId">
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="form-control control-label"></div>
       </td>
       <th>Type</th>
       <td>
-        <mat-form-field class="form-control control-account" appearance="fill">
+        <!-- <mat-form-field class="form-control control-account" appearance="fill">
           <input matInput formControlName="account">
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="form-control control-label"></div>
       </td>
       <th>Status</th>
       <td>
-        <mat-form-field class="form-control control-status" appearance="fill">
+        <!-- <mat-form-field class="form-control control-status" appearance="fill">
           <input matInput formControlName="status">
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="form-control control-label"></div>
       </td>
       <th>Allocation Status</th>
       <td>
-        <mat-form-field class="form-control control-allocation-status" appearance="fill">
+        <!-- <mat-form-field class="form-control control-allocation-status" appearance="fill">
           <input matInput formControlName="allocationStatus">
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="form-control"></div>
       </td>
     </tr>
+    <!--ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
     <tr>
       <th>Account</th>
       <td colspan="3">
@@ -45,9 +50,9 @@
       <th>Gender</th>
       <td colspan="3">
         <ng-container *ngIf="mode === 'edit'; else viewGender">
-            <mat-radio-group aria-label="Select an option" formControlName="gender">
-              <mat-radio-button value="male">Male</mat-radio-button>
-              <mat-radio-button value="female">Female</mat-radio-button>
+            <mat-radio-group class="radio-edit-common control-edit-gender" aria-label="Select an option" formControlName="gender">
+              <mat-radio-button value="male" class="gender-male">Male</mat-radio-button>
+              <mat-radio-button value="female" class="gender-female">Female</mat-radio-button>
             </mat-radio-group>
         </ng-container>
         <ng-template #viewGender>
@@ -59,7 +64,7 @@
       <th>DOB *</th>
       <td colspan="3">
         <mat-form-field class="form-control control-dob control-{{mode}}" appearance="fill">
-          <input matInput formControlName="dob">
+          <input matInput formControlName="dob" [disabled]="true">
         </mat-form-field>
       </td>
     </tr>
@@ -118,9 +123,17 @@
     <tr>
       <th>Salary Paid *</th>
       <td colspan="3">
-        <mat-form-field class="form-control control-salaryPaid control-{{mode}}" appearance="fill">
-          <input matInput formControlName="salaryPaid">
-        </mat-form-field>
+        <ng-container *ngIf="mode === 'edit'; else viewSalaryPaid">
+          <mat-radio-group class="radio-edit-common control-edit-salary" aria-label="Select an option" formControlName="gender">
+            <mat-radio-button value="1" class="salary-paid-yes">Yes</mat-radio-button>
+            <mat-radio-button value="0" class="salary-paid-no">No</mat-radio-button>
+          </mat-radio-group>
+        </ng-container>
+        <ng-template #viewSalaryPaid>
+          <mat-form-field class="form-control control-salaryPaid control-{{mode}}" appearance="fill">
+            <input matInput formControlName="salaryPaid">
+          </mat-form-field>
+        </ng-template>
       </td>
       <th>TPB Account</th>
       <td colspan="3">
