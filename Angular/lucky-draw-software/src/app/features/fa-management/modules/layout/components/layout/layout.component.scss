@@ -12,5 +12,6 @@
 .page-content {
   flex-grow: 1;
   flex-shrink: 1;
-  padding: 1rem;
+  overflow: auto;
+  padding: var(--spacing);
 }

@@ -8,7 +8,7 @@
   display: none;
 }
 
-@media (min-width: $md) {
+@media #{$md} {
   :host {
     display: block;
   }

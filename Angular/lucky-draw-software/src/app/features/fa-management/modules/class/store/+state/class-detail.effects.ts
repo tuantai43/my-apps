@@ -34,6 +34,7 @@ export class ClassDetailsEffects {
             type: ClassType.Fresher,
             skill: 'Angular',
             supplier: '',
+            budgets: [],
           })
         )
       )

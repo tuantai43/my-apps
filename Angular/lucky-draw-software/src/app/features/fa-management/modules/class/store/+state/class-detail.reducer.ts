@@ -8,6 +8,17 @@ export enum ClassType {
   Campus = 'CP',
 }
 
+export interface BudgetDetails {
+  item: string;
+  unit: string;
+  unitExpense: string | number;
+  quantity: number;
+  amount: number;
+  tax: number;
+  sum: number;
+  note: string;
+}
+
 export interface ClassDetails extends ClassView {
   plannedTraineeNo?: number;
   acceptedTraineeNo?: number;
@@ -33,6 +44,7 @@ export interface ClassDetails extends ClassView {
   supplier: string;
   actualStartDate?: Date;
   actualEndDate?: Date;
+  budgets: BudgetDetails[];
 }
 
 export const initialClassDetail = (): ClassDetails => ({
@@ -45,6 +57,7 @@ export const initialClassDetail = (): ClassDetails => ({
   createdAt: '',
   skill: '',
   supplier: '',
+  budgets: [],
 });
 
 export interface ClassDetailsState {

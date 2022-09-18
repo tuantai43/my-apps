@@ -53,6 +53,8 @@
   "createClass.history.created": "{{date}} - Created by {{account}}",
   "createClass.history.updated": "{{date}} - Updated by {{account}}",
   "history": "History",
+  "total": "Total",
+  "overBudget": "Over Budget",
   "subjectType": "Subject Type",
   "subjectType.01": "Organizational Overview & Culture",
   "subjectType.02": "Company Process",
@@ -88,5 +90,13 @@
   "scope.01": "Company",
   "scope.02": "Unit",
   "scope.03": "Outside",
-  "createClass.supplier": "Supplier / Partner"
+  "createClass.supplier": "Supplier / Partner",
+  "budget.item": "Item",
+  "budget.unit": "Unit",
+  "budget.unitExpense": "Unit Expense",
+  "budget.quantity": "Quantity",
+  "budget.amount": "Amount",
+  "budget.tax": "Tax",
+  "budget.sum": "Sum",
+  "budget.note": "Note"
 }

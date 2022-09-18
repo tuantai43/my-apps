@@ -43,7 +43,7 @@
 
 @mixin width($columns) {
   width: 100%;
-  @media (min-width: $md) {
+  @media #{$md} {
     width: max((100% - ($columns - 1) * var(--spacing)) / $columns, 200px);
   }
 }

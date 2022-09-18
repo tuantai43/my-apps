@@ -34,6 +34,8 @@ export class CreateComponent implements OnInit {
     trainer: [],
     curriculum: '',
     remarks: '',
+    // budget
+    budgets: this.formBuilder.array([]),
   });
 
   constructor(private formBuilder: FormBuilder, private classDetailsFacade: ClassDetailsFacade) {}

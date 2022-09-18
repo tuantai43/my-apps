@@ -8,3 +8,4 @@ export * from './format-type.service';
 export * from './scope.service';
 export * from './trainer.service';
 export * from './class-admin.service';
+export * from './class-details.service';

@@ -1,0 +1,27 @@
+@import 'variable';
+
+.budget-details {
+  width: 100%;
+  overflow: auto;
+}
+
+table {
+  th.mat-header-cell:first-of-type,
+  td.mat-cell:first-of-type,
+  td.mat-footer-cell:first-of-type {
+    padding-left: 0;
+  }
+  th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type {
+    padding-right: 0;
+  }
+  .mat-form-field {
+    --sidebar: 0px;
+    width: max(calc((100vw - var(--sidebar) - 2 * var(--spacing) - 2 * var(--spacing) - 2 * 24px) / 9), 75px);
+
+    @media #{$md} {
+      --sidebar: 20rem;
+    }
+  }
+}
