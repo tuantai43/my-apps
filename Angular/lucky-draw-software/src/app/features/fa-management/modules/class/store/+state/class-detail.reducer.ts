@@ -8,10 +8,13 @@ export enum ClassType {
   Campus = 'CP',
 }
 
+export interface AuditDetails {}
+
 export interface BudgetDetails {
+  id: number;
   item: string;
   unit: string;
-  unitExpense: string | number;
+  unitExpense: number;
   quantity: number;
   amount: number;
   tax: number;

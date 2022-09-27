@@ -18,7 +18,7 @@ table {
   }
   .mat-form-field {
     --sidebar: 0px;
-    width: max(calc((100vw - var(--sidebar) - 2 * var(--spacing) - 2 * var(--spacing) - 2 * 24px) / 9), 75px);
+    width: max((100vw - var(--sidebar) - 2 * var(--spacing) - 2 * var(--spacing) - 2 * 24px - 40px) / 8, 75px);
 
     @media #{$md} {
       --sidebar: 20rem;

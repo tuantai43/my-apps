@@ -18,6 +18,7 @@ server.use(jsonServer.bodyParser)
 server.use((req, res, next) => {
   if (req.method === 'POST') {
     req.body.createdAt = Date.now();
+    req.body.updatedAt = req.body.createdAt;
     req.body.createdBy = 'TaiPT3';
   } else if (req.method === 'PUT') {
     req.body.updatedAt = Date.now();

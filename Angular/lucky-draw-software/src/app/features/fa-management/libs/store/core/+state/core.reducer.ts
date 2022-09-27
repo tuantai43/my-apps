@@ -5,7 +5,7 @@ export const coreFeatureKey = 'core';
 export enum UserRole {
   All = 'All',
   FaManager = 'FM',
-  DiliveryManager = 'DM',
+  DeliveryManager = 'DM',
   ClassAdmin = 'CA',
   FaRec = 'FR',
   Trainer = 'TR',

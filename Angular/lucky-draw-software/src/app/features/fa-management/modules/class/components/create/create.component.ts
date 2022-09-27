@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { mergeMap, tap } from 'rxjs';
+import { ActionType } from '@app/features/fa-management/libs/directives';
+import { tap } from 'rxjs';
 import { ClassDetailsFacade } from '../../store';
 
 @Component({
@@ -10,6 +11,7 @@ import { ClassDetailsFacade } from '../../store';
 })
 export class CreateComponent implements OnInit {
   class$ = this.classDetailsFacade.class$.pipe(tap((value) => this.form.patchValue(value)));
+  actionType = ActionType;
   form = this.formBuilder.group({
     // general
     plannedTraineeNo: '',
@@ -28,14 +30,16 @@ export class CreateComponent implements OnInit {
     formatType: '',
     scope: '',
     supplier: '',
-    actualStartDate: '',
-    actualEndDate: '',
+    actualStartDate: [{ value: '', disabled: true }],
+    actualEndDate: [{ value: '', disabled: true }],
     masterTrainer: '',
     trainer: [],
     curriculum: '',
     remarks: '',
-    // budget
+    // budgets
     budgets: this.formBuilder.array([]),
+    // audits
+    audits: this.formBuilder.array([]),
   });
 
   constructor(private formBuilder: FormBuilder, private classDetailsFacade: ClassDetailsFacade) {}

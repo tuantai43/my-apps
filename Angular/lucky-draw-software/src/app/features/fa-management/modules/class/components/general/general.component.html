@@ -6,17 +6,17 @@
     <!-- Class Code -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="classCode"></mat-label>
-      <input matInput [value]="code$ | async" readonly />
+      <input matInput [value]="code$ | async" disabled />
     </mat-form-field>
     <!-- Class Name-->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="className"></mat-label>
-      <input matInput [value]="className$ | async" readonly />
+      <input matInput [value]="className$ | async" disabled />
     </mat-form-field>
     <!-- Status -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="status"></mat-label>
-      <input matInput [value]="class?.status | classStatus | translate" readonly />
+      <input matInput [value]="class?.status | classStatus | translate" disabled />
     </mat-form-field>
     <!-- Planned Trainee No -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
@@ -26,12 +26,12 @@
     <!-- Accepted Traniee No -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="createClass.acceptedTrainee"></mat-label>
-      <input matInput [value]="class?.acceptedTraineeNo || ''" readonly />
+      <input matInput [value]="class?.acceptedTraineeNo || ''" disabled />
     </mat-form-field>
     <!-- Actual Trainee No -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="createClass.actualTrainee"></mat-label>
-      <input matInput [value]="class?.actualTraineeNo || ''" readonly />
+      <input matInput [value]="class?.actualTraineeNo || ''" disabled />
     </mat-form-field>
     <!-- Expected Start Date -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
@@ -114,7 +114,7 @@
     <!-- History -->
     <mat-form-field appearance="fill" color="primary">
       <mat-label translate="history"></mat-label>
-      <input matInput [value]="history$ | async" readonly />
+      <input matInput [value]="history$ | async" disabled />
     </mat-form-field>
   </div>
 </mat-expansion-panel>

@@ -45,6 +45,7 @@ export class ActionButtonDirective {
   readonly accept: {
     actionType: ActionType;
     roles: UserRole[];
+    enable?: UserRole[];
   }[] = [
     {
       actionType: ActionType.ClassManagement,
@@ -58,7 +59,7 @@ export class ActionButtonDirective {
       actionType: ActionType.TraineeManagement,
       roles: [
         UserRole.FaManager,
-        UserRole.DiliveryManager,
+        UserRole.DeliveryManager,
         UserRole.ClassAdmin,
         UserRole.Trainer,
         UserRole.SystemAdmin,
@@ -74,15 +75,19 @@ export class ActionButtonDirective {
     },
     {
       actionType: ActionType.CreateClass,
-      roles: [UserRole.FaManager, UserRole.DiliveryManager, UserRole.SystemAdmin],
+      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
+    },
+    {
+      actionType: ActionType.SubmitClass,
+      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.SystemAdmin],
     },
     {
       actionType: ActionType.UpdateClass,
-      roles: [UserRole.FaManager, UserRole.DiliveryManager, UserRole.SystemAdmin],
+      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
     },
     {
       actionType: ActionType.CancelClass,
-      roles: [UserRole.FaManager, UserRole.DiliveryManager, UserRole.SystemAdmin],
+      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
     },
   ];
 

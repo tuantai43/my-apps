@@ -8,3 +8,12 @@
   </mat-tab>
   <mat-tab [label]="'createClass.trainee' | translate">Content 2</mat-tab>
 </mat-tab-group>
+<div class="flex-wrap gap">
+  <button mat-raised-button color="primary" *appActionButton="actionType.SubmitClass" [disabled]="form.invalid">
+    {{ 'submit' | translate }}
+  </button>
+  <a mat-raised-button class="color-icon warn" [routerLink]="['..']">
+    <mat-icon>reply</mat-icon>
+    {{ 'close' | translate }}
+  </a>
+</div>

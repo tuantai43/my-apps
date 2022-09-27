@@ -61,7 +61,7 @@
     <!-- Expected Start Date -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.actualStart"></mat-label>
-      <input matInput [matDatepicker]="startDate" formControlName="actualStartDate" readonly="readonly" />
+      <input matInput [matDatepicker]="startDate" formControlName="actualStartDate" />
       <mat-datepicker #startDate>
         <mat-datepicker-actions>
           <button mat-button matDatepickerCancel>Cancel</button>
@@ -72,7 +72,7 @@
     <!-- Expected End Date -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="createClass.actualEnd"></mat-label>
-      <input matInput [matDatepicker]="endDate" formControlName="actualEndDate" readonly="readonly" />
+      <input matInput [matDatepicker]="endDate" formControlName="actualEndDate" />
       <mat-datepicker #endDate>
         <mat-datepicker-actions>
           <button mat-button matDatepickerCancel>Cancel</button>

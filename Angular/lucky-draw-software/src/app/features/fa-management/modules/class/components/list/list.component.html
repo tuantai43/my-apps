@@ -78,15 +78,15 @@
   showFirstLastButtons
   aria-label="Select class of classes"></mat-paginator>
 <div class="function">
-  <a mat-stroked-button color="primary" *appActionButton="actionType.CreateClass" [routerLink]="['create']">
+  <a mat-raised-button class="color-icon primary" *appActionButton="actionType.CreateClass" [routerLink]="['create']">
     <mat-icon>add</mat-icon>
     {{ 'addClass' | translate }}
   </a>
-  <button mat-stroked-button color="accent" *appActionButton="actionType.UpdateClass">
+  <button mat-raised-button class="color-icon accent" *appActionButton="actionType.UpdateClass">
     <mat-icon>edit</mat-icon>
     {{ 'updateClass' | translate }}
   </button>
-  <button mat-stroked-button color="warn" *appActionButton="actionType.CancelClass">
+  <button mat-raised-button class="color-icon warn" *appActionButton="actionType.CancelClass">
     <mat-icon>block</mat-icon>
     {{ 'removeClass' | translate }}
   </button>

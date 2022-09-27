@@ -98,5 +98,16 @@
   "budget.amount": "Amount",
   "budget.tax": "Tax",
   "budget.sum": "Sum",
-  "budget.note": "Note"
+  "budget.note": "Note",
+  "budget.over": "Yes",
+  "budget.notOver": "No",
+  "audit.date": "Date",
+  "audit.eventCategory": "Event Category",
+  "audit.relatedPeople": "Related People",
+  "audit.action": "Action",
+  "audit.pic": "PIC",
+  "audit.deadline": "Deadline",
+  "audit.note": "Note",
+  "submit": "Submit",
+  "close": "Close"
 }

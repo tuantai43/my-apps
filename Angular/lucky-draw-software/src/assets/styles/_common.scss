@@ -106,3 +106,23 @@ table {
 .flex-wrap {
   flex-wrap: wrap;
 }
+
+.mat-button-base.color-icon {
+  &.primary {
+    .mat-icon {
+      color: var(--p-500);
+    }
+  }
+
+  &.accent {
+    .mat-icon {
+      color: var(--a-500);
+    }
+  }
+
+  &.warn {
+    .mat-icon {
+      color: var(--w-500);
+    }
+  }
+}

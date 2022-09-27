@@ -6,12 +6,12 @@
     <!-- Total -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="total"></mat-label>
-      <input matInput readonly appCurrency />
+      <input matInput [appCurrency]="total" [disabled]="true" />
     </mat-form-field>
     <!-- Over Budget -->
     <mat-form-field appearance="fill" color="primary" class="columns-2">
       <mat-label translate="overBudget"></mat-label>
-      <input matInput readonly />
+      <input matInput [value]="over | translate" [disabled]="true" />
     </mat-form-field>
 
     <div class="budget-details">
@@ -54,7 +54,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header translate="budget.unitExpense"></th>
           <td mat-cell *matCellDef="let row; let rowIndex = index" [formGroupName]="rowIndex">
             <mat-form-field appearance="fill" color="primary">
-              <input matInput formControlName="unitExpense" />
+              <input matInput formControlName="unitExpenseText" appCurrency />
             </mat-form-field>
           </td>
         </ng-container>
@@ -64,7 +64,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header translate="budget.quantity"></th>
           <td mat-cell *matCellDef="let row; let rowIndex = index" [formGroupName]="rowIndex">
             <mat-form-field appearance="fill" color="primary">
-              <input matInput formControlName="quantity" />
+              <input matInput formControlName="quantityText" appNumber />
             </mat-form-field>
           </td>
         </ng-container>
@@ -74,7 +74,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header translate="budget.amount"></th>
           <td mat-cell *matCellDef="let row; let rowIndex = index" [formGroupName]="rowIndex">
             <mat-form-field appearance="fill" color="primary">
-              <input matInput formControlName="amount" />
+              <input matInput formControlName="amountText" appCurrency />
             </mat-form-field>
           </td>
         </ng-container>
@@ -84,7 +84,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header translate="budget.tax"></th>
           <td mat-cell *matCellDef="let row; let rowIndex = index" [formGroupName]="rowIndex">
             <mat-form-field appearance="fill" color="primary">
-              <input matInput formControlName="tax" />
+              <input matInput formControlName="taxText" appNumber />
             </mat-form-field>
           </td>
         </ng-container>
@@ -94,7 +94,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header translate="budget.sum"></th>
           <td mat-cell *matCellDef="let row; let rowIndex = index" [formGroupName]="rowIndex">
             <mat-form-field appearance="fill" color="primary">
-              <input matInput formControlName="sum" />
+              <input matInput formControlName="sumText" appCurrency />
             </mat-form-field>
           </td>
         </ng-container>
