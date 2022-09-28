@@ -288,5 +288,39 @@
       "account": "HuyPL1",
       "name": "Phan Le Huy"
     }
+  ],
+  "event-categories": [
+    {
+      "id": 1,
+      "name": "eventCategory.01"
+    },
+    {
+      "id": 2,
+      "name": "eventCategory.02"
+    },
+    {
+      "id": 3,
+      "name": "eventCategory.03"
+    },
+    {
+      "id": 4,
+      "name": "eventCategory.04"
+    },
+    {
+      "id": 5,
+      "name": "eventCategory.05"
+    },
+    {
+      "id": 6,
+      "name": "eventCategory.06"
+    },
+    {
+      "id": 7,
+      "name": "eventCategory.07"
+    },
+    {
+      "id": 8,
+      "name": "eventCategory.08"
+    }
   ]
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { EventCategoryFacade } from '@app/features/fa-management/libs/store/event-category';
 import { SelectionTable } from '@app/features/fa-management/libs/utils/functions';
 import { AuditDetails } from '../../store';
 
@@ -10,6 +11,7 @@ import { AuditDetails } from '../../store';
 })
 export class AuditComponent implements OnInit {
   @Input() detailForm: FormGroup = new FormGroup({});
+  eventCategories$ = this.eventCategoryFacade.list$;
   selectionTable = new SelectionTable<AuditDetails>([], [], true);
   displayedColumns: string[] = [
     'select',
@@ -22,7 +24,13 @@ export class AuditComponent implements OnInit {
     'note',
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  get currentDate(): Date {
+    return new Date();
+  }
+
+  constructor(private formBuilder: FormBuilder, private eventCategoryFacade: EventCategoryFacade) {
+    this.eventCategoryFacade.loadList();
+  }
 
   ngOnInit(): void {}
 

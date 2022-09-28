@@ -1,3 +1,3 @@
-export * from './+state/trainer.facade';
-export * from './+state/trainer.reducer';
+export * from './+state/facade';
+export * from './+state/reducer';
 export * from './trainer.module';

@@ -1,3 +1,3 @@
-export * from './+state/class.facade';
-export * from './+state/class.reducer';
+export * from './+state/facade';
+export * from './+state/reducer';
 export * from './class.module';

@@ -1,3 +1,3 @@
-export * from './+state/admin.facade';
-export * from './+state/admin.reducer';
+export * from './+state/facade';
+export * from './+state/reducer';
 export * from './admin.module';

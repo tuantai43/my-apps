@@ -9,3 +9,4 @@ export * from './scope.service';
 export * from './trainer.service';
 export * from './class-admin.service';
 export * from './class-details.service';
+export * from './event-category.service';

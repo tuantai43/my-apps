@@ -1,3 +1,3 @@
-export * from './+state/scope.facade';
-export * from './+state/scope.reducer';
+export * from './+state/facade';
+export * from './+state/reducer';
 export * from './scope.module';
