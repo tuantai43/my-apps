@@ -9,13 +9,28 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { ClassStatusesComponent } from './class-statuses/class-statuses.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
-const COMPONENTS = [LocationsComponent, ClassStatusesComponent];
+import { ClassStatusesComponent } from './class-statuses/class-statuses.component';
+import { ConfirmationPopupComponent } from './confirmation-popup/confirmation-popup.component';
+
+const COMPONENTS = [LocationsComponent, ClassStatusesComponent, ConfirmationPopupComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],
-  imports: [CommonModule, FormsModule, TranslateModule, PipeModule, MatSelectModule, MatInputModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TranslateModule,
+    PipeModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   exports: [...COMPONENTS],
 })
 export class ComponentModule {}

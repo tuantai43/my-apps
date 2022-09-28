@@ -1,0 +1,14 @@
+@import 'mixins';
+
+.confirmation-content {
+  display: flex;
+  align-items: center;
+
+  .mat-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+.mat-dialog-actions {
+  justify-content: center;
+}

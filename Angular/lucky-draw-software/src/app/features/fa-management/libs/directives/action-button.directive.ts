@@ -38,25 +38,23 @@ export enum ActionType {
   ExportReport = '[ReportManagement] Export report',
 }
 
+interface Permission {
+  roles: UserRole[];
+  enable?: UserRole[];
+}
+
 @Directive({
   selector: '[appActionButton]',
 })
 export class ActionButtonDirective {
-  readonly accept: {
-    actionType: ActionType;
-    roles: UserRole[];
-    enable?: UserRole[];
-  }[] = [
-    {
-      actionType: ActionType.ClassManagement,
+  readonly accept: { [key: string]: Permission } = {
+    [ActionType.ClassManagement]: {
       roles: [UserRole.All],
     },
-    {
-      actionType: ActionType.CandidateManagement,
+    [ActionType.CandidateManagement]: {
       roles: [UserRole.All],
     },
-    {
-      actionType: ActionType.TraineeManagement,
+    [ActionType.TraineeManagement]: {
       roles: [
         UserRole.FaManager,
         UserRole.DeliveryManager,
@@ -65,31 +63,25 @@ export class ActionButtonDirective {
         UserRole.SystemAdmin,
       ],
     },
-    {
-      actionType: ActionType.TrainerManagement,
+    [ActionType.TrainerManagement]: {
       roles: [UserRole.All],
     },
-    {
-      actionType: ActionType.ReportManagement,
+    [ActionType.ReportManagement]: {
       roles: [UserRole.All],
     },
-    {
-      actionType: ActionType.CreateClass,
+    [ActionType.CreateClass]: {
       roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
     },
-    {
-      actionType: ActionType.SubmitClass,
+    [ActionType.SubmitClass]: {
       roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.SystemAdmin],
     },
-    {
-      actionType: ActionType.UpdateClass,
+    [ActionType.UpdateClass]: {
       roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
     },
-    {
-      actionType: ActionType.CancelClass,
+    [ActionType.CancelClass]: {
       roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
     },
-  ];
+  };
 
   constructor(
     private templateRef: TemplateRef<any>,
@@ -105,7 +97,7 @@ export class ActionButtonDirective {
         take(1)
       )
       .subscribe((roles) => {
-        const action = this.accept.find((a) => a.actionType === actionType);
+        const action = this.accept[actionType];
         if (action && (action.roles.includes(UserRole.All) || roles.find((r) => action.roles.includes(r)))) {
           this.viewContainer.createEmbeddedView(this.templateRef);
         } else {

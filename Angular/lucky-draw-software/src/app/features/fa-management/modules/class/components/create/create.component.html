@@ -2,14 +2,17 @@
 <mat-divider></mat-divider>
 <mat-tab-group>
   <mat-tab [label]="'createClass.information' | translate">
-    <button (click)="reset()">Reset</button>
-    <button (click)="load()">load</button>
     <app-information [class]="class$ | async" [form]="form"></app-information>
   </mat-tab>
   <mat-tab [label]="'createClass.trainee' | translate">Content 2</mat-tab>
 </mat-tab-group>
 <div class="flex-wrap gap">
-  <button mat-raised-button color="primary" *appActionButton="actionType.SubmitClass" [disabled]="form.invalid">
+  <button
+    mat-raised-button
+    color="primary"
+    *appActionButton="actionType.SubmitClass"
+    (click)="submit()"
+    [disabled]="!form.invalid">
     {{ 'submit' | translate }}
   </button>
   <a mat-raised-button class="color-icon warn" [routerLink]="['..']">

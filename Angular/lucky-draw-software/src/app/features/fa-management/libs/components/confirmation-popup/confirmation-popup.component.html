@@ -1,0 +1,17 @@
+<ng-container [ngSwitch]="data.type">
+  <ng-container *ngSwitchCase="popupType.Confirmation">
+    <h2 mat-dialog-title>{{ 'popup.confirmation.title' | translate }}</h2>
+    <mat-dialog-content class="confirmation-content">
+      <mat-icon>info</mat-icon>
+      {{ 'popup.confirmation.content' | translate }}
+    </mat-dialog-content>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <h2 mat-dialog-title>{{ data.title | translate }}</h2>
+    <mat-dialog-content><mat-icon>info</mat-icon>{{ data.content | translate }}</mat-dialog-content>
+  </ng-container>
+</ng-container>
+<mat-dialog-actions class="gap">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">{{ 'popup.ok' | translate }}</button>
+  <button mat-raised-button mat-dialog-close>{{ 'popup.cancel' | translate }}</button>
+</mat-dialog-actions>

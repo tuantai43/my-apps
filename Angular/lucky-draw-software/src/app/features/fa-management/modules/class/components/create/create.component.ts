@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  ConfirmationPopupComponent,
+  MIN_WIDTH,
+  PopupType,
+} from '@app/features/fa-management/libs/components/confirmation-popup/confirmation-popup.component';
 import { ActionType } from '@app/features/fa-management/libs/directives';
-import { tap } from 'rxjs';
+import { filter, take, tap } from 'rxjs';
 import { ClassDetailsFacade } from '../../store';
 
 @Component({
@@ -42,15 +48,30 @@ export class CreateComponent implements OnInit {
     audits: this.formBuilder.array([]),
   });
 
-  constructor(private formBuilder: FormBuilder, private classDetailsFacade: ClassDetailsFacade) {}
+  constructor(
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private classDetailsFacade: ClassDetailsFacade
+  ) {}
 
   ngOnInit(): void {}
 
-  reset() {
-    this.classDetailsFacade.resetClass();
-  }
-
-  load() {
-    this.classDetailsFacade.loadedClass();
+  submit(): void {
+    const dialogRef = this.dialog.open(ConfirmationPopupComponent, {
+      minWidth: MIN_WIDTH,
+      closeOnNavigation: true,
+      data: {
+        type: PopupType.Confirmation,
+      },
+    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        take(1),
+        filter((ok) => ok)
+      )
+      .subscribe(() => {
+        console.log(this.form.value);
+      });
   }
 }

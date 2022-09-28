@@ -117,5 +117,9 @@
   "audit.deadline": "Deadline",
   "audit.note": "Note",
   "submit": "Submit",
-  "close": "Close"
+  "close": "Close",
+  "popup.ok": "OK",
+  "popup.cancel": "Cancel",
+  "popup.confirmation.title": "Confirm",
+  "popup.confirmation.content": "Are you sure to submit?" 
 }
