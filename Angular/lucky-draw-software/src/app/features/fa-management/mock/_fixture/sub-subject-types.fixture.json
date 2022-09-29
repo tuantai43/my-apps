@@ -1,0 +1,38 @@
+{
+  "API_KEY": "sub-subject-types",
+  "API_NAME": "Sub-subject-types API",
+  "data":  [
+    {
+      "id": 1,
+      "name": "subSubjectType.01"
+    },
+    {
+      "id": 2,
+      "name": "subSubjectType.02"
+    },
+    {
+      "id": 3,
+      "name": "subSubjectType.03"
+    },
+    {
+      "id": 4,
+      "name": "subSubjectType.04"
+    },
+    {
+      "id": 5,
+      "name": "subSubjectType.05"
+    },
+    {
+      "id": 6,
+      "name": "subSubjectType.06"
+    },
+    {
+      "id": 7,
+      "name": "subSubjectType.07"
+    },
+    {
+      "id": 8,
+      "name": "subSubjectType.08"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "API_KEY": "trainers",
+  "API_NAME": "Trainers API",
+  "data": [
+    {
+      "id": 1,
+      "account": "TaiPT",
+      "name": "Pham Tuan Tai"
+    },
+    {
+      "id": 2,
+      "account": "HauNX",
+      "name": "Nguyen Xuan Hau"
+    },
+    {
+      "id": 3,
+      "account": "HuyPL1",
+      "name": "Phan Le Huy"
+    }
+  ]
+}

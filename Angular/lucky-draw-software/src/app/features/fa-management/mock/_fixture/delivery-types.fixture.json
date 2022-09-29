@@ -1,0 +1,38 @@
+{
+  "API_KEY": "delivery-types",
+  "API_NAME": "Delivery-types API",
+  "data": [
+    {
+      "id": 1,
+      "name": "deliveryType.01"
+    },
+    {
+      "id": 2,
+      "name": "deliveryType.02"
+    },
+    {
+      "id": 3,
+      "name": "deliveryType.03"
+    },
+    {
+      "id": 4,
+      "name": "deliveryType.04"
+    },
+    {
+      "id": 5,
+      "name": "deliveryType.05"
+    },
+    {
+      "id": 6,
+      "name": "deliveryType.06"
+    },
+    {
+      "id": 7,
+      "name": "deliveryType.07"
+    },
+    {
+      "id": 8,
+      "name": "deliveryType.08"
+    }
+  ]
+}

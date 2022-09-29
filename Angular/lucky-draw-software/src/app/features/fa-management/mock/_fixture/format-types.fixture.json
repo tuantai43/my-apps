@@ -1,0 +1,18 @@
+{
+  "API_KEY": "format-types",
+  "API_NAME": "Format-types API",
+  "data": [
+    {
+      "id": 1,
+      "name": "formatType.01"
+    },
+    {
+      "id": 2,
+      "name": "formatType.02"
+    },
+    {
+      "id": 3,
+      "name": "formatType.03"
+    }
+  ]
+}

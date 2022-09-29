@@ -1,0 +1,38 @@
+{
+  "API_KEY": "budgets",
+  "API_NAME": "Budget API",
+  "data": [
+    {
+      "id": 1,
+      "name": "CTC_Project_ADP"
+    },
+    {
+      "id": 2,
+      "name": "CTC_Fresher_Allowance"
+    },
+    {
+      "id": 3,
+      "name": "CTC_Fresher_Training"
+    },
+    {
+      "id": 4,
+      "name": "CTC_Specific_Fresher_Allowance"
+    },
+    {
+      "id": 5,
+      "name": "CTC_Specific_Fresher_Training"
+    },
+    {
+      "id": 6,
+      "name": "CTC_Specific_Fresher_Training_Award"
+    },
+    {
+      "id": 7,
+      "name": "CTC_FU"
+    },
+    {
+      "id": 8,
+      "name": "CTC_Uni"
+    }
+  ]
+}
