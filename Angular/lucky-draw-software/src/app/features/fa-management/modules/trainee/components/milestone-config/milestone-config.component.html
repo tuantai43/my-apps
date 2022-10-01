@@ -40,7 +40,7 @@
       <div class="common-column">Start Date</div>
       <div class="common-column">End Date</div>
     </div>
-    <div formArrayName="milestone" class="body-content">
+    <div formArrayName="milestone" class="body-content" #milestone>
       <ng-container *ngFor="let milestone of formArrayMilestone.controls; let indexMilestone = index"
         [formGroupName]="indexMilestone">
         <div class="milestone-name">
@@ -52,7 +52,7 @@
           </div>
           <div class="common-column">
             <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-              <mat-select formControlName="salary" [disabled]="!isEditControl">
+              <mat-select formControlName="salary">
                 <mat-option value="1">Yes</mat-option>
                 <mat-option value="0">No</mat-option>
               </mat-select>
@@ -60,21 +60,21 @@
           </div>
           <div class="common-column">
             <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-              <input matInput [matDatepicker]="startDate" formControlName="startDate" [disabled]="!isEditControl"/>
+              <input matInput [matDatepicker]="startDate" formControlName="startDate"/>
               <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
               <mat-datepicker #startDate></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="common-column">
             <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-              <input matInput [matDatepicker]="endDate" formControlName="endDate" [disabled]="!isEditControl"/>
+              <input matInput [matDatepicker]="endDate" formControlName="endDate"/>
               <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
               <mat-datepicker #endDate></mat-datepicker>
             </mat-form-field>
           </div>
         </div>
         <div class="topic-milestone">
-          <div class="action-add"></div>
+          <div class="action-add block-space"></div>
           <div class="common-column column-child-action">
             <div class="action-add-topic">
               <ng-container *ngIf="isEditControl; else viewMode">
@@ -92,48 +92,18 @@
           <div class="common-column">Passing Score</div>
           <div class="common-column">Weighted Number</div>
         </div>
-        <div formArrayName="topic">
+        <div formArrayName="topic" >
           <div class="topic-content"
-            *ngFor="let topic of topicMilestone(indexMilestone).controls; let indexTopic = index"
-            [formGroupName]="indexTopic">
-            <div class="action-add"></div>
-            <div class="common-column column-child-action">
-              <div class="action-remove-topic">
-                <mat-icon *ngIf="isEditControl" (click)="removeTopic(indexMilestone, indexTopic)">delete_forever</mat-icon>
-              </div>
-              <div class="topic-label">
-                <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-                  <mat-select formControlName="topicName" [disabled]="!isEditControl">
-                    <mat-option value="SQL">SQL</mat-option>
-                    <mat-option value="C#">C#</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="common-column">
-              <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-                <mat-select formControlName="maxScore" [disabled]="!isEditControl">
-                  <mat-option value="1">1</mat-option>
-                  <mat-option value="2">2</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="common-column">
-              <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-                <mat-select formControlName="passingScore" [disabled]="!isEditControl">
-                  <mat-option value="10">10</mat-option>
-                  <mat-option value="20">20</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="common-column">
-              <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-                <mat-select formControlName="weightedNumber" [disabled]="!isEditControl">
-                  <mat-option value="10">10</mat-option>
-                  <mat-option value="20">20</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+            >
+            <app-trainee-topic-item 
+              *ngFor="let item of topicMilestone(indexMilestone).controls; let indexTopic = index"
+              [formGroupName]="indexTopic"
+              [item]="item"
+              [index]="indexTopic"
+              [isEditControl]="isEditControl"
+              (removeTopic)="removeTopic(indexMilestone, $event)"
+              >
+            </app-trainee-topic-item>
           </div>
         </div>
       </ng-container>

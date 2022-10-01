@@ -39,6 +39,7 @@ import { GpaComponent } from './components/gpa/gpa.component';
 import { CommitmentComponent } from './components/commitment/commitment.component';
 import { AllowanceComponent } from './components/allowance/allowance.component';
 import { AllocationComponent } from './components/allocation/allocation.component';
+import { TopicItemComponent } from './components/milestone-config/components/topic-item/topic-item.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { AllocationComponent } from './components/allocation/allocation.componen
     GpaComponent,
     CommitmentComponent,
     AllowanceComponent,
-    AllocationComponent
+    AllocationComponent,
+    TopicItemComponent
   ],
   imports: [
     CommonModule,

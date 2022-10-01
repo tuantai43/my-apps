@@ -73,7 +73,7 @@
       <td colspan="3">
         <ng-container *ngIf="mode === 'edit'; else viewUni">  
           <mat-form-field class="form-control control-university" color="primary">
-            <mat-select formControlName="university" (selectionChange)="selectionChange($event)">
+            <mat-select matNativeControl formControlName="university" (selectionChange)="selectionChange($event)">
               <mat-option value=""></mat-option>
               <mat-option *ngFor="let uni of arrUnivers" [value]="uni.value">{{uni.label}}</mat-option>
               <!--DOING...-->
@@ -93,7 +93,7 @@
       <td colspan="3">
         <ng-container *ngIf="mode === 'edit'; else viewFaculty">  
           <mat-form-field class="form-control control-faculty" color="primary">
-            <mat-select formControlName="faculty">
+            <mat-select matNativeControl formControlName="faculty">
               <mat-option value=""></mat-option>
               <mat-option *ngFor="let item of arrFaculty" [value]="item.value">{{ item.label }}</mat-option>
             </mat-select>

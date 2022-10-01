@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import {
   AUTO_STYLE,
@@ -25,6 +25,7 @@ const DEFAULT_DURATION = 300;
   ]
 })
 export class MilestoneConfigComponent implements OnInit, OnChanges {
+  @ViewChild('milestone') blockMilestone! : ElementRef<HTMLElement>
   @Input() mode : string = 'view';
   @Input() formResult : FormGroup = new FormGroup({});
   @Input() isEditControl = false;
@@ -52,7 +53,6 @@ export class MilestoneConfigComponent implements OnInit, OnChanges {
 
     }
     console.log('changes...', changes);
-    // console.log('mode', this.mode);
   }
 
   newMilestone () {
@@ -95,12 +95,10 @@ export class MilestoneConfigComponent implements OnInit, OnChanges {
 
   addTopic(indexMilestone: number) {
     this.topicMilestone(indexMilestone).push(this.newTopic());
-    console.log(this.formArrayMilestone)
-    console.log(this.formArrayTopic)
   }
 
-  removeTopic(indexMilestone: number, indenTopic: number) {
-    this.topicMilestone(indexMilestone).removeAt(indenTopic);
+  removeTopic(indexMilestone: number, indexTopic: number) {
+    this.topicMilestone(indexMilestone).removeAt(indexTopic);
   }
 
   expand(){
@@ -109,6 +107,7 @@ export class MilestoneConfigComponent implements OnInit, OnChanges {
 
   toggleMilestone() {
     this.expandMilestone = !this.expandMilestone;
+    
   }
 
   indexForTopic: number = -1;

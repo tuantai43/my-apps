@@ -20,7 +20,5 @@
   width: 100%;
   @media (min-width: $md) {
     width: max((100% - 2 * var(--spacing)) / 3, 200px);
-    // .mat-form-field {
-    // }
   }
 }

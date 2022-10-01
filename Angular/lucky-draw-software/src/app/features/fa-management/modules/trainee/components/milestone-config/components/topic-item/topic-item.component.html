@@ -1,0 +1,40 @@
+<div class="wrapper-item">
+  <div class="action-add"></div>
+  <div class="common-column column-child-action">
+    <div class="action-remove-topic">
+      <mat-icon *ngIf="isEditControl" (click)="remove()">delete_forever</mat-icon>
+    </div>
+    <div class="topic-label">
+      <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+        <mat-select [formControl]="item.get('topicName')">
+          <mat-option value="SQL">SQL</mat-option>
+          <mat-option value="C#">C#</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="common-column">
+    <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+      <mat-select [formControl]="item.get('maxScore')">
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="common-column">
+    <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+      <mat-select [formControl]="item.get('passingScore')">
+        <mat-option value="10">10</mat-option>
+        <mat-option value="20">20</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="common-column">
+    <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+      <mat-select [formControl]="item.get('weightedNumber')">
+        <mat-option value="10">10</mat-option>
+        <mat-option value="20">20</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

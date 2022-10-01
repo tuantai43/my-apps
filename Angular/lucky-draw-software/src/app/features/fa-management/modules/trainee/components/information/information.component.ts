@@ -85,6 +85,7 @@ export class InformationComponent implements OnInit {
       })
     }else{
       // handle update trainee...
+      console.log(this.informationForm.getRawValue())
     }
   }
 
