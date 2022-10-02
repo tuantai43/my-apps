@@ -10,21 +10,21 @@ export enum ClassStatus {
 }
 
 export interface ClassView {
-  id: number;
+  id: string;
   code: string;
   name: string;
-  startDate: string;
-  endDate: string;
+  actualStartDate?: Date;
+  actualEndDate?: Date;
   location?: number | string;
   status?: ClassStatus;
 }
 
 export const initialClass = (): ClassView => ({
-  id: -1,
+  id: '',
   code: '',
   name: '',
-  startDate: '',
-  endDate: '',
+  actualStartDate: undefined,
+  actualEndDate: undefined,
   location: undefined,
   status: undefined,
 });

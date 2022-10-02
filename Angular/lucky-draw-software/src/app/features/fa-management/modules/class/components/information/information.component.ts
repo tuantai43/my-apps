@@ -11,6 +11,7 @@ import { ClassDetails, initialClassDetail } from '../../store';
 export class InformationComponent implements OnInit {
   @Input() class: ClassDetails | null = initialClassDetail();
   @Input() form: FormGroup = new FormGroup({});
+  @Input() acronym: string = '';
 
   constructor() {}
 

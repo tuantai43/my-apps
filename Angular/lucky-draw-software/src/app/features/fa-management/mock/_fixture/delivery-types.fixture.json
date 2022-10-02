@@ -3,35 +3,35 @@
   "API_NAME": "Delivery-types API",
   "data": [
     {
-      "id": 1,
+      "id": "9b1deb4d-8970-4bad-9bdd-2b0d7b3dcb6d",
       "name": "deliveryType.01"
     },
     {
-      "id": 2,
+      "id": "9b1deb4d-U78U-4bad-9bdd-2b0d7b3dcb6d",
       "name": "deliveryType.02"
     },
     {
-      "id": 3,
+      "id": "9b1deb4d-3b7d-4bad-90OP-2b0d7b3dcb6d",
       "name": "deliveryType.03"
     },
     {
-      "id": 4,
+      "id": "9b1deb4d-3b7d-4bad-PKMN-2b0d7b3dcb6d",
       "name": "deliveryType.04"
     },
     {
-      "id": 5,
+      "id": "9b1deb4d-3b7d-4bad-IJKL-2b0d7b3dcb6d",
       "name": "deliveryType.05"
     },
     {
-      "id": 6,
+      "id": "9b1deb4d-3b7d-4bad-ioJ8-2b0d7b3dcb6d",
       "name": "deliveryType.06"
     },
     {
-      "id": 7,
+      "id": "9b1deb4d-3b7d-4bad-vcf8-2b0d7b3dcb6d",
       "name": "deliveryType.07"
     },
     {
-      "id": 8,
+      "id": "9b1deb4d-3b7d-4bad-8jN9-2b0d7b3dcb6d",
       "name": "deliveryType.08"
     }
   ]

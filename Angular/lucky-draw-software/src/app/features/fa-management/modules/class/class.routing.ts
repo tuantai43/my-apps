@@ -11,4 +11,8 @@ export const routes: Routes = [
     path: 'create',
     component: CreateComponent,
   },
+  {
+    path: ':id',
+    component: CreateComponent,
+  },
 ];

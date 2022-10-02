@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { LoadClass, ResetClass } from './class-detail.action';
-import { ClassDetailsState } from './class-detail.reducer';
+import { CreateClass, LoadClass, ResetClass, UpdateClass } from './class-detail.action';
+import { ClassDetails, ClassDetailsState } from './class-detail.reducer';
 import { classQuery } from './class-detail.selectors';
 
 @Injectable()
@@ -11,11 +11,19 @@ export class ClassDetailsFacade {
 
   constructor(private store: Store<ClassDetailsState>) {}
 
-  loadedClass() {
-    this.store.dispatch(new LoadClass());
+  loadClass(id: string): void {
+    this.store.dispatch(new LoadClass(id));
   }
 
-  resetClass() {
+  resetClass(): void {
     this.store.dispatch(new ResetClass());
+  }
+
+  create(classDetails: ClassDetails): void {
+    this.store.dispatch(new CreateClass(classDetails));
+  }
+
+  update(id: string, classDetails: ClassDetails): void {
+    this.store.dispatch(new UpdateClass(id, classDetails));
   }
 }

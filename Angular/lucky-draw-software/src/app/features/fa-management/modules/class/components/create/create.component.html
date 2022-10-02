@@ -2,19 +2,37 @@
 <mat-divider></mat-divider>
 <mat-tab-group>
   <mat-tab [label]="'createClass.information' | translate">
-    <app-information [class]="class$ | async" [form]="form"></app-information>
+    <app-information [class]="class$ | async" [form]="form" [acronym]="acronym"></app-information>
   </mat-tab>
   <mat-tab [label]="'createClass.trainee' | translate">Content 2</mat-tab>
 </mat-tab-group>
 <div class="flex-wrap gap">
-  <button
-    mat-raised-button
-    color="primary"
-    *appActionButton="actionType.SubmitClass"
-    (click)="submit()"
-    [disabled]="!form.invalid">
-    {{ 'submit' | translate }}
-  </button>
+  <ng-container *ngIf="!id">
+    <button
+      mat-raised-button
+      color="primary"
+      *appActionButton="actionType.SubmitNewClass"
+      (click)="submit()"
+      [disabled]="form.invalid">
+      {{ 'submit' | translate }}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="id">
+    <button
+      mat-raised-button
+      color="primary"
+      *appActionButton="actionType.UpdateClass"
+      (click)="update()"
+      [disabled]="form.invalid">
+      {{ 'updateClass' | translate }}
+    </button>
+    <button mat-raised-button color="primary" *appActionButton="actionType.SubmitClass" [disabled]="form.invalid">
+      {{ 'submitClass' | translate }}
+    </button>
+    <button mat-raised-button color="primary" *appActionButton="actionType.StartClass" [disabled]="form.invalid">
+      {{ 'startClass' | translate }}
+    </button>
+  </ng-container>
   <a mat-raised-button class="color-icon warn" [routerLink]="['..']">
     <mat-icon>reply</mat-icon>
     {{ 'close' | translate }}

@@ -13,6 +13,9 @@
   "addClass": "New Class",
   "updateClass": "Update Class",
   "removeClass": "Cancel Class",
+  "submitClass": "Submit Class",
+  "submitClass": "Submit Class",
+  "startClass": "Start Class",
   "draft": "Draft",
   "inProgress": "In Progress",
   "submitted": "Submitted",
@@ -121,5 +124,5 @@
   "popup.ok": "OK",
   "popup.cancel": "Cancel",
   "popup.confirmation.title": "Confirm",
-  "popup.confirmation.content": "Are you sure to submit?" 
+  "popup.confirmation.content": "Are you sure to submit?"
 }

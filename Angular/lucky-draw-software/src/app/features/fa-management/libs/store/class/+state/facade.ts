@@ -14,15 +14,15 @@ export class ClassFacade extends BaseFacade<InitState, ClassView> {
     super(store, store.select(classQuery.getLoadedList), store.select(classQuery.isLoadedList));
   }
 
-  loadList() {
+  loadList(): void {
     this.store.dispatch(new LoadList());
   }
 
-  updateDataSearch(dataSearch: DataSearch) {
+  updateDataSearch(dataSearch: DataSearch): void {
     this.store.dispatch(new UpdateDataSearch(dataSearch));
   }
 
-  resetSearch() {
+  resetSearch(): void {
     this.store.dispatch(
       new UpdateDataSearch({
         className: '',

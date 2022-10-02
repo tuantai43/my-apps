@@ -8,7 +8,15 @@ export enum ClassType {
   Campus = 'CP',
 }
 
-export interface AuditDetails {}
+export interface AuditDetails {
+  date: Date;
+  eventCategory: string;
+  relatedPeople: string;
+  action: string;
+  pic: string;
+  deadline: string;
+  note: string;
+}
 
 export interface BudgetDetails {
   id: number;
@@ -45,9 +53,8 @@ export interface ClassDetails extends ClassView {
   formatType?: number;
   scope?: number;
   supplier: string;
-  actualStartDate?: Date;
-  actualEndDate?: Date;
   budgets: BudgetDetails[];
+  audits: AuditDetails[];
 }
 
 export const initialClassDetail = (): ClassDetails => ({
@@ -61,22 +68,31 @@ export const initialClassDetail = (): ClassDetails => ({
   skill: '',
   supplier: '',
   budgets: [],
+  audits: [],
 });
 
 export interface ClassDetailsState {
   class: ClassDetails;
   isLoadedClass: boolean;
+  isCreatedClass: boolean;
+  isUpdating: boolean;
 }
 
 const initialState = (): ClassDetailsState => ({
   class: initialClassDetail(),
   isLoadedClass: false,
+  isCreatedClass: false,
+  isUpdating: false,
 });
 
 export function classDetailsReducer(state = initialState(), action: ClassActions): ClassDetailsState {
   switch (action.type) {
     case ClassDetailsActionTypes.LoadClass: {
-      return state;
+      return {
+        ...state,
+        class: initialClassDetail(),
+        isLoadedClass: false,
+      };
     }
     case ClassDetailsActionTypes.LoadedClass: {
       return {
@@ -89,6 +105,30 @@ export function classDetailsReducer(state = initialState(), action: ClassActions
       return {
         ...state,
         class: initialClassDetail(),
+      };
+    }
+    case ClassDetailsActionTypes.CreateClass: {
+      return {
+        ...state,
+        isCreatedClass: false,
+      };
+    }
+    case ClassDetailsActionTypes.CreateClass: {
+      return {
+        ...state,
+        isCreatedClass: true,
+      };
+    }
+    case ClassDetailsActionTypes.UpdateClass: {
+      return {
+        ...state,
+        isUpdating: true,
+      };
+    }
+    case ClassDetailsActionTypes.UpdatedClass: {
+      return {
+        ...state,
+        isUpdating: false,
       };
     }
     default: {

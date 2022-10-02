@@ -82,7 +82,12 @@
     <mat-icon>add</mat-icon>
     {{ 'addClass' | translate }}
   </a>
-  <button mat-raised-button class="color-icon accent" *appActionButton="actionType.UpdateClass">
+  <button
+    mat-raised-button
+    class="color-icon accent"
+    *appActionButton="actionType.UpdateClass"
+    [disabled]="allowUpdate"
+    (click)="update()">
     <mat-icon>edit</mat-icon>
     {{ 'updateClass' | translate }}
   </button>

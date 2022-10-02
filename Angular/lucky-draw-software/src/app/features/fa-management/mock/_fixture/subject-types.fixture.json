@@ -3,35 +3,35 @@
   "API_NAME": "Subject-types API",
   "data": [
     {
-      "id": 1,
+      "id": "9b1deb4d-asJn-4bad-9bdd-2b0d7b3dcb6d",
       "name": "subjectType.01"
     },
     {
-      "id": 2,
+      "id": "9b1dasnd-3b7d-4bad-9bdd-2b0d7b3dcb6d",
       "name": "subjectType.02"
     },
     {
-      "id": 3,
+      "id": "9b1deb4d-3b7d-hasd-9bdd-2b0d7b3dcb6d",
       "name": "subjectType.03"
     },
     {
-      "id": 4,
+      "id": "9b1deb4d-3brr-4bad-9bdd-2b0d7b3dcb6d",
       "name": "subjectType.04"
     },
     {
-      "id": 5,
+      "id": "9b1deb4d-YYYy-4bad-9bdd-2b0d7b3dcb6d",
       "name": "subjectType.05"
     },
     {
-      "id": 6,
+      "id": "9b1deb4d-3b7d-777H-9bdd-2b0d7b3dcb6d",
       "name": "subjectType.06"
     },
     {
-      "id": 7,
+      "id": "9b1deb4d-3b7d-90iK-9bdd-2b0d7b3dcb6d",
       "name": "subjectType.07"
     },
     {
-      "id": 8,
+      "id": "9b1deb4d-3b7d-4bad-90pF-2b0d7b3dcb6d",
       "name": "subjectType.08"
     }
   ]

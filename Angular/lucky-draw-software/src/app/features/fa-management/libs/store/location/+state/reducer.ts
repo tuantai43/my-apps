@@ -3,7 +3,7 @@ import { LocationActions, ActionTypes } from './action';
 export const featureKey = 'location';
 
 export interface LocationView {
-  id: number;
+  id: string;
   acronym: string;
   name: string;
 }

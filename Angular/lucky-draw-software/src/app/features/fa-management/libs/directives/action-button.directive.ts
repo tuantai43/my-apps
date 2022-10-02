@@ -10,6 +10,7 @@ export enum ActionType {
   ImportTrainee = '[ClassManagement] Import trainee to class',
   AddTrainee = '[ClassManagement] Add trainee',
   RemoveTrainee = '[ClassManagement] Remove trainee',
+  SubmitNewClass = '[ClassManagement] Submit New class',
   SubmitClass = '[ClassManagement] Submit class',
   ApproveClass = '[ClassManagement] Approve class',
   RejectClass = '[ClassManagement] Reject class',
@@ -71,6 +72,9 @@ export class ActionButtonDirective {
     },
     [ActionType.CreateClass]: {
       roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
+    },
+    [ActionType.SubmitNewClass]: {
+      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.SystemAdmin],
     },
     [ActionType.SubmitClass]: {
       roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.SystemAdmin],

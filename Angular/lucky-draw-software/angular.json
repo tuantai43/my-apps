@@ -81,6 +81,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "lucky-draw-software:build",
+            "proxyConfig": "tools/proxy/proxy.conf.js"
+          },
           "configurations": {
             "production": {
               "browserTarget": "lucky-draw-software:build:production"

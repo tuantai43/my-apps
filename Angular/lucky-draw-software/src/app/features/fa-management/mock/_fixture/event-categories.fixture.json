@@ -3,35 +3,35 @@
   "API_NAME": "Event-categories API",
   "data": [
     {
-      "id": 1,
+      "id": "9b1deb4d-3b7d-9iJj-9bdd-2b0d7b3dcb6d",
       "name": "eventCategory.01"
     },
     {
-      "id": 2,
+      "id": "9b1deb4d-3b7d-4bad-kjg6-2b0d7b3dcb6d",
       "name": "eventCategory.02"
     },
     {
-      "id": 3,
+      "id": "9b1deb4d-3b7d-4bad-Jh90-2b0d7b3dcb6d",
       "name": "eventCategory.03"
     },
     {
-      "id": 4,
+      "id": "9b1deb4d-3b7d-7832-9bdd-2b0d7b3dcb6d",
       "name": "eventCategory.04"
     },
     {
-      "id": 5,
+      "id": "9b1deb4d-3b7d-8i0O-9bdd-2b0d7b3dcb6d",
       "name": "eventCategory.05"
     },
     {
-      "id": 6,
+      "id": "9b1deb4d-bghI-4bad-9bdd-2b0d7b3dcb6d",
       "name": "eventCategory.06"
     },
     {
-      "id": 7,
+      "id": "9b1deb4d-890V-4bad-9bdd-2b0d7b3dcb6d",
       "name": "eventCategory.07"
     },
     {
-      "id": 8,
+      "id": "9b1deb4d-3b7d-4bad-9igG-2b0d7b3dcb6d",
       "name": "eventCategory.08"
     }
   ]

@@ -7,8 +7,8 @@ import { BudgetFacade } from '@fa-management/store/budget';
 import { LocationFacade } from '@fa-management/store/location';
 import { FORMAT_DATE } from '@fa-management/utils/configs';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, of } from 'rxjs';
-import { Subject, switchMap } from 'rxjs';
+import { combineLatestWith, distinctUntilChanged, map, tap } from 'rxjs';
+import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs';
 import { ClassDetails, initialClassDetail } from '../../store';
 
@@ -18,68 +18,44 @@ import { ClassDetails, initialClassDetail } from '../../store';
   styleUrls: ['./general.component.scss'],
 })
 export class GeneralComponent implements OnInit, OnDestroy {
-  @Input() generalForm: FormGroup = new FormGroup({});
-  @Input() class: ClassDetails | null = initialClassDetail();
+  @Input() generalForm!: FormGroup;
+  @Input()
+  get class() {
+    return this._class;
+  }
 
+  set class(value: ClassDetails | null) {
+    this._class = value;
+    this.updateHistory();
+  }
+
+  @Input()
+  get acronym(): string {
+    return this._acronym;
+  }
+
+  set acronym(value: string) {
+    this._acronym = value;
+    this.acronym$.next(value);
+  }
+
+  private _class: ClassDetails | null = initialClassDetail();
+  private _acronym: string = '';
+
+  acronym$ = new Subject<string>();
   locations$ = this.locationFacade.list$;
   budgets$ = this.budgetFacade.list$;
   admins$ = this.classAdminFacade.list$;
   destroy$ = new Subject();
-  acronym: string = '';
+  name: string = '';
+  code: string = '';
+  history: string = '';
 
   get currentDate(): Date | null {
     if (this.class?.createdBy) {
       return null;
     }
     return new Date();
-  }
-
-  get code$(): Observable<string> {
-    if (this.class?.code) {
-      return of(this.class.code);
-    }
-
-    const { learningPath } = this.generalForm.value as ClassDetails;
-    const [type, skill, number] = learningPath.replace(/ /g, '').split('_');
-    if (this.acronym && type && skill && number) {
-      const year = formatDate(new Date(), FORMAT_DATE.CODE_CLASS, this.locale);
-      return this.translateService
-        .get('createClass.classCode.format', { acronym: this.acronym, type, skill, year, number })
-        .pipe(take(1));
-    }
-    return of('');
-  }
-
-  get className$(): Observable<string> {
-    if (this.class?.name) {
-      return of(this.class.name);
-    }
-
-    const { learningPath } = this.generalForm.value as ClassDetails;
-    const [, skill, , position] = learningPath.replace(/ /g, '').split('_');
-    if (skill && position) {
-      return this.translateService.get('createClass.className.format', { position, skill }).pipe(take(1));
-    }
-    return of('');
-  }
-
-  get history$(): Observable<string> {
-    if (this.class?.updatedAt) {
-      return this.translateService
-        .get('createClass.history.updated', {
-          date: formatDate(this.class.updatedAt, FORMAT_DATE.HISTORY, this.locale),
-          account: this.class.updatedBy,
-        })
-        .pipe(take(1));
-    } else if (this.class?.createdAt) {
-      return this.translateService
-        .get('createClass.history.created', {
-          date: formatDate(this.class.createdAt, FORMAT_DATE.HISTORY, this.locale),
-          account: this.class.createdBy,
-        })
-        .pipe(take(1));
-    }
-    return of('');
   }
 
   constructor(
@@ -95,20 +71,81 @@ export class GeneralComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.generalForm
-      .get('location')
+      .get('learningPath')
       ?.valueChanges.pipe(
+        combineLatestWith(this.acronym$),
         takeUntil(this.destroy$),
-        switchMap((value) => this.locationFacade.findById(Number(value)).pipe(take(1)))
+        distinctUntilChanged(),
+        map(([learningPath]) => learningPath.replace(/ /g, '').split('_')),
+        tap((value) => this.updateCodeName(value))
       )
-      .subscribe((location) => {
-        if (location) {
-          this.acronym = location.acronym;
-        }
-      });
+      .subscribe();
+  }
+
+  updateHistory(): void {
+    console.log('a', this.class?.updatedAt);
+    if (this.class?.updatedAt) {
+      this.translateService
+        .get('createClass.history.updated', {
+          date: formatDate(this.class.updatedAt, FORMAT_DATE.HISTORY, this.locale),
+          account: this.class.updatedBy,
+        })
+        .pipe(take(1))
+        .subscribe((value) => {
+          this.history = value;
+        });
+    } else if (this.class?.createdAt) {
+      this.translateService
+        .get('createClass.history.created', {
+          date: formatDate(this.class.createdAt, FORMAT_DATE.HISTORY, this.locale),
+          account: this.class.createdBy,
+        })
+        .pipe(take(1))
+        .subscribe((value) => {
+          this.history = value;
+        });
+    }
+  }
+
+  updateCodeName([type, skill, number, position]: [string, string, string, string]): void {
+    this.updateName(skill, position);
+    this.updateCode(type, skill, number);
+  }
+
+  updateName(skill: string, position: string): void {
+    if (skill && position) {
+      this.translateService
+        .get('createClass.className.format', { position, skill })
+        .pipe<string>(take(1))
+        .subscribe((value) => {
+          this.generalForm.get('name')?.setValue(value);
+          this.name = value;
+        });
+    } else {
+      this.generalForm.get('name')?.setValue('');
+      this.name = '';
+    }
+  }
+
+  updateCode(type: string, skill: string, number: string): void {
+    if (this.acronym && type && skill && number) {
+      const year = formatDate(new Date(), FORMAT_DATE.CODE_CLASS, this.locale);
+      this.translateService
+        .get('createClass.classCode.format', { acronym: this.acronym, type, skill, year, number })
+        .pipe(take(1))
+        .subscribe((value) => {
+          this.generalForm.get('code')?.setValue(value);
+          this.code = value;
+        });
+    } else {
+      this.generalForm.get('code')?.setValue('');
+      this.code = '';
+    }
   }
 
   ngOnDestroy(): void {
     this.destroy$.next(null);
     this.destroy$.complete();
+    this.acronym$.unsubscribe();
   }
 }

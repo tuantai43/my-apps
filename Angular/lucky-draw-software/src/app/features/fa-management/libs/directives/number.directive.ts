@@ -27,6 +27,6 @@ export class NumberDirective {
     // 1. test for non-number characters and replace/remove them
     this.value = val.replace(/(?!\d)./gm, '');
     // 2. replace the input value with formatted numbers
-    this.renderer.setProperty(this.el.nativeElement, 'value', this.value);
+    this.renderer.setProperty(this.el.nativeElement, 'value', this.value ? Number(this.value) : '');
   }
 }

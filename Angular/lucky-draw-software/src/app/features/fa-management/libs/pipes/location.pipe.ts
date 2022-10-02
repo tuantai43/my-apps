@@ -8,7 +8,7 @@ import { map, Observable } from 'rxjs';
 export class LocationPipe implements PipeTransform {
   constructor(private locationFacade: LocationFacade) {}
 
-  transform(value: number, ...args: unknown[]): Observable<string> {
+  transform(value: string, ...args: unknown[]): Observable<string> {
     return this.locationFacade.list$.pipe(
       map((locations) => locations.find((l) => l.id === value)),
       map((location) => location?.name || '')

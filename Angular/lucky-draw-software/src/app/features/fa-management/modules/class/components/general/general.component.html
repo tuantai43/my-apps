@@ -6,12 +6,14 @@
     <!-- Class Code -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="classCode"></mat-label>
-      <input matInput [value]="code$ | async" disabled />
+      <input matInput [value]="code" disabled />
+      <!-- <input matInput [value]="code$ | async" disabled /> -->
     </mat-form-field>
     <!-- Class Name-->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="className"></mat-label>
-      <input matInput [value]="className$ | async" disabled />
+      <input matInput [value]="name" disabled />
+      <!-- <input matInput [value]="className$ | async" disabled /> -->
     </mat-form-field>
     <!-- Status -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
@@ -21,7 +23,7 @@
     <!-- Planned Trainee No -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
       <mat-label translate="createClass.plannedTrainee"></mat-label>
-      <input matInput formControlName="plannedTraineeNo" />
+      <input matInput formControlName="plannedTraineeNo" appNumber />
     </mat-form-field>
     <!-- Accepted Traniee No -->
     <mat-form-field appearance="fill" color="primary" class="columns-3">
@@ -114,7 +116,7 @@
     <!-- History -->
     <mat-form-field appearance="fill" color="primary">
       <mat-label translate="history"></mat-label>
-      <input matInput [value]="history$ | async" disabled />
+      <input matInput [value]="history" disabled />
     </mat-form-field>
   </div>
 </mat-expansion-panel>

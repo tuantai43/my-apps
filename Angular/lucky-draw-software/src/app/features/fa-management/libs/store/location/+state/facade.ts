@@ -16,7 +16,7 @@ export class LocationFacade extends BaseFacade<InitState, LocationView> {
     this.getAll(new LoadList());
   }
 
-  findById(id: number) {
+  findById(id: string) {
     return this.findBy('id', id);
   }
 }

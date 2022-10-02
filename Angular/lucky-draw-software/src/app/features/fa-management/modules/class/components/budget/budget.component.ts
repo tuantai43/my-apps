@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Currency } from '@app/features/fa-management/libs/directives/currency.directive';
 import { ConvertNumber, SelectionTable } from '@fa-management/utils/functions';
 import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
-import { BudgetDetails } from '../../store';
+import { BudgetDetails, ClassDetails, initialClassDetail } from '../../store';
 
 @Component({
   selector: 'app-budget',
@@ -11,7 +11,19 @@ import { BudgetDetails } from '../../store';
   styleUrls: ['./budget.component.scss'],
 })
 export class BudgetComponent implements OnInit, OnDestroy {
-  @Input() detailForm: FormGroup = new FormGroup({});
+  @Input() detailForm!: FormGroup;
+  @Input()
+  get class() {
+    return this._class;
+  }
+
+  set class(value: ClassDetails | null) {
+    this._class = value;
+    this.handleClassChanges();
+  }
+
+  private _class: ClassDetails | null = initialClassDetail();
+
   selectionTable = new SelectionTable<BudgetDetails>([], [], true);
   displayedColumns: string[] = ['select', 'item', 'unit', 'unitExpense', 'quantity', 'amount', 'tax', 'sum', 'note'];
   destroy$ = new Subject();
@@ -29,6 +41,17 @@ export class BudgetComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  handleClassChanges(): void {
+    if (this.class && this.class.budgets?.length) {
+      this.class.budgets.forEach(() => {
+        this.addBudget();
+      });
+      this.detailForm?.get('budgets')?.patchValue(this.class.budgets);
+    } else {
+      this.detailForm?.get('budgets')?.reset();
+    }
+  }
 
   addBudget() {
     const budgets = this.detailForm.get('budgets') as FormArray;

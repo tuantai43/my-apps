@@ -5,6 +5,8 @@ import { DB, UtilRouter, baseContentsPath } from 'mock-lib';
 
 import { AdminsAPI } from './implement/admins.api';
 import { BudgetsAPI } from './implement/budgets.api';
+import { ClassAPI } from './implement/class.api';
+import { ClassDetailsAPI } from './implement/class.detail.api';
 import { DeliveryTypesAPI } from './implement/delivery-types.api';
 import { EventCategoriesAPI } from './implement/event-categories.api';
 import { FormatTypesAPI } from './implement/format-types.api';
@@ -20,6 +22,8 @@ const util = new UtilRouter(new DB(resolve(__dirname, '_fixture'), 'api'), 'api'
 const MOCK_API: Array<browserSync.PerRouteMiddleware | browserSync.MiddlewareHandler> = [
   ...util.createAppApi(AdminsAPI),
   ...util.createAppApi(BudgetsAPI),
+  ...util.createAppApi(ClassDetailsAPI),
+  ...util.createAppApi(ClassAPI),
   ...util.createAppApi(DeliveryTypesAPI),
   ...util.createAppApi(EventCategoriesAPI),
   ...util.createAppApi(FormatTypesAPI),
