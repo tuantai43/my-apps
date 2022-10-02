@@ -32,7 +32,7 @@
   <!-- ID Column -->
   <ng-container matColumnDef="emplId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header translate="emplId"></th>
-    <td mat-cell *matCellDef="let row" [routerLink]="['profile']">{{ row.emplId }}</td>
+    <td mat-cell *matCellDef="let row" [routerLink]="['profile', row.emplId]">{{ row.emplId }}</td>
   </ng-container>
 
   <!-- Account Column -->

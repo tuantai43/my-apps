@@ -1,6 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { TraineeDetailsService } from '@app/features/fa-management/libs/services';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-trainee-result',
@@ -8,8 +10,9 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
-  mode = 'view';
 
+  @Input() emplId!: number;
+  mode = 'view';
   isEditControl = false;
 
   formResult = this.fb.group({
@@ -21,14 +24,23 @@ export class ResultComponent implements OnInit {
     // commitment: this.fb.group({}),
     // allowance: this.fb.group({}),
     // allocation: this.fb.group({}),
-  })
+  });
+
+  private destroy$ = new Subject();
 
   constructor( 
     private location: Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private traineeDetailsService: TraineeDetailsService
   ) { }
 
+  resultMilestone: any;
+
   ngOnInit(): void {
+    this.traineeDetailsService.getTraineeResult(this.emplId).pipe(takeUntil(this.destroy$))
+      .subscribe((val) =>{
+        this.resultMilestone = val;
+      })
   }
 
   onUpdate(){
@@ -36,6 +48,7 @@ export class ResultComponent implements OnInit {
       this.mode = 'edit';
       this.isEditControl = true;
     }else{
+      console.log(this.formResult.getRawValue())
       // handle update trainee...
     }
   }

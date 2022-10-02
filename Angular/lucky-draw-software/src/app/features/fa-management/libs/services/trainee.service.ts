@@ -9,8 +9,4 @@ export class TraineeService extends BaseService {
   constructor(http: HttpClient) {
     super(http, 'trainees');
   }
-
-  testGetList<T>(){
-    return this.http.get<T[]>('http://localhost:3000/trainees');
-  }
 }

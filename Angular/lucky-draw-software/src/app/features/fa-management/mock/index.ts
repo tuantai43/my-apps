@@ -15,6 +15,9 @@ import { ScopesAPI } from './implement/scopes.api';
 import { SubSubjectTypesAPI } from './implement/sub-subject-types.api';
 import { SubjectTypesAPI } from './implement/subject-types.api';
 import { TrainersAPI } from './implement/trainers.api';
+import { TraineesAPI } from './implement/trainees.api';
+import { TraineesDetailAPI } from './implement/trainee-detail.api';
+import { TraineeResultAPI } from './implement/trainee-result.api';
 
 const util = new UtilRouter(new DB(resolve(__dirname, '_fixture'), 'api'), 'api');
 
@@ -32,6 +35,9 @@ const MOCK_API: Array<browserSync.PerRouteMiddleware | browserSync.MiddlewareHan
   ...util.createAppApi(SubSubjectTypesAPI),
   ...util.createAppApi(SubjectTypesAPI),
   ...util.createAppApi(TrainersAPI),
+  ...util.createAppApi(TraineesAPI),
+  ...util.createAppApi(TraineeResultAPI),
+  ...util.createAppApi(TraineesDetailAPI),
 ];
 
 // Start the server

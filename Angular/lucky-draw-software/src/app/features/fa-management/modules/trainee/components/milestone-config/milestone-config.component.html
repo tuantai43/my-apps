@@ -1,17 +1,14 @@
 <mat-expansion-panel [expanded]="expanded" [hideToggle]="true">
   <mat-expansion-panel-header>
     <mat-panel-title class="title" translate="traineeResult.milestone">
-      <ng-container *ngIf="mode === 'edit'">
-
-      </ng-container>
-      <mat-icon (click)="expand()" class="icon-expand">{{toggleIcon ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}
+      <mat-icon (click)="expandForExpansion()" class="icon-expand">{{toggleIcon ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}
       </mat-icon>
     </mat-panel-title>
   </mat-expansion-panel-header>
   <div class="milestone-header">
     <div class="common-block max-score">
       <div class="title-common">Total Max Score</div>
-      <div class="value-common">3979</div>
+      <div class="value-common">{{dataMilestone}}</div>
     </div>
     <div class="line-block"></div>
     <div class="common-block passing-score">
@@ -35,10 +32,10 @@
           <mat-icon *ngIf="!expandMilestone" (click)="toggleMilestone()">arrow_drop_up</mat-icon>
         </ng-template>
       </div>
-      <div class="common-column">Milestone Name</div>
-      <div class="common-column">Salary Paid</div>
-      <div class="common-column">Start Date</div>
-      <div class="common-column">End Date</div>
+      <div class="common-column"><span class="pl-5">Milestone Name</span></div>
+      <div class="common-column"><span class="pl-5">Salary Paid</span></div>
+      <div class="common-column"><span class="pl-5">Start Date</span></div>
+      <div class="common-column"><span class="pl-5">End Date</span></div>
     </div>
     <div formArrayName="milestone" class="body-content" #milestone>
       <ng-container *ngFor="let milestone of formArrayMilestone.controls; let indexMilestone = index"
@@ -48,7 +45,13 @@
             <mat-icon *ngIf="isEditControl" (click)="removeMilestone(indexMilestone)">delete_forever</mat-icon>
           </div>
           <div class="common-column">
-            <div class="label-value"></div>
+            <div class="label-value pl-5">
+              {{ 
+                milestone.get('startDate')?.value
+                ? 'Tháng ' + (milestone.get('startDate')?.value | date : 'MM') + ' - '
+                + (milestone.get('startDate')?.value | date : 'YY') : ''
+              }}
+            </div>
           </div>
           <div class="common-column">
             <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
@@ -81,18 +84,18 @@
                 <mat-icon (click)="addTopic(indexMilestone)">add_circle</mat-icon>
               </ng-container>
               <ng-template #viewMode>
-                <mat-icon *ngIf="expandTopic" (click)="collapseTopic(indexMilestone)">arrow_drop_down</mat-icon>
-                <mat-icon *ngIf="!expandTopic" (click)="expandedTopic(indexMilestone)">arrow_drop_up</mat-icon>
+                <mat-icon *ngIf="milestone.get('expanded')?.value" (click)="toggleTopic(indexMilestone)">arrow_drop_down</mat-icon>
+                <mat-icon *ngIf="!milestone.get('expanded')?.value" (click)="toggleTopic(indexMilestone)">arrow_drop_up</mat-icon>
               </ng-template>
               
             </div>
-            <div class="topic-label">Topic</div>
+            <div class="topic-label"><span class="pl-5">Topic</span></div>
           </div>
-          <div class="common-column">Max Score</div>
-          <div class="common-column">Passing Score</div>
-          <div class="common-column">Weighted Number</div>
+          <div class="common-column"><span class="pl-5">Max Score</span></div>
+          <div class="common-column"><span class="pl-5">Passing Score</span></div>
+          <div class="common-column"><span class="pl-5">Weighted Number</span></div>
         </div>
-        <div formArrayName="topic" >
+        <div formArrayName="topic" #blockTopic>
           <div class="topic-content"
             >
             <app-trainee-topic-item 
@@ -102,6 +105,7 @@
               [index]="indexTopic"
               [isEditControl]="isEditControl"
               (removeTopic)="removeTopic(indexMilestone, $event)"
+              [mode]="mode"
               >
             </app-trainee-topic-item>
           </div>

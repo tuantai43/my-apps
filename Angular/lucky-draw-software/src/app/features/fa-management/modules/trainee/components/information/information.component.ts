@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSelectionListChange } from '@angular/material/list';
+import { ActivatedRoute } from '@angular/router';
+import { TraineeDetailsService } from '@app/features/fa-management/libs/services';
 import { TraineeDetailsFacade } from '../../store';
 
 @Component({
@@ -11,6 +12,7 @@ import { TraineeDetailsFacade } from '../../store';
 })
 export class InformationComponent implements OnInit {
 
+  @Input() emplId!: number;
   informationForm = new FormGroup({});
   mode = 'view';
 
@@ -34,10 +36,13 @@ export class InformationComponent implements OnInit {
   constructor( 
     private formBuilder: FormBuilder, 
     private traineeDetailsFacade: TraineeDetailsFacade,
-    private location: Location
+    private location: Location,
+    private traineeDetailsService: TraineeDetailsService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    console.log(this.emplId);
     this.buildForm();
     this.traineeDetailsFacade.loadedTrainee();
     this.traineeDetailsFacade.trainee$.subscribe(((value) => {
@@ -84,8 +89,16 @@ export class InformationComponent implements OnInit {
         this.enableControl(name);
       })
     }else{
-      // handle update trainee...
-      console.log(this.informationForm.getRawValue())
+      const data = this.informationForm.getRawValue()
+      this.traineeDetailsService.updateDetailTrainee(this.emplId, data).subscribe(
+        (res) => {
+          console.log(res);
+          this.location.back();
+        },
+        (err) => {
+          console.log(err)
+        }
+      );
     }
   }
 

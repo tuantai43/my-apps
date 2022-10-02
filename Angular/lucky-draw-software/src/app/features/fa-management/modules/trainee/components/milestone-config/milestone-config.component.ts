@@ -1,34 +1,45 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { 
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+  QueryList
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import {
-  AUTO_STYLE,
-  animate,
-  state,
-  style,
-  transition,
-  trigger
-} from '@angular/animations';
-
-const DEFAULT_DURATION = 300;
 
 @Component({
   selector: 'app-trainee-milestone-config',
   templateUrl: './milestone-config.component.html',
-  styleUrls: ['./milestone-config.component.scss'],
-  animations: [
-    trigger('collapse', [
-      state('false', style({ height: AUTO_STYLE, visibility: AUTO_STYLE })),
-      state('true', style({ height: '0', visibility: 'hidden' })),
-      transition('false => true', animate(DEFAULT_DURATION + 'ms ease-in')),
-      transition('true => false', animate(DEFAULT_DURATION + 'ms ease-out'))
-    ])
-  ]
+  styleUrls: ['./milestone-config.component.scss']
 })
 export class MilestoneConfigComponent implements OnInit, OnChanges {
   @ViewChild('milestone') blockMilestone! : ElementRef<HTMLElement>
-  @Input() mode : string = 'view';
+  @ViewChildren('blockTopic') blockTopic! : QueryList<any>
+  // @Input() mode : string = 'view';
+  private _mode!: string;
+
+  @Input() set mode(value: string) {
+    this._mode = value;
+    if(value === 'view'){
+      this.formArrayMilestone?.controls.forEach((control) =>{
+        control.disable();
+      })
+    }else{
+      this.formArrayMilestone?.controls.forEach((control) =>{
+        control.enable();
+      })
+    }
+  }
+  get mode(): string {
+    return this._mode;
+  }
+
   @Input() formResult : FormGroup = new FormGroup({});
   @Input() isEditControl = false;
+  @Input() dataMilestone: any;
   expanded = true;
   toggleIcon = false; // Used for custom icon mat-expansion-panel.
   expandMilestone = true;
@@ -45,28 +56,31 @@ export class MilestoneConfigComponent implements OnInit, OnChanges {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.formResult.addControl('milestone', new FormArray([]));
+    console.log(this.dataMilestone);
+    this.formResult.addControl('milestone', new FormArray([
+      this.newMilestone()
+    ]));
   }
 
   ngOnChanges(changes: any) {
     if(changes.mode && changes.mode.previousValue && changes.mode.previousValue === 'view'){
 
     }
-    console.log('changes...', changes);
   }
 
   newMilestone () {
     return this.fb.group({
-      milestoneName: '',
+      milestoneName: 'sssss',
       salary: '',
       startDate: '',
       endDate: '',
+      expanded: true,
       topic: this.fb.array([
         this.fb.group({
           topicName: '',
           maxScore: '',
           passingScore: '',
-          weightedNumber: ''
+          weightedNumber: '',
         })
       ]),
     })
@@ -101,34 +115,36 @@ export class MilestoneConfigComponent implements OnInit, OnChanges {
     this.topicMilestone(indexMilestone).removeAt(indexTopic);
   }
 
-  expand(){
+  expandForExpansion(){
     this.toggleIcon = !this.toggleIcon;
   }
 
   toggleMilestone() {
-    this.expandMilestone = !this.expandMilestone;
-    
+    if(this.formArrayMilestone.controls.length > 0){
+      this.expandMilestone = !this.expandMilestone;
+      if(!this.expandMilestone) {
+        this.blockMilestone.nativeElement.setAttribute('style',
+          'display: none; transition: opacity 1s ease-out'
+        )
+      }else{
+        this.blockMilestone.nativeElement.setAttribute('style',
+          'display: block; transition: opacity 1s ease-out'
+        )
+      }
+    }
   }
 
-  indexForTopic: number = -1;
   toggleTopic(indexMilestone: number) {
-    this.indexForTopic = indexMilestone;
-    if(this.indexForTopic === indexMilestone){
-      this.expandTopic = !this.expandTopic;
+    if(this.formArrayMilestone.controls[indexMilestone].get('expanded')?.value){
+      this.blockTopic.toArray()[indexMilestone].nativeElement.setAttribute('style',
+        'display: none; transition: opacity 1s ease-out'
+      );
+      this.formArrayMilestone.controls[indexMilestone].get('expanded')?.setValue(!this.formArrayMilestone.controls[indexMilestone].get('expanded')?.value);
+    }else{
+      this.blockTopic.toArray()[indexMilestone].nativeElement.setAttribute('style',
+        'display: block; transition: opacity 1s ease-out'
+      );
+      this.formArrayMilestone.controls[indexMilestone].get('expanded')?.setValue(!this.formArrayMilestone.controls[indexMilestone].get('expanded')?.value);
     }
-  }
-
-  expandedTopic(indexMilestone: number){
-    if(this.indexForTopic === indexMilestone){
-      this.expandTopic = true;
-    }
-    this.indexForTopic = indexMilestone;
-  }
-
-  collapseTopic(indexMilestone: number){
-    if(this.indexForTopic === indexMilestone){
-      this.expandTopic = false;
-    }
-    this.indexForTopic = indexMilestone;
   }
 }

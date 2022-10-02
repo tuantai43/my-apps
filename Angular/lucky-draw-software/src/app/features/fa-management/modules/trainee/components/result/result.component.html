@@ -1,8 +1,9 @@
 <mat-tab-group>
   <!--loop tab here-->
-  <mat-tab label="Class 1">
+  <mat-tab *ngFor="let data of resultMilestone" [label]="data.className">
     <app-trainee-milestone-config 
       class="milestone"
+      [dataMilestone]="data.milestoneConfig"
       [mode]="mode"
       [formResult]="formResult"
       [isEditControl]="isEditControl"

@@ -8,7 +8,7 @@ export const routes: Routes = [
     component: ListComponent,
   },
   {
-    path: 'profile',
-    component: ProfileComponent,
-  },
+    path: 'profile/:id',
+    component: ProfileComponent
+  }
 ];

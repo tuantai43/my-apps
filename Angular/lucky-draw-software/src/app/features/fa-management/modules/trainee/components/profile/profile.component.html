@@ -1,10 +1,16 @@
 <h2 translate="traineeProfile"></h2>
 <mat-divider></mat-divider>
-<mat-tab-group>
-  <mat-tab [label]="'traineeProfile.information' | translate">
-    <app-trainee-information></app-trainee-information>
+<mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="onTabChanged($event)">
+  <mat-tab 
+    [label]="'traineeProfile.information' | translate">
+    <ng-template matTabContent>
+      <app-trainee-information [emplId]="emplId"></app-trainee-information>
+    </ng-template>
   </mat-tab>
-  <mat-tab [label]="'traineeProfile.result' | translate">
-    <app-trainee-result></app-trainee-result>
+  <mat-tab 
+    [label]="'traineeProfile.result' | translate">
+    <ng-template matTabContent>
+      <app-trainee-result [emplId]="emplId"></app-trainee-result>
+    </ng-template>
   </mat-tab>
 </mat-tab-group>

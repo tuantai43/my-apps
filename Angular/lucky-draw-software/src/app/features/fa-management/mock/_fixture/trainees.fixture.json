@@ -1,0 +1,66 @@
+{
+  "API_KEY": "trainees",
+  "API_NAME": "Trainees API",
+  "data": [
+    {
+      "emplId": 1,
+      "account": "David",
+      "name": "David Beckham",
+      "dob": "12/01/1985",
+      "gender": "Male",
+      "university": "Bách khoa Hà Nội",
+      "faculty": "GDTC",
+      "phone": "0979456789",
+      "email": "David@gmail.com",
+      "status": 0
+    },
+    {
+      "emplId": 2,
+      "account": "Kelvin",
+      "name": "Kevin De Bruyne",
+      "dob": "10/01/1991",
+      "gender": "Male",
+      "university": "Xã hội nhân văn HCM",
+      "faculty": "GDTC",
+      "phone": "0979456789",
+      "email": "Kevin@gmail.com",
+      "status": 1
+    },
+    {
+      "emplId": 1,
+      "account": "John",
+      "name": "John Nguyễn",
+      "dob": "26/01/1998",
+      "gender": "Male",
+      "university": "Công Thương",
+      "faculty": "CNTT",
+      "phone": "0979456789",
+      "email": "john@gmail.com",
+      "status": 1
+    },
+    {
+      "emplId": 1,
+      "account": "Harry",
+      "name": "Harry Kane",
+      "dob": "26/01/1998",
+      "gender": "Male",
+      "university": "Hutech",
+      "faculty": "GDTC",
+      "phone": "0979456789",
+      "email": "harry@gmail.com",
+      "status": 0
+    },
+    {
+      "emplId": 1,
+      "account": "K9",
+      "name": "Kaka",
+      "dob": "26/01/1998",
+      "gender": "Male",
+      "university": "Đại học thể dục thể thao HCM",
+      "faculty": "GDTC",
+      "phone": "0979456789",
+      "email": "k9@gmail.com",
+      "status": 1
+    }
+  ]
+}

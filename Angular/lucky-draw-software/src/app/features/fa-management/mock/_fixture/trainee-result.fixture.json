@@ -1,0 +1,175 @@
+{
+  "API_KEY": "trainee/result/:emplId",
+  "API_NAME": "Trainee-result API",
+  "data": [
+    {
+      "className": "Class HITOC",
+      "milestoneConfig": {
+        "totalMaxScore": 1998,
+        "totalPassingScore": 6789,
+        "totalWeightNumber": 345,
+        "milestone": [
+          {
+            "milestoneName": "Thg10-22",
+            "salaryPaid": 1,
+            "startDate": "01/10/2022",
+            "endDate": "01/12/2022",
+            "topic": [
+              {
+                "topicName": "SQL",
+                "maxScore": 26,
+                "passingScore": 9,
+                "weightedNumber": 98
+              },
+              {
+                "topicName": "NodeJS",
+                "maxScore": 27,
+                "passingScore": 10,
+                "weightedNumber": 99
+              }
+            ]
+          },
+          {
+            "milestoneName": "Thg11-22",
+            "salaryPaid": 1,
+            "startDate": "26/09/2022",
+            "endDate": "01/01/2023",
+            "topic": [
+              {
+                "topicName": "Java",
+                "maxScore": 28,
+                "passingScore": 10,
+                "weightedNumber": 100
+              },
+              {
+                "topicName": "SQL",
+                "maxScore": 29,
+                "passingScore": 11,
+                "weightedNumber": 101
+              },
+              {
+                "topicName": "C#",
+                "maxScore": 30,
+                "passingScore": 8,
+                "weightedNumber": 102
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "className": "Class EZOS",
+      "milestoneConfig": {
+        "totalMaxScore": 3244,
+        "totalPassingScore": 3466,
+        "totalWeightNumber": 123,
+        "milestone": [
+          {
+            "milestoneName": "Thg12-22",
+            "salaryPaid": 1,
+            "startDate": "01/10/2022",
+            "endDate": "01/12/2022",
+            "topic": [
+              {
+                "topicName": "HTML",
+                "maxScore": 26,
+                "passingScore": 9,
+                "weightedNumber": 98
+              },
+              {
+                "topicName": "CSS",
+                "maxScore": 27,
+                "passingScore": 10,
+                "weightedNumber": 99
+              }
+            ]
+          },
+          {
+            "milestoneName": "Thg01-23",
+            "salaryPaid": 1,
+            "startDate": "01/01/2022",
+            "endDate": "01/01/2023",
+            "topic": [
+              {
+                "topicName": "JavaScript",
+                "maxScore": 28,
+                "passingScore": 10,
+                "weightedNumber": 100
+              },
+              {
+                "topicName": "PTS",
+                "maxScore": 29,
+                "passingScore": 11,
+                "weightedNumber": 101
+              },
+              {
+                "topicName": "C++",
+                "maxScore": 30,
+                "passingScore": 8,
+                "weightedNumber": 102
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "className": "Class CASIO",
+      "milestoneConfig": {
+        "totalMaxScore": 2356,
+        "totalPassingScore": 1102,
+        "totalWeightNumber": 978,
+        "milestone": [
+          {
+            "milestoneName": "Thg10-23",
+            "salaryPaid": 1,
+            "startDate": "01/10/2022",
+            "endDate": "01/12/2022",
+            "topic": [
+              {
+                "topicName": "MySQL",
+                "maxScore": 98,
+                "passingScore": 32,
+                "weightedNumber": 35
+              },
+              {
+                "topicName": "Linux",
+                "maxScore": 233,
+                "passingScore": 234,
+                "weightedNumber": 42
+              }
+            ]
+          },
+          {
+            "milestoneName": "Thg08-22",
+            "salaryPaid": 1,
+            "startDate": "26/09/2022",
+            "endDate": "01/01/2023",
+            "topic": [
+              {
+                "topicName": "TT&MMT",
+                "maxScore": 346,
+                "passingScore": 160,
+                "weightedNumber": 89
+              },
+              {
+                "topicName": "CSDL",
+                "maxScore": 64,
+                "passingScore": 23,
+                "weightedNumber": 364
+              },
+              {
+                "topicName": "WinForm",
+                "maxScore": 432,
+                "passingScore": 38,
+                "weightedNumber": 153
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+
