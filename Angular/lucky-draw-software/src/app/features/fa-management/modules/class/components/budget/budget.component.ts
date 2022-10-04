@@ -4,6 +4,7 @@ import { Currency } from '@app/features/fa-management/libs/directives/currency.d
 import { ConvertNumber, SelectionTable } from '@fa-management/utils/functions';
 import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { BudgetDetails, ClassDetails, initialClassDetail } from '../../store';
+import { ScreenName } from '@fa-management/utils/enums';
 
 @Component({
   selector: 'app-budget',
@@ -12,6 +13,7 @@ import { BudgetDetails, ClassDetails, initialClassDetail } from '../../store';
 })
 export class BudgetComponent implements OnInit, OnDestroy {
   @Input() detailForm!: FormGroup;
+  @Input() screenName!: ScreenName;
   @Input()
   get class() {
     return this._class;
@@ -24,6 +26,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
   private _class: ClassDetails | null = initialClassDetail();
 
+  ScreenName = ScreenName;
   selectionTable = new SelectionTable<BudgetDetails>([], [], true);
   displayedColumns: string[] = ['select', 'item', 'unit', 'unitExpense', 'quantity', 'amount', 'tax', 'sum', 'note'];
   destroy$ = new Subject();
@@ -48,6 +51,9 @@ export class BudgetComponent implements OnInit, OnDestroy {
         this.addBudget();
       });
       this.detailForm?.get('budgets')?.patchValue(this.class.budgets);
+      if (this.screenName === ScreenName.ViewClass) {
+        this.detailForm.disable();
+      }
     } else {
       this.detailForm?.get('budgets')?.reset();
     }

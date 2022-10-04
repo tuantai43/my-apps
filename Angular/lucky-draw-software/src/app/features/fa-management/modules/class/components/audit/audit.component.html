@@ -7,12 +7,22 @@
       <table mat-table [dataSource]="selectionTable.dataSource" formArrayName="audits">
         <ng-container matColumnDef="select">
           <th class="select" mat-header-cell *matHeaderCellDef>
-            <button color="primary" mat-mini-fab aria-label="Add new audit" (click)="addAudit()">
+            <button
+              color="primary"
+              mat-mini-fab
+              aria-label="Add new audit"
+              [disabled]="screenName === ScreenName.ViewClass"
+              (click)="addAudit()">
               <mat-icon>add</mat-icon>
             </button>
           </th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <button color="warn" mat-icon-button attr.aria-label="Delete audit {{ i }}" (click)="deleteAudit(i)">
+            <button
+              color="warn"
+              mat-icon-button
+              attr.aria-label="Delete audit {{ i }}"
+              [disabled]="screenName === ScreenName.ViewClass"
+              (click)="deleteAudit(i)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>

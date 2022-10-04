@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   ConfirmationPopupComponent,
   MIN_WIDTH,
@@ -10,7 +10,10 @@ import {
 import { ActionType } from '@app/features/fa-management/libs/directives';
 import { LocationFacade } from '@app/features/fa-management/libs/store/location';
 import { filter, map, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
+import { ScreenName } from '@fa-management/utils/enums';
+
 import { ClassDetailsFacade } from '../../store';
+import { RELATIVE_URL } from '../../class.routing';
 
 @Component({
   selector: 'app-create',
@@ -19,7 +22,7 @@ import { ClassDetailsFacade } from '../../store';
 })
 export class CreateComponent implements OnInit, OnDestroy {
   destroy$ = new Subject();
-  // isCreated$ = this.classDetailsFacade.
+  screenName!: ScreenName;
   isLoadedClass$ = this.classDetailsFacade.isLoadedClass$;
   class$ = this.classDetailsFacade.class$.pipe(tap((value) => this.form.patchValue(value)));
   id: string = '';
@@ -63,8 +66,16 @@ export class CreateComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private classDetailsFacade: ClassDetailsFacade,
     private locationFacade: LocationFacade,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
+    this.route.data.subscribe((data) => {
+      this.screenName = data['screenName'];
+
+      if (this.screenName === ScreenName.ViewClass) {
+        this.form.disable();
+      }
+    });
     this.route.paramMap
       .pipe(
         takeUntil(this.destroy$),
@@ -114,17 +125,28 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   update(): void {
-    const dialogRef = this.openDialogConfirm();
-    dialogRef
-      .afterClosed()
-      .pipe(
-        take(1),
-        filter((ok) => ok)
-      )
-      .subscribe(() => {
-        console.log(this.id);
-        this.classDetailsFacade.update(this.id, this.form.getRawValue());
-      });
+    if (this.screenName === ScreenName.ViewClass) {
+      this.router.navigate([RELATIVE_URL, this.id]);
+    } else {
+      const dialogRef = this.openDialogConfirm();
+      dialogRef
+        .afterClosed()
+        .pipe(
+          take(1),
+          filter((ok) => ok)
+        )
+        .subscribe(() => {
+          this.classDetailsFacade.update(this.id, this.form.getRawValue());
+          this.classDetailsFacade.isUpdatingClass$
+            .pipe(
+              takeUntil(this.destroy$),
+              filter((loading) => !loading)
+            )
+            .subscribe(() => {
+              this.router.navigate([RELATIVE_URL, 'view', this.id]);
+            });
+        });
+    }
   }
 
   ngOnDestroy(): void {

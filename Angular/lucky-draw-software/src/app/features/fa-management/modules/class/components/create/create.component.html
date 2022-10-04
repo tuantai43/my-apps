@@ -2,7 +2,11 @@
 <mat-divider></mat-divider>
 <mat-tab-group>
   <mat-tab [label]="'createClass.information' | translate">
-    <app-information [class]="class$ | async" [form]="form" [acronym]="acronym"></app-information>
+    <app-information
+      [class]="class$ | async"
+      [form]="form"
+      [acronym]="acronym"
+      [screenName]="screenName"></app-information>
   </mat-tab>
   <mat-tab [label]="'createClass.trainee' | translate">Content 2</mat-tab>
 </mat-tab-group>
@@ -33,7 +37,7 @@
       {{ 'startClass' | translate }}
     </button>
   </ng-container>
-  <a mat-raised-button class="color-icon warn" [routerLink]="['..']">
+  <a mat-raised-button class="color-icon warn" [routerLink]="['/fa-management/class-management']">
     <mat-icon>reply</mat-icon>
     {{ 'close' | translate }}
   </a>

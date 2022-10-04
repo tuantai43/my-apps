@@ -18,12 +18,22 @@
       <table mat-table [dataSource]="selectionTable.dataSource" formArrayName="budgets">
         <ng-container matColumnDef="select">
           <th mat-header-cell *matHeaderCellDef>
-            <button color="primary" mat-mini-fab aria-label="Add new budget" (click)="addBudget()">
+            <button
+              color="primary"
+              mat-mini-fab
+              aria-label="Add new budget"
+              [disabled]="screenName === ScreenName.ViewClass"
+              (click)="addBudget()">
               <mat-icon>add</mat-icon>
             </button>
           </th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <button color="warn" mat-icon-button attr.aria-label="Delete budget {{ i }}" (click)="deleteBudget(i)">
+            <button
+              color="warn"
+              mat-icon-button
+              attr.aria-label="Delete budget {{ i }}"
+              [disabled]="screenName === ScreenName.ViewClass"
+              (click)="deleteBudget(i)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>

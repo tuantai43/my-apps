@@ -8,6 +8,8 @@ import { classQuery } from './class-detail.selectors';
 export class ClassDetailsFacade {
   class$ = this.store.select(classQuery.getLoadedClasses);
   isLoadedClass$ = this.store.select(classQuery.isLoadedClasses);
+  isCreatingClass$ = this.store.select(classQuery.isCreating);
+  isUpdatingClass$ = this.store.select(classQuery.isUpdating);
 
   constructor(private store: Store<ClassDetailsState>) {}
 

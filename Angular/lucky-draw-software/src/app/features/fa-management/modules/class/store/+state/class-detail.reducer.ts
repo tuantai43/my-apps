@@ -74,14 +74,14 @@ export const initialClassDetail = (): ClassDetails => ({
 export interface ClassDetailsState {
   class: ClassDetails;
   isLoadedClass: boolean;
-  isCreatedClass: boolean;
+  isCreating: boolean;
   isUpdating: boolean;
 }
 
 const initialState = (): ClassDetailsState => ({
   class: initialClassDetail(),
   isLoadedClass: false,
-  isCreatedClass: false,
+  isCreating: false,
   isUpdating: false,
 });
 
@@ -110,13 +110,13 @@ export function classDetailsReducer(state = initialState(), action: ClassActions
     case ClassDetailsActionTypes.CreateClass: {
       return {
         ...state,
-        isCreatedClass: false,
+        isCreating: true,
       };
     }
     case ClassDetailsActionTypes.CreateClass: {
       return {
         ...state,
-        isCreatedClass: true,
+        isCreating: false,
       };
     }
     case ClassDetailsActionTypes.UpdateClass: {

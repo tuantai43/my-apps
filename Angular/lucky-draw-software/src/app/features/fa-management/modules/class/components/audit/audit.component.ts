@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EventCategoryFacade } from '@app/features/fa-management/libs/store/event-category';
 import { SelectionTable } from '@app/features/fa-management/libs/utils/functions';
 import { AuditDetails, ClassDetails, initialClassDetail } from '../../store';
+import { ScreenName } from '@fa-management/utils/enums';
 
 @Component({
   selector: 'app-audit',
@@ -11,6 +12,7 @@ import { AuditDetails, ClassDetails, initialClassDetail } from '../../store';
 })
 export class AuditComponent implements OnInit {
   @Input() detailForm!: FormGroup;
+  @Input() screenName!: ScreenName;
   @Input()
   get class() {
     return this._class;
@@ -23,6 +25,7 @@ export class AuditComponent implements OnInit {
 
   private _class: ClassDetails | null = initialClassDetail();
   eventCategories$ = this.eventCategoryFacade.list$;
+  ScreenName = ScreenName;
   selectionTable = new SelectionTable<AuditDetails>([], [], true);
   displayedColumns: string[] = [
     'select',
@@ -51,6 +54,9 @@ export class AuditComponent implements OnInit {
         this.addAudit();
       });
       this.detailForm?.get('audits')?.patchValue(this.class.audits);
+      if (this.screenName === ScreenName.ViewClass) {
+        this.detailForm.disable();
+      }
     } else {
       this.detailForm?.get('audits')?.reset();
     }
