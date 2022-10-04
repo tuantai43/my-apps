@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { TraineeDetailsService } from '@app/features/fa-management/libs/services';
+import { TraineeResult } from '@app/features/fa-management/libs/utils/models';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -15,16 +16,7 @@ export class ResultComponent implements OnInit {
   mode = 'view';
   isEditControl = false;
 
-  formResult = this.fb.group({
-    // milestone: this.fb.array([]),
-    // attendance: this.fb.group({}),
-    // topic: this.fb.group({}),
-    // rewardAndPenalty: this.fb.array([]),
-    // gpa: this.fb.group({}),
-    // commitment: this.fb.group({}),
-    // allowance: this.fb.group({}),
-    // allocation: this.fb.group({}),
-  });
+  formResult!: FormGroup;
 
   private destroy$ = new Subject();
 
@@ -34,9 +26,19 @@ export class ResultComponent implements OnInit {
     private traineeDetailsService: TraineeDetailsService
   ) { }
 
-  resultMilestone: any;
+  resultMilestone!: TraineeResult[];
 
   ngOnInit(): void {
+    this.formResult = this.fb.group({
+      milestone: this.fb.array([]),
+      // attendance: this.fb.group({}),
+      // topic: this.fb.group({}),
+      // rewardAndPenalty: this.fb.array([]),
+      // gpa: this.fb.group({}),
+      // commitment: this.fb.group({}),
+      // allowance: this.fb.group({}),
+      // allocation: this.fb.group({}),
+    });
     this.traineeDetailsService.getTraineeResult(this.emplId).pipe(takeUntil(this.destroy$))
       .subscribe((val) =>{
         this.resultMilestone = val;

@@ -8,17 +8,17 @@
   <div class="milestone-header">
     <div class="common-block max-score">
       <div class="title-common">Total Max Score</div>
-      <div class="value-common">{{dataMilestone}}</div>
+      <div class="value-common">{{dataMilestone.totalMaxScore}}</div>
     </div>
     <div class="line-block"></div>
     <div class="common-block passing-score">
       <div class="title-common">Total Passing Score</div>
-      <div class="value-common">1102</div>
+      <div class="value-common">{{dataMilestone.totalPassingScore}}</div>
     </div>
     <div class="line-block"></div>
     <div class="common-block weighted-number">
       <div class="title-common">Total Weighted Number</div>
-      <div class="value-common">6789</div>
+      <div class="value-common">{{dataMilestone.totalWeightNumber}}</div>
     </div>
   </div>
   <div class="milestone-body" [formGroup]="formResult">
@@ -38,7 +38,7 @@
       <div class="common-column"><span class="pl-5">End Date</span></div>
     </div>
     <div formArrayName="milestone" class="body-content" #milestone>
-      <ng-container *ngFor="let milestone of formArrayMilestone.controls; let indexMilestone = index"
+      <ng-container *ngFor="let milestone of formMilestone.controls; let indexMilestone = index"
         [formGroupName]="indexMilestone">
         <div class="milestone-name">
           <div class="action-remove">
@@ -46,11 +46,7 @@
           </div>
           <div class="common-column">
             <div class="label-value pl-5">
-              {{ 
-                milestone.get('startDate')?.value
-                ? 'Tháng ' + (milestone.get('startDate')?.value | date : 'MM') + ' - '
-                + (milestone.get('startDate')?.value | date : 'YY') : ''
-              }}
+              Tháng...
             </div>
           </div>
           <div class="common-column">

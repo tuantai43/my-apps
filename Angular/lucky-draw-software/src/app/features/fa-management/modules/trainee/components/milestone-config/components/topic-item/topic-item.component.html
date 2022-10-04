@@ -15,26 +15,17 @@
   </div>
   <div class="common-column">
     <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-      <mat-select [formControl]="item.get('maxScore')">
-        <mat-option value="1">1</mat-option>
-        <mat-option value="2">2</mat-option>
-      </mat-select>
+      <input matInput [formControl]="item.get('maxScore')">
     </mat-form-field>
   </div>
   <div class="common-column">
     <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-      <mat-select [formControl]="item.get('passingScore')">
-        <mat-option value="10">10</mat-option>
-        <mat-option value="20">20</mat-option>
-      </mat-select>
+      <input matInput [formControl]="item.get('passingScore')">
     </mat-form-field>
   </div>
   <div class="common-column">
     <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
-      <mat-select [formControl]="item.get('weightedNumber')">
-        <mat-option value="10">10</mat-option>
-        <mat-option value="20">20</mat-option>
-      </mat-select>
+      <input matInput [formControl]="item.get('weightedNumber')">
     </mat-form-field>
   </div>
 </div>
