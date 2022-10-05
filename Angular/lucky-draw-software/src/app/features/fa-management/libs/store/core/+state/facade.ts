@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { LoadRoles } from './action';
+import { LoadUserInfo } from './action';
 import { CoreState } from './reducer';
 import { coreQuery } from './selectors';
 
 @Injectable()
 export class CoreFacade {
   roles$ = this.store.select(coreQuery.getLoadedRoles);
-  isLoadedRoles$ = this.store.select(coreQuery.isLoadedRoles);
+  isLoadedUserInfo$ = this.store.select(coreQuery.isLoadedUserInfo);
 
   constructor(private store: Store<CoreState>) {
-    this.loadRoles();
+    this.getUserInfo();
   }
 
-  loadRoles() {
-    this.store.dispatch(new LoadRoles());
+  getUserInfo() {
+    this.store.dispatch(new LoadUserInfo());
   }
 }

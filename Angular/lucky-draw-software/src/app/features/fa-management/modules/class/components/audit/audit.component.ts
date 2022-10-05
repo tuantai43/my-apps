@@ -4,6 +4,7 @@ import { EventCategoryFacade } from '@app/features/fa-management/libs/store/even
 import { SelectionTable } from '@app/features/fa-management/libs/utils/functions';
 import { AuditDetails, ClassDetails, initialClassDetail } from '../../store';
 import { ScreenName } from '@fa-management/utils/enums';
+import { ClassStatus } from '@fa-management/store/class';
 
 @Component({
   selector: 'app-audit',
@@ -24,6 +25,7 @@ export class AuditComponent implements OnInit {
   }
 
   private _class: ClassDetails | null = initialClassDetail();
+  disabledForm = false;
   eventCategories$ = this.eventCategoryFacade.list$;
   ScreenName = ScreenName;
   selectionTable = new SelectionTable<AuditDetails>([], [], true);
@@ -54,8 +56,14 @@ export class AuditComponent implements OnInit {
         this.addAudit();
       });
       this.detailForm?.get('audits')?.patchValue(this.class.audits);
-      if (this.screenName === ScreenName.ViewClass) {
-        this.detailForm.disable();
+      if (
+        this.screenName === ScreenName.ViewClass ||
+        (this.screenName === ScreenName.UpdateClass && this.class.status !== ClassStatus.InProgress)
+      ) {
+        this.detailForm.get('audits')?.disable();
+        this.disabledForm = true;
+      } else {
+        this.disabledForm = false;
       }
     } else {
       this.detailForm?.get('audits')?.reset();

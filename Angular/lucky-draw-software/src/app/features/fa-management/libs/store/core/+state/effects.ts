@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
+import { UserService } from '@fa-management/services';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatMap, of } from 'rxjs';
-import { CoreActions, CoreActionTypes, LoadedRoles } from './action';
-import { UserRole } from './reducer';
+import { map, mergeMap } from 'rxjs';
+import { CoreActions, CoreActionTypes, LoadedUserInfo } from './action';
+import { UserInfo } from './reducer';
 
 @Injectable()
 export class CoreEffects {
-  loadRoles$ = createEffect(() =>
+  loadUser$ = createEffect(() =>
     this.action$.pipe(
-      ofType(CoreActionTypes.LoadRoles),
-      concatMap(() => of(new LoadedRoles([UserRole.SystemAdmin])))
+      ofType(CoreActionTypes.LoadUserInfo),
+      mergeMap(() => this.userService.getInfo<UserInfo>().pipe(map((userInfo) => new LoadedUserInfo(userInfo))))
     )
   );
 
-  constructor(private action$: Actions<CoreActions>) {}
+  constructor(private action$: Actions<CoreActions>, private userService: UserService) {}
 }

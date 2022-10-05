@@ -55,6 +55,7 @@
   "createClass.className.format": "Fresher {{position}} {{skill}}",
   "createClass.history.created": "{{date}} - Created by {{account}}",
   "createClass.history.updated": "{{date}} - Updated by {{account}}",
+  "createClass.history.cancelled": "{{date}} - Cancelled by {{account}}",
   "history": "History",
   "total": "Total",
   "overBudget": "Over Budget",

@@ -1,4 +1,4 @@
-import { Currency } from '../../directives/currency.directive';
+import { Currency } from '@fa-management/directives';
 
 const format = {
   [Currency.Vnd]: (value: string, isNumber: boolean = false): number | null => {

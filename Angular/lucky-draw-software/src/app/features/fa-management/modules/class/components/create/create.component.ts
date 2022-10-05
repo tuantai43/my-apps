@@ -7,13 +7,15 @@ import {
   MIN_WIDTH,
   PopupType,
 } from '@app/features/fa-management/libs/components/confirmation-popup/confirmation-popup.component';
-import { ActionType } from '@app/features/fa-management/libs/directives';
+import { ActionType, isDisabled } from '@fa-management/directives';
 import { LocationFacade } from '@app/features/fa-management/libs/store/location';
-import { filter, map, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
+import { filter, map, merge, Observable, of, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { ScreenName } from '@fa-management/utils/enums';
+import { CoreFacade } from '@fa-management/store/core';
 
 import { ClassDetailsFacade } from '../../store';
 import { RELATIVE_URL } from '../../class.routing';
+import { ClassStatus, ClassFacade } from '@fa-management/store/class';
 
 @Component({
   selector: 'app-create',
@@ -23,8 +25,22 @@ import { RELATIVE_URL } from '../../class.routing';
 export class CreateComponent implements OnInit, OnDestroy {
   destroy$ = new Subject();
   screenName!: ScreenName;
+  ScreenName = ScreenName;
   isLoadedClass$ = this.classDetailsFacade.isLoadedClass$;
-  class$ = this.classDetailsFacade.class$.pipe(tap((value) => this.form.patchValue(value)));
+  class$ = this.classDetailsFacade.class$.pipe(
+    tap((value) => {
+      this.form.patchValue(value);
+      if (
+        value.status &&
+        this.screenName === ScreenName.UpdateClass &&
+        value.status !== ClassStatus.Draft &&
+        value.status !== ClassStatus.InProgress
+      ) {
+        console.log(value.status);
+        this.form.disable();
+      }
+    })
+  );
   id: string = '';
   acronym: string = '';
   actionType = ActionType;
@@ -61,10 +77,46 @@ export class CreateComponent implements OnInit, OnDestroy {
     audits: this.formBuilder.array([]),
   });
 
+  disableUpdate$: Observable<boolean> = this.coreFacade.roles$.pipe(
+    takeUntil(this.destroy$),
+    map((roles) => {
+      return isDisabled(roles, ActionType.UpdateClass);
+    })
+  );
+
+  disableSubmmitClass$: Observable<boolean> = this.coreFacade.roles$.pipe(
+    takeUntil(this.destroy$),
+    map((roles) => {
+      return isDisabled(roles, ActionType.SubmitClass);
+    })
+  );
+
+  disableStartClass$: Observable<boolean> = this.coreFacade.roles$.pipe(
+    takeUntil(this.destroy$),
+    map((roles) => {
+      return isDisabled(roles, ActionType.StartClass);
+    })
+  );
+
+  disableCancelClass$: Observable<boolean> = merge(
+    this.coreFacade.roles$.pipe(
+      takeUntil(this.destroy$),
+      map((roles) => {
+        return isDisabled(roles, ActionType.CancelClass);
+      })
+    ),
+    this.classDetailsFacade.class$.pipe(
+      takeUntil(this.destroy$),
+      map((detail) => detail.status !== ClassStatus.Draft && detail.status !== ClassStatus.Submitted)
+    )
+  );
+
   constructor(
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private classDetailsFacade: ClassDetailsFacade,
+    private classesFacade: ClassFacade,
+    private coreFacade: CoreFacade,
     private locationFacade: LocationFacade,
     private route: ActivatedRoute,
     private router: Router
@@ -120,33 +172,28 @@ export class CreateComponent implements OnInit, OnDestroy {
         filter((ok) => ok)
       )
       .subscribe(() => {
-        this.classDetailsFacade.create(this.form.getRawValue());
+        if (this.screenName === ScreenName.UpdateClass) {
+          this.classDetailsFacade.update(this.id, this.form.getRawValue());
+        } else {
+          this.classDetailsFacade.create(this.form.getRawValue());
+        }
+        merge(this.classDetailsFacade.isUpdatingClass$, this.classDetailsFacade.isCreatingClass$)
+          .pipe(
+            filter((loading) => !loading),
+            take(1)
+          )
+          .subscribe(() => {
+            this.router.navigate([RELATIVE_URL, this.id]);
+          });
       });
   }
 
   update(): void {
-    if (this.screenName === ScreenName.ViewClass) {
-      this.router.navigate([RELATIVE_URL, this.id]);
-    } else {
-      const dialogRef = this.openDialogConfirm();
-      dialogRef
-        .afterClosed()
-        .pipe(
-          take(1),
-          filter((ok) => ok)
-        )
-        .subscribe(() => {
-          this.classDetailsFacade.update(this.id, this.form.getRawValue());
-          this.classDetailsFacade.isUpdatingClass$
-            .pipe(
-              takeUntil(this.destroy$),
-              filter((loading) => !loading)
-            )
-            .subscribe(() => {
-              this.router.navigate([RELATIVE_URL, 'view', this.id]);
-            });
-        });
-    }
+    this.router.navigate([RELATIVE_URL, 'edit', this.id]);
+  }
+
+  cancel(): void {
+    this.classesFacade.cancel([this.id]);
   }
 
   ngOnDestroy(): void {

@@ -12,26 +12,42 @@ export enum UserRole {
   SystemAdmin = 'SA',
 }
 
+export interface UserInfo {
+  id: string;
+  account: string;
+  name: string;
+  roles: UserRole[];
+}
+
 export interface CoreState {
   roles: UserRole[];
+  userInfo: UserInfo;
   isLoadedRoles: boolean;
+  isLoadedUserInfo: boolean;
 }
 
 const initialState = (): CoreState => ({
   roles: [],
+  userInfo: {
+    id: '',
+    account: '',
+    name: '',
+    roles: [],
+  },
   isLoadedRoles: false,
+  isLoadedUserInfo: false,
 });
 
 export function coreReducer(state = initialState(), action: CoreActions): CoreState {
   switch (action.type) {
-    case CoreActionTypes.LoadRoles: {
+    case CoreActionTypes.LoadUserInfo: {
       return state;
     }
-    case CoreActionTypes.LoadedRoles: {
+    case CoreActionTypes.LoadedUserInfo: {
       return {
         ...state,
-        isLoadedRoles: true,
-        roles: action.roles,
+        userInfo: action.userInfo,
+        isLoadedUserInfo: true,
       };
     }
     default: {

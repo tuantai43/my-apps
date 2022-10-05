@@ -48,6 +48,10 @@ table {
   background-color: var(--a-100);
 }
 
+.primary-text {
+  color: var(--p-500);
+}
+
 .hamburger-menu {
   @include transition();
 

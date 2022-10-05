@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 })
 export class NumberDirective {
   private value: string = '';
-  constructor(public el: ElementRef, public renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.format(this.el.nativeElement.value); // format any initial values

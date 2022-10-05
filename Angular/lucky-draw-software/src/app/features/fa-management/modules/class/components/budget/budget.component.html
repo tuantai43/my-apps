@@ -22,7 +22,7 @@
               color="primary"
               mat-mini-fab
               aria-label="Add new budget"
-              [disabled]="screenName === ScreenName.ViewClass"
+              [disabled]="disabledForm"
               (click)="addBudget()">
               <mat-icon>add</mat-icon>
             </button>
@@ -32,7 +32,7 @@
               color="warn"
               mat-icon-button
               attr.aria-label="Delete budget {{ i }}"
-              [disabled]="screenName === ScreenName.ViewClass"
+              [disabled]="disabledForm"
               (click)="deleteBudget(i)">
               <mat-icon>delete</mat-icon>
             </button>

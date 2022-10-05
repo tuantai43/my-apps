@@ -39,6 +39,7 @@ export interface InitState {
   list: ClassView[];
   isLoadedList: boolean;
   dataSearch: DataSearch;
+  canceling: boolean;
 }
 
 const initialState = (): InitState => ({
@@ -49,6 +50,7 @@ const initialState = (): InitState => ({
     className: '',
     status: 0,
   },
+  canceling: false,
 });
 
 export function reducer(state = initialState(), action: ClassActions): InitState {
@@ -67,6 +69,18 @@ export function reducer(state = initialState(), action: ClassActions): InitState
       return {
         ...state,
         dataSearch: action.dataSearch,
+      };
+    }
+    case ActionTypes.CancelClasses: {
+      return {
+        ...state,
+        canceling: true,
+      };
+    }
+    case ActionTypes.CanceledClasses: {
+      return {
+        ...state,
+        canceling: false,
       };
     }
     default: {

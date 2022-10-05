@@ -1,18 +1,18 @@
 import { Action } from '@ngrx/store';
-import { UserRole } from './reducer';
+import { UserInfo, UserRole } from './reducer';
 
 export enum CoreActionTypes {
-  LoadRoles = '[CoreActionTypes] Load roles',
-  LoadedRoles = '[CoreActionTypes] Loaded roles',
+  LoadUserInfo = '[CoreActionTypes] Load User Info',
+  LoadedUserInfo = '[CoreActionTypes] Loaded User Info',
 }
 
-export class LoadRoles implements Action {
-  readonly type = CoreActionTypes.LoadRoles;
+export class LoadUserInfo implements Action {
+  readonly type = CoreActionTypes.LoadUserInfo;
 }
 
-export class LoadedRoles implements Action {
-  readonly type = CoreActionTypes.LoadedRoles;
-  constructor(public roles: UserRole[]) {}
+export class LoadedUserInfo implements Action {
+  readonly type = CoreActionTypes.LoadedUserInfo;
+  constructor(public userInfo: UserInfo) {}
 }
 
-export type CoreActions = LoadRoles | LoadedRoles;
+export type CoreActions = LoadUserInfo | LoadedUserInfo;

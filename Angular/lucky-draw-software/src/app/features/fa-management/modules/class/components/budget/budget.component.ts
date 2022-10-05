@@ -1,10 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Currency } from '@app/features/fa-management/libs/directives/currency.directive';
 import { ConvertNumber, SelectionTable } from '@fa-management/utils/functions';
 import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { BudgetDetails, ClassDetails, initialClassDetail } from '../../store';
 import { ScreenName } from '@fa-management/utils/enums';
+import { ClassStatus } from '@fa-management/store/class';
 
 @Component({
   selector: 'app-budget',
@@ -25,7 +25,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
   }
 
   private _class: ClassDetails | null = initialClassDetail();
-
+  disabledForm = false;
   ScreenName = ScreenName;
   selectionTable = new SelectionTable<BudgetDetails>([], [], true);
   displayedColumns: string[] = ['select', 'item', 'unit', 'unitExpense', 'quantity', 'amount', 'tax', 'sum', 'note'];
@@ -51,8 +51,14 @@ export class BudgetComponent implements OnInit, OnDestroy {
         this.addBudget();
       });
       this.detailForm?.get('budgets')?.patchValue(this.class.budgets);
-      if (this.screenName === ScreenName.ViewClass) {
-        this.detailForm.disable();
+      if (
+        this.screenName === ScreenName.ViewClass ||
+        (this.screenName === ScreenName.UpdateClass && this.class.status !== ClassStatus.Draft)
+      ) {
+        this.detailForm.get('budgets')?.disable();
+        this.disabledForm = true;
+      } else {
+        this.disabledForm = false;
       }
     } else {
       this.detailForm?.get('budgets')?.reset();

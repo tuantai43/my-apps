@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Inject } from '@angular/core';
 import { Component, Input, OnInit, OnDestroy, LOCALE_ID } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ClassStatus } from '@app/features/fa-management/libs/store/class';
 import { ClassAdminFacade } from '@fa-management/store/admin';
 import { BudgetFacade } from '@fa-management/store/budget';
 import { LocationFacade } from '@fa-management/store/location';
@@ -83,27 +84,39 @@ export class GeneralComponent implements OnInit, OnDestroy {
   }
 
   updateHistory(): void {
-    console.log('a', this.class?.updatedAt);
-    if (this.class?.updatedAt) {
-      this.translateService
-        .get('createClass.history.updated', {
-          date: formatDate(this.class.updatedAt, FORMAT_DATE.HISTORY, this.locale),
-          account: this.class.updatedBy,
-        })
-        .pipe(take(1))
-        .subscribe((value) => {
-          this.history = value;
-        });
-    } else if (this.class?.createdAt) {
-      this.translateService
-        .get('createClass.history.created', {
-          date: formatDate(this.class.createdAt, FORMAT_DATE.HISTORY, this.locale),
-          account: this.class.createdBy,
-        })
-        .pipe(take(1))
-        .subscribe((value) => {
-          this.history = value;
-        });
+    if (this.class) {
+      const at = this.class.updatedAt || this.class.createdAt;
+      const date = at ? formatDate(at, FORMAT_DATE.HISTORY, this.locale) : '';
+      const account = this.class.updatedBy || this.class.createdBy || '';
+      let key = '';
+      switch (this.class?.status) {
+        case ClassStatus.Cancelled: {
+          key = 'createClass.history.cancelled';
+          break;
+        }
+        case ClassStatus.InProgress: {
+          key = 'createClass.history.cancelled';
+          break;
+        }
+        default: {
+          if (this.class.updatedAt) {
+            key = 'createClass.history.updated';
+          } else if (this.class.createdAt) {
+            key = 'createClass.history.created';
+          }
+        }
+      }
+      if (key) {
+        this.translateService
+          .get(key, {
+            date,
+            account,
+          })
+          .pipe(take(1))
+          .subscribe((value) => {
+            this.history = value;
+          });
+      }
     }
   }
 

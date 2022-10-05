@@ -3,10 +3,14 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class TraineeService extends BaseService {
+export class UserService extends BaseService {
   constructor(http: HttpClient) {
-    super(http, 'trainees');
+    super(http, 'user');
+  }
+
+  getInfo<T>() {
+    return this.http.get<T>(`${this.api}/info`);
   }
 }
