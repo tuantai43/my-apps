@@ -1,9 +1,10 @@
-<mat-expansion-panel [expanded]="expanded" [hideToggle]="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title class="title" translate="traineeResult.milestone">
-      <mat-icon (click)="expandForExpansion()" class="icon-expand">{{toggleIcon ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}
-      </mat-icon>
+<mat-expansion-panel [expanded]="!expanded" [hideToggle]="true">
+  <mat-expansion-panel-header (click)="$event.stopPropagation()">
+    <mat-panel-title (click)="$event.stopPropagation()" class="title" translate="traineeResult.milestone">
     </mat-panel-title>
+    <mat-icon (click)="$event.preventDefault()" (click)="expandForExpansion()" class="icon-expand">
+      {{toggleIcon ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+    </mat-icon>
   </mat-expansion-panel-header>
   <div class="milestone-header">
     <div class="common-block max-score">

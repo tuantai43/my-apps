@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TraineeDetailsService } from '@app/features/fa-management/libs/services';
 import { TraineeResult } from '@app/features/fa-management/libs/utils/models';
 import { Subject, takeUntil } from 'rxjs';
@@ -21,7 +22,7 @@ export class ResultComponent implements OnInit {
   private destroy$ = new Subject();
 
   constructor( 
-    private location: Location,
+    private route: Router,
     private fb: FormBuilder,
     private traineeDetailsService: TraineeDetailsService
   ) { }
@@ -59,7 +60,7 @@ export class ResultComponent implements OnInit {
 
   onClose(){
     if(this.mode === 'view'){
-      this.location.back();
+      this.route.navigate(['/fa-management/trainee-management'])
     } else {
       this.mode = 'view';
       this.isEditControl = false;

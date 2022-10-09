@@ -31,7 +31,6 @@
         <div class="form-control"></div>
       </td>
     </tr>
-    <!--ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
     <tr>
       <th>Account</th>
       <td colspan="3">
@@ -76,10 +75,11 @@
             <mat-select matNativeControl formControlName="university" (selectionChange)="selectionChange($event)">
               <mat-option value=""></mat-option>
               <mat-option *ngFor="let uni of arrUnivers" [value]="uni.value">{{uni.label}}</mat-option>
-              <!--DOING...-->
-              <mat-option >
-                <input matInput formControlName="faculty">
+              <mat-option value="orther">
+                <span class="span-custom" (click)="chooseOrtherOption($event)">ORTHER</span>
               </mat-option>
+              <!-- <input class="orther-option-input"> -->
+              <!--DOING...-->
             </mat-select>
           </mat-form-field>
         </ng-container>

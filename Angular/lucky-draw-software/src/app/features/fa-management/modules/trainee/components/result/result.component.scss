@@ -6,11 +6,11 @@
   }
 
   .milestone {
-    @include padding();
+    padding-bottom: 15px;
   }
   
   .attendance {
-    @include padding();
+    padding-bottom: 15px;
   }
 
   .topic {

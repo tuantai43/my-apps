@@ -139,15 +139,17 @@ export class MilestoneConfigComponent implements OnInit {
     if(this.formMilestone.controls.length > 0){
       this.expandMilestone = !this.expandMilestone;
       if(!this.expandMilestone) {
-        // this.blockMilestone.nativeElement.setAttribute('style',
-        //   'display: none; transition: opacity 1s ease-out'
-        // )
-        this.blockMilestone.nativeElement.classList.add('custom-expanded')
+        this.blockMilestone.nativeElement.setAttribute('style',
+          'display: none; transition: opacity 1s ease-out'
+        )
+        // this.blockMilestone.nativeElement.classList.add('custom-collapse');
+        // this.blockMilestone.nativeElement.classList.remove('custom-expanded');
       }else{
-        // this.blockMilestone.nativeElement.setAttribute('style',
-        //   'display: block; transition: opacity 1s ease-out'
-        // )
-        this.blockMilestone.nativeElement.classList.remove('custom-expanded')
+        this.blockMilestone.nativeElement.setAttribute('style',
+          'display: block; transition: opacity 1s ease-out'
+        )
+        // this.blockMilestone.nativeElement.classList.remove('custom-collapse');
+        // this.blockMilestone.nativeElement.classList.add('custom-expanded');
       }
     }
   }

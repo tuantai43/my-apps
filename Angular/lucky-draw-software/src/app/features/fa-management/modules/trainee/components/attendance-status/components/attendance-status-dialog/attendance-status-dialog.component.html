@@ -1,0 +1,41 @@
+
+<div class="wrapper">
+  <div class="header">
+    <div class="header-title">{{data.name}}</div>
+  </div>
+  <div class="content" [formGroup]="form">
+    <div class="body" formArrayName="statusOfEachDay">
+      <ng-container *ngFor="let status of arrFormStatus.controls; let i = index" [formGroupName]="i">
+          <div class="column">
+            <span class="index">{{i + 1}}</span>
+            <span class="control">
+              <mat-form-field>
+                <mat-select formControlName="day">
+                  <mat-option *ngFor="let item of optionForStatus" [value]="item">
+                    {{item}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </span>
+          </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<div class="actions">
+  <ng-container *ngIf="mode === 'view'; else btnSubmit">
+    <button mat-stroked-button color="primary" (click)="updateStatus()">
+      <mat-icon>update</mat-icon>
+      {{ 'updateTrainee' | translate }}
+    </button>
+  </ng-container>
+  <ng-template #btnSubmit>
+    <button mat-button mat-flat-button color="primary" (click)="updateStatus()">
+      {{ 'submit' | translate }}
+    </button>
+  </ng-template>
+  <button mat-stroked-button color="accent" (click)="closeDialog()">
+      <mat-icon>undo</mat-icon>
+      {{ 'close' | translate }}
+  </button>
+</div>

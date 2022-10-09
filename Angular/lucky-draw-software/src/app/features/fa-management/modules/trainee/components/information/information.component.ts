@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TraineeDetailsService } from '@app/features/fa-management/libs/services';
 import { TraineeDetailsFacade } from '../../store';
 
@@ -36,7 +36,7 @@ export class InformationComponent implements OnInit {
   constructor( 
     private formBuilder: FormBuilder, 
     private traineeDetailsFacade: TraineeDetailsFacade,
-    private location: Location,
+    private route: Router,
     private traineeDetailsService: TraineeDetailsService,
     private activatedRoute: ActivatedRoute,
   ) { }
@@ -93,7 +93,7 @@ export class InformationComponent implements OnInit {
       this.traineeDetailsService.updateDetailTrainee(this.emplId, data).subscribe(
         (res) => {
           console.log(res);
-          this.location.back();
+          this.route.navigate(['/fa-management/trainee-management'])
         },
         (err) => {
           console.log(err)
@@ -102,11 +102,15 @@ export class InformationComponent implements OnInit {
     }
   }
 
+  chooseOrtherOption(e: any) {
+    e.stopPropagation();
+  }
+
   onDelete() {}
 
   onClose(){
     if(this.mode === 'view'){
-      this.location.back();
+      this.route.navigate(['/fa-management/trainee-management'])
     } else {
       this.mode = 'view';
       this.arrControlNameAllowEdit.forEach((name) =>{

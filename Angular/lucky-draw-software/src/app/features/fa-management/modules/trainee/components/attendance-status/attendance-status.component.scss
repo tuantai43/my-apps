@@ -4,4 +4,46 @@
   display: flex;
   flex-direction: column;
   @include gap();
+
+  mat-expansion-panel-header{
+    background-color: var(--p-A200);
+  }
+  mat-expansion-panel-header:hover{
+    background-color: var(--p-A200);
+  }
+
+  .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
+    background-color: var(--p-A200);
+  }
+
+  .mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover {
+    background-color: var(--p-A200);
+  }
+
+  .mat-expanded mat-expansion-panel-header{
+    border-bottom: 1px solid #000;
+  }
+
+  .title {
+    margin-right: 0;
+    height: 48px;
+    margin-left: 20px;
+    cursor: default;
+  }
+
+  .mat-expanded .title{
+    height: 65px;
+    cursor: default;
+  }
+
+  .icon-expand {
+    position: absolute;
+    left: 10px;
+    margin-top: 12px;
+  }
+
+  .mat-expanded .icon-expand {
+    margin-top: 21px;
+  }
+  
 }

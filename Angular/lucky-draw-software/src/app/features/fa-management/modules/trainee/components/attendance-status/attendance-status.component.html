@@ -1,5 +1,52 @@
-<mat-expansion-panel [expanded]="true">
+<mat-expansion-panel [expanded]="expanded" [hideToggle]="true">
   <mat-expansion-panel-header>
-    <mat-panel-title translate="traineeResult.attendanceStatus"> </mat-panel-title>
+    <mat-panel-title 
+      (click)="$event.stopPropagation()"
+      class="title" translate="traineeResult.attendanceStatus"
+    ></mat-panel-title>
+    <mat-icon (click)="$event.preventDefault()" (click)="expandForExpansion()" class="icon-expand">
+      {{toggleIcon ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+    </mat-icon>
   </mat-expansion-panel-header>
+    <table mat-table [dataSource]="selectionTable.dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header translate=""></th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="absentTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header translate="">Absent Time</th>
+      <td mat-cell *matCellDef="let row">{{row.absentTime}}</td>
+    </ng-container>
+
+    <!-- Account Column -->
+    <ng-container matColumnDef="lateAndEarlyLeave">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header translate="">Late & EarlyLeave</th>
+      <td mat-cell *matCellDef="let row">{{row.lateAndEarlyLeave}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="noPermissionsRate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header translate="">noPermissionsRate</th>
+      <td mat-cell *matCellDef="let row">{{row.noPermissionsRate}}</td>
+    </ng-container>
+
+    <!-- DOB Column -->
+    <ng-container matColumnDef="disciplinaryPoint">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header translate="dob">Disciplinary Point</th>
+      <td mat-cell *matCellDef="let row">{{row.disciplinaryPoint}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumns" (click)="openDialogConfirm(row, i)"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="8" translate="tableNoData"></td>
+    </tr>
+  </table>
+
 </mat-expansion-panel>

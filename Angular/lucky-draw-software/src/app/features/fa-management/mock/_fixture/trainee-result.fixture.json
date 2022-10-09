@@ -56,6 +56,22 @@
             ]
           }
         ]
+      },
+      "attendanceStatus": {
+        "result": [
+          {
+            "name": "Thg1-22",
+            "statusOfEachDay": ["P", ", ", "P", "A", "A", "E", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "E", "E", "A", "L", "L" , ", "]
+          },
+          {
+            "name": "Thg2-22",
+            "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "P", "P", "A", "L", "L" , "P", "P"]
+          },
+          {
+            "name": "Thg3-22",
+            "statusOfEachDay": ["A", "A", "A", "P", "A", "P", "E", "E", "P", "P", "P", "P", "E", "P", "P", "E", "P", "P", "P", "Ln", "An", "P", "A", "L", "E", "E", "A", "L", "P" , "Ln", "A"]
+          }
+        ]
       }
     },
     {
@@ -112,6 +128,22 @@
             ]
           }
         ]
+      },
+      "attendanceStatus": {
+        "result": [
+          {
+            "name": "Thg4-22",
+            "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "P", "P", "A", "L", "L" , "P", "P"]
+          },
+          {
+            "name": "Thg6-22",
+            "statusOfEachDay": ["A", "A", "A", "P", "A", "P", "E", "E", "P", "P", "P", "P", "E", "P", "P", "E", "P", "P", "P", "Ln", "An", "P", "A", "L", "E", "E", "A", "L", "P" , "Ln", "A"]
+          },
+          {
+            "name": "Thg5-22",
+            "statusOfEachDay": ["P", ", ", "P", "A", "A", "E", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "E", "E", "A", "L", "L" , ", "]
+          }
+        ]
       }
     },
     {
@@ -166,6 +198,22 @@
                 "weightedNumber": 153
               }
             ]
+          }
+        ]
+      },
+      "attendanceStatus": {
+        "result": [
+          {
+            "name": "Thg7-22",
+            "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "Ln", "An", "P", "P", "L", "E", "", "P", "", "P" , "P", "A"]
+          },
+          {
+            "name": "Thg8-22",
+            "statusOfEachDay": ["P", ", ", "P", "A", "A", "P", "P", "P", "P", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "E", "E", "A", "L", "L" , ", "]
+          },
+          {
+            "name": "Thg9-22",
+            "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "P", "P", "A", "L", "L" , "P", "P"]
           }
         ]
       }

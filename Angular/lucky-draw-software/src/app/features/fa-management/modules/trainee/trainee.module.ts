@@ -40,6 +40,8 @@ import { CommitmentComponent } from './components/commitment/commitment.componen
 import { AllowanceComponent } from './components/allowance/allowance.component';
 import { AllocationComponent } from './components/allocation/allocation.component';
 import { TopicItemComponent } from './components/milestone-config/components/topic-item/topic-item.component';
+import { AttendanceStatusDialogComponent } from './components/attendance-status/components/attendance-status-dialog/attendance-status-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { TopicItemComponent } from './components/milestone-config/components/top
     CommitmentComponent,
     AllowanceComponent,
     AllocationComponent,
-    TopicItemComponent
+    TopicItemComponent,
+    AttendanceStatusDialogComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +85,8 @@ import { TopicItemComponent } from './components/milestone-config/components/top
     ReactiveFormsModule,
     FormsModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   providers: [
     TraineeDetailsFacade,

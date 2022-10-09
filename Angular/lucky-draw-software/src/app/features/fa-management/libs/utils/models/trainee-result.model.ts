@@ -20,7 +20,15 @@ export interface MilestoneConfig {
   milestone: MilestoneItem[]
 }
 
+export interface AttendanceStatus {
+  name: string;
+  statusOfEachDay: string[];
+}
+
 export interface TraineeResult {
   className: string,
-  milestoneConfig: MilestoneConfig
+  milestoneConfig: MilestoneConfig;
+  attendanceStatus: {
+    result: AttendanceStatus[];
+  }
 }

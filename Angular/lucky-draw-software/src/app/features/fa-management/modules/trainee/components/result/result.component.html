@@ -8,14 +8,19 @@
       [formResult]="formResult"
       [isEditControl]="isEditControl"
     ></app-trainee-milestone-config>
-    <!-- <app-trainee-attendance-status class="attendance"></app-trainee-attendance-status>
-    <app-trainee-topic-mark class="topic"></app-trainee-topic-mark>
-    <app-trainee-reward-penalty class="reward-penalty"></app-trainee-reward-penalty>
-    <app-trainee-gpa class="gpa"></app-trainee-gpa>
-    <app-trainee-commitment class="commitment"></app-trainee-commitment>
-    <app-trainee-allowance class="allowance"></app-trainee-allowance>
-    <app-trainee-allocation class="allocation"></app-trainee-allocation> -->
-  </mat-tab>
+    <app-trainee-attendance-status 
+      class="attendance"
+      [dataAttendanceStatus]="data.attendanceStatus.result"
+      [formResult]="formResult"
+      [isEditControl]="isEditControl"
+    ></app-trainee-attendance-status>
+    <!-- <app-trainee-topic-mark class="topic"></app-trainee-topic-mark>
+      <app-trainee-reward-penalty class="reward-penalty"></app-trainee-reward-penalty>
+      <app-trainee-gpa class="gpa"></app-trainee-gpa>
+      <app-trainee-commitment class="commitment"></app-trainee-commitment>
+      <app-trainee-allowance class="allowance"></app-trainee-allowance>
+      <app-trainee-allocation class="allocation"></app-trainee-allocation> -->
+    </mat-tab>
 </mat-tab-group>
 <div class="actions">
   <ng-container *ngIf="mode === 'view'; else btnSubmit">
