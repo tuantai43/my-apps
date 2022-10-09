@@ -5,8 +5,8 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root',
 })
-export class TrainerService extends BaseService {
+export class LocationService extends BaseService {
   constructor(http: HttpClient) {
-    super(http, 'trainers');
+    super(http, 'locations');
   }
 }

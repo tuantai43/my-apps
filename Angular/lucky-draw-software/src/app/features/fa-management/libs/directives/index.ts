@@ -1,2 +1,3 @@
-export { ActionType } from './action-button.directive';
+export { ActionType, isDisabled } from './lib/action-button.directive';
 export * from './directive.module';
+export { Currency } from './lib/currency.directive';

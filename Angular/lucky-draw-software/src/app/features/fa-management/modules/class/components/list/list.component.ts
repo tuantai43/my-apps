@@ -34,7 +34,7 @@ export class ListComponent implements OnDestroy, AfterViewInit {
   }
 
   update(): void {
-    this.router.navigate([this.selectionTable.selection.selected[0].id], { relativeTo: this.route });
+    this.router.navigate(['edit', this.selectionTable.selection.selected[0].id], { relativeTo: this.route });
   }
 
   ngAfterViewInit() {

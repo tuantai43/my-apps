@@ -32,7 +32,11 @@
   <!-- ID Column -->
   <ng-container matColumnDef="code">
     <th mat-header-cell *matHeaderCellDef mat-sort-header translate="classCode"></th>
-    <td mat-cell *matCellDef="let row">{{ row.code }}</td>
+    <td mat-cell *matCellDef="let row">
+      <a class="primary-text class-code" *appActionButton="actionType.CreateClass" [routerLink]="[row.id]">
+        {{ row.code }}
+      </a>
+    </td>
   </ng-container>
 
   <!-- Name Column -->

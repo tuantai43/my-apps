@@ -1,6 +1,6 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { filter, take } from 'rxjs';
-import { CoreFacade, UserRole } from '../store/core';
+import { CoreFacade, UserRole } from '../../store/core';
 
 export enum ActionType {
   ClassManagement = 'ClassManagement',
@@ -39,6 +39,65 @@ export enum ActionType {
   ExportReport = '[ReportManagement] Export report',
 }
 
+const ACCEPT: { [key: string]: Permission } = {
+  [ActionType.ClassManagement]: {
+    roles: [UserRole.All],
+  },
+  [ActionType.CandidateManagement]: {
+    roles: [UserRole.All],
+  },
+  [ActionType.TraineeManagement]: {
+    roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.Trainer, UserRole.SystemAdmin],
+  },
+  [ActionType.TrainerManagement]: {
+    roles: [UserRole.All],
+  },
+  [ActionType.ReportManagement]: {
+    roles: [UserRole.All],
+  },
+  [ActionType.CreateClass]: {
+    roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
+  },
+  [ActionType.SubmitNewClass]: {
+    roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.SystemAdmin],
+  },
+  [ActionType.SubmitClass]: {
+    roles: [
+      UserRole.FaRec,
+      UserRole.Trainer,
+      UserRole.FaManager,
+      UserRole.DeliveryManager,
+      UserRole.ClassAdmin,
+      UserRole.SystemAdmin,
+    ],
+    enable: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.SystemAdmin],
+  },
+  [ActionType.UpdateClass]: {
+    roles: [UserRole.FaRec, UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
+    enable: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
+  },
+  [ActionType.CancelClass]: {
+    roles: [UserRole.All],
+    enable: [UserRole.SystemAdmin, UserRole.FaManager, UserRole.DeliveryManager],
+  },
+  [ActionType.StartClass]: {
+    roles: [UserRole.All],
+    enable: [UserRole.ClassAdmin, UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
+  },
+  [ActionType.FinishClass]: {
+    roles: [UserRole.All],
+    enable: [UserRole.ClassAdmin, UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
+  },
+};
+
+export const isDisabled = (roles: UserRole[], actionType: ActionType): boolean => {
+  const action = ACCEPT[actionType];
+  if (action && action.enable) {
+    return !action.enable.some((r) => roles.includes(r));
+  }
+  return true;
+};
+
 interface Permission {
   roles: UserRole[];
   enable?: UserRole[];
@@ -48,45 +107,6 @@ interface Permission {
   selector: '[appActionButton]',
 })
 export class ActionButtonDirective {
-  readonly accept: { [key: string]: Permission } = {
-    [ActionType.ClassManagement]: {
-      roles: [UserRole.All],
-    },
-    [ActionType.CandidateManagement]: {
-      roles: [UserRole.All],
-    },
-    [ActionType.TraineeManagement]: {
-      roles: [
-        UserRole.FaManager,
-        UserRole.DeliveryManager,
-        UserRole.ClassAdmin,
-        UserRole.Trainer,
-        UserRole.SystemAdmin,
-      ],
-    },
-    [ActionType.TrainerManagement]: {
-      roles: [UserRole.All],
-    },
-    [ActionType.ReportManagement]: {
-      roles: [UserRole.All],
-    },
-    [ActionType.CreateClass]: {
-      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
-    },
-    [ActionType.SubmitNewClass]: {
-      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.SystemAdmin],
-    },
-    [ActionType.SubmitClass]: {
-      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.ClassAdmin, UserRole.SystemAdmin],
-    },
-    [ActionType.UpdateClass]: {
-      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
-    },
-    [ActionType.CancelClass]: {
-      roles: [UserRole.FaManager, UserRole.DeliveryManager, UserRole.SystemAdmin],
-    },
-  };
-
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
@@ -101,7 +121,7 @@ export class ActionButtonDirective {
         take(1)
       )
       .subscribe((roles) => {
-        const action = this.accept[actionType];
+        const action = ACCEPT[actionType];
         if (action && (action.roles.includes(UserRole.All) || roles.find((r) => action.roles.includes(r)))) {
           this.viewContainer.createEmbeddedView(this.templateRef);
         } else {

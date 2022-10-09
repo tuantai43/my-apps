@@ -5,6 +5,8 @@ export enum ActionTypes {
   LoadList = '[ClassActionTypes] Load classes',
   LoadedList = '[ClassActionTypes] Loaded classes',
   UpdateDataSearch = '[ClassActionTypes] Update data search',
+  CancelClasses = '[ClassActionTypes] Cancel classes',
+  CanceledClasses = '[ClassActionTypes] Canceled classes',
 }
 
 export class LoadList implements Action {
@@ -21,4 +23,14 @@ export class UpdateDataSearch implements Action {
   constructor(public dataSearch: DataSearch) {}
 }
 
-export type ClassActions = LoadList | LoadedList | UpdateDataSearch;
+export class CancelClasses implements Action {
+  readonly type = ActionTypes.CancelClasses;
+  constructor(public ids: string[]) {}
+}
+
+export class CanceledClasses implements Action {
+  readonly type = ActionTypes.CanceledClasses;
+  constructor() {}
+}
+
+export type ClassActions = LoadList | LoadedList | UpdateDataSearch | CancelClasses | CanceledClasses;

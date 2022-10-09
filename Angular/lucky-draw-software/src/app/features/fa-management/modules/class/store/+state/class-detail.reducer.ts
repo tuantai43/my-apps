@@ -107,7 +107,7 @@ export function classDetailsReducer(state = initialState(), action: ClassActions
         class: initialClassDetail(),
       };
     }
-    case ClassDetailsActionTypes.CreateClass: {
+    case ClassDetailsActionTypes.CreatedClass: {
       return {
         ...state,
         isCreating: true,

@@ -1,25 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { TraineeDetails } from '../../modules/trainee/store';
+import { TraineeDetails } from '../../../modules/trainee/store';
 import { Observable } from 'rxjs';
 import { TraineeResult } from '../utils/models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TraineeDetailsService {
-
   readonly api = `${environment.baseUrlApi}/${environment.prefixUrlApi}`;
 
-  constructor( private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getDetailTrainee(emplId: number): Observable<TraineeDetails> {
-    return this.http.get<TraineeDetails>(`${this.api}/trainee/${emplId}`)
+    return this.http.get<TraineeDetails>(`${this.api}/trainee/${emplId}`);
   }
 
   updateDetailTrainee(emplId: number, data: TraineeDetails): Observable<TraineeDetails> {
-    return this.http.put<TraineeDetails>(`${this.api}/trainee/${emplId}`, { data })
+    return this.http.put<TraineeDetails>(`${this.api}/trainee/${emplId}`, { data });
   }
 
   deleteTrainee(emplId: number): Observable<any> {
@@ -29,6 +28,4 @@ export class TraineeDetailsService {
   getTraineeResult(emplId: number): Observable<TraineeResult[]> {
     return this.http.get<TraineeResult[]>(`${this.api}/trainee/result/${emplId}`);
   }
-
 }
-

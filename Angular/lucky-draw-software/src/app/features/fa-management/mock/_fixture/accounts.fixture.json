@@ -1,0 +1,48 @@
+{
+  "API_KEY": "accounts",
+  "API_NAME": "Accounts List",
+  "data": [
+    {
+      "id": "9b1deb4d-asdh-4bad-9bdd-2b0d7b3dcb6d",
+      "account": "TaiPT",
+      "name": "Pham Tuan Tai",
+      "roles": ["SA"]
+    },
+    {
+      "id": "9b1deb4d-mjJa-4bad-9bdd-2b0d7b3dcb6d",
+      "account": "HauNX",
+      "name": "Nguyen Xuan Hau",
+      "roles": ["FM"]
+    },
+    {
+      "id": "9b1deb4d-masl-4bad-9bdd-2b0d7b3dcb61",
+      "account": "HuyPL1",
+      "name": "Phan Le Huy",
+      "roles": ["DM"]
+    },
+    {
+      "id": "9b1deb4d-masl-4bad-9bdd-2b0d7b3dcb62",
+      "account": "Clone1",
+      "name": "Admin Clone 1",
+      "roles": ["CA"]
+    },
+    {
+      "id": "9b1deb4d-masl-4bad-9bdd-2b0d7b3dcb62",
+      "account": "Clone",
+      "name": "Admin Clone 1",
+      "roles": ["CA"]
+    },
+    {
+      "id": "9b1deb4d-masl-4bad-9bdd-2b0d7b3dcb63",
+      "account": "TaiPT2",
+      "name": "Pham Tuan Tai Clone 2",
+      "roles": ["FR"]
+    },
+    {
+      "id": "9b1deb4d-masl-4bad-9bdd-2b0d7b3dcb3d",
+      "account": "TaiPT3",
+      "name": "Pham Tuan Tai Clone 3",
+      "roles": ["TR"]
+    }
+  ]
+}

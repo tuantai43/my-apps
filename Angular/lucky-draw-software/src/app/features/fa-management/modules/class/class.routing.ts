@@ -21,14 +21,14 @@ export const routes: Routes = [
     path: ':id',
     component: CreateComponent,
     data: {
-      screenName: ScreenName.UpdateClass,
+      screenName: ScreenName.ViewClass,
     },
   },
   {
-    path: 'view/:id',
+    path: 'edit/:id',
     component: CreateComponent,
     data: {
-      screenName: ScreenName.ViewClass,
+      screenName: ScreenName.UpdateClass,
     },
   },
 ];

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActionButtonDirective } from './action-button.directive';
-import { CurrencyDirective } from './currency.directive';
-import { NumberDirective } from './number.directive';
+import { ActionButtonDirective } from './lib/action-button.directive';
+import { CurrencyDirective } from './lib/currency.directive';
+import { NumberDirective } from './lib/number.directive';
 
 const DIRECTIVES = [ActionButtonDirective, CurrencyDirective, NumberDirective];
 

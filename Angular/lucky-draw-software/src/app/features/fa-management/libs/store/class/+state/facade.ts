@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BaseFacade } from '../../+base';
-import { LoadList, UpdateDataSearch } from './action';
+import { CancelClasses, LoadList, UpdateDataSearch } from './action';
 import { InitState, DataSearch, ClassView } from './reducer';
 import { classQuery } from './selectors';
 
@@ -30,5 +30,9 @@ export class ClassFacade extends BaseFacade<InitState, ClassView> {
         location: 0,
       })
     );
+  }
+
+  cancel(ids: string[]): void {
+    this.store.dispatch(new CancelClasses(ids));
   }
 }

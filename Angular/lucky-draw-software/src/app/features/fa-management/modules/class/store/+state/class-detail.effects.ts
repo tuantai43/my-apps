@@ -23,9 +23,7 @@ export class ClassDetailsEffects {
   createClass$ = createEffect(() =>
     this.action$.pipe(
       ofType(ClassDetailsActionTypes.CreateClass),
-      concatMap(({ classDetails }) =>
-        this.classService.create<ClassDetails>(classDetails).pipe(map(() => new CreatedClass()))
-      )
+      concatMap(({ classDetails }) => this.classService.create(classDetails).pipe(map(() => new CreatedClass())))
     )
   );
 
@@ -38,5 +36,5 @@ export class ClassDetailsEffects {
     )
   );
 
-  constructor(private action$: Actions<ClassActions>, private classService: ClassService) {}
+  constructor(private action$: Actions<ClassActions>, private classService: ClassService<ClassDetails>) {}
 }

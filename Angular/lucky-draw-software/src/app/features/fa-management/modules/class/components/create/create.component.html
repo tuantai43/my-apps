@@ -1,4 +1,4 @@
-<h2 translate="createClass"></h2>
+<h2 [translate]="screenName"></h2>
 <mat-divider></mat-divider>
 <mat-tab-group>
   <mat-tab [label]="'createClass.information' | translate">
@@ -11,7 +11,7 @@
   <mat-tab [label]="'createClass.trainee' | translate">Content 2</mat-tab>
 </mat-tab-group>
 <div class="flex-wrap gap">
-  <ng-container *ngIf="!id">
+  <ng-container *ngIf="screenName !== ScreenName.ViewClass; else viewMode">
     <button
       mat-raised-button
       color="primary"
@@ -21,22 +21,45 @@
       {{ 'submit' | translate }}
     </button>
   </ng-container>
-  <ng-container *ngIf="id">
+  <ng-template #viewMode>
     <button
       mat-raised-button
-      color="primary"
+      class="color-icon primary"
       *appActionButton="actionType.UpdateClass"
       (click)="update()"
-      [disabled]="form.invalid">
+      [disabled]="form.invalid || (disableUpdate$ | async)">
+      <mat-icon>arrow_circle_up</mat-icon>
       {{ 'updateClass' | translate }}
     </button>
-    <button mat-raised-button color="primary" *appActionButton="actionType.SubmitClass" [disabled]="form.invalid">
+    <button
+      mat-raised-button
+      class="color-icon accent"
+      *appActionButton="actionType.SubmitClass"
+      [disabled]="disableSubmmitClass$ | async">
+      <mat-icon>upgrade</mat-icon>
       {{ 'submitClass' | translate }}
+    </button>
+    <button
+      mat-raised-button
+      class="color-icon start-class"
+      *appActionButton="actionType.StartClass"
+      [disabled]="disableStartClass$ | async">
+      <mat-icon>play_arrow</mat-icon>
+      {{ 'startClass' | translate }}
+    </button>
+    <button
+      mat-raised-button
+      class="color-icon warn"
+      *appActionButton="actionType.CancelClass"
+      [disabled]="disableCancelClass$ | async"
+      (click)="cancel()">
+      <mat-icon>block</mat-icon>
+      {{ 'removeClass' | translate }}
     </button>
     <button mat-raised-button color="primary" *appActionButton="actionType.StartClass" [disabled]="form.invalid">
       {{ 'startClass' | translate }}
     </button>
-  </ng-container>
+  </ng-template>
   <a mat-raised-button class="color-icon warn" [routerLink]="['/fa-management/class-management']">
     <mat-icon>reply</mat-icon>
     {{ 'close' | translate }}
