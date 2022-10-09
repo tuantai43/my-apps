@@ -25,10 +25,20 @@ export interface AttendanceStatus {
   statusOfEachDay: string[];
 }
 
+export interface topicScoreItem {
+  name: string;
+  score: string;
+}
+
+export interface topicMark {
+    milestoneName: string,
+    sum: number,
+    topicScore: topicScoreItem[];
+}
+
 export interface TraineeResult {
   className: string,
   milestoneConfig: MilestoneConfig;
-  attendanceStatus: {
-    result: AttendanceStatus[];
-  }
+  attendanceStatus: AttendanceStatus[];
+  topicMark: topicMark[];
 }

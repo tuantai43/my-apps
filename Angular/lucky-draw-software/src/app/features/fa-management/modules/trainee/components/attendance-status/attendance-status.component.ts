@@ -17,7 +17,7 @@ export class AttendanceStatusComponent implements OnInit {
   @Input() isEditControl!: boolean;
 
   expanded = true;
-  toggleIcon = true; // Used for custom icon mat-expansion-panel.
+  toggleIcon = false; // Used for custom icon mat-expansion-panel.
   selectionTable = new SelectionTable<any>([], [], true);
   dataAfterFormat: any = [];
 
@@ -34,12 +34,14 @@ export class AttendanceStatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataAttendanceStatus.forEach((item) =>{
-      this.dataAfterFormat.push(...this.formatData(item))
+      this.dataAfterFormat.push(...this.formatDataForItem(item))
       this.selectionTable.dataSource.data = this.dataAfterFormat;
     })
+    this.getDataFinal(this.dataAttendanceStatus);
+    this.dataAfterFormat.push(...this.getDataFinal(this.dataAttendanceStatus));
   }
 
-  formatData(item: AttendanceStatus) {
+  formatDataForItem(item: AttendanceStatus) {
     let numberOfAttendances = item.statusOfEachDay.filter((i) => i !== '').length; //Number of attendance check times
     let absentTimeBymonth = 0;
     let lateAndEarlyLeaveBymonth = 0;
@@ -110,6 +112,84 @@ export class AttendanceStatusComponent implements OnInit {
       lateAndEarlyLeave: lateAndEarlyLeaveBymonth, 
       noPermissionsRate: noPermissionsRateBymonth.toFixed(2) + '%', 
       disciplinaryPoint: disciplinaryPointBymonth + '%',
+    }]
+  }
+
+  getDataFinal (data: AttendanceStatus[]){
+    let totalNumberOfAttendances = 0; //Number of attendance check all times.
+    let allCoefficientX = 0; // This variable is used for the calculation noPermissionsRateBymonth.
+    let allCoefficientY = 0; // This variable is used for the calculation noPermissionsRateBymonth.
+    data.forEach((item) =>{
+      const numberOfCheckTime = item.statusOfEachDay.filter((i) => {
+        return i !== '';
+      }).length;
+      totalNumberOfAttendances = totalNumberOfAttendances + numberOfCheckTime;
+      item.statusOfEachDay.forEach((status) => {
+      switch(status){
+        case 'P': {
+          break;
+        };
+        case 'A': {
+          allCoefficientY++;
+          break;
+        };
+        case 'E': {
+          allCoefficientY++;
+          break;
+        };
+        case 'L': {
+          allCoefficientY++;
+          break;
+        };
+        case 'An': {
+          allCoefficientX++;
+          allCoefficientY++;
+          break;
+        };
+        case 'En': {
+          allCoefficientX++;
+          allCoefficientY++;
+          break;
+        };
+        case 'Ln': {
+          allCoefficientX++;
+          allCoefficientY++;
+          break;
+        };
+      }
+      });
+    });
+    let allAbsentTimeBymonth = this.dataAfterFormat.map((i: any) => i.absentTime).reduce((total: number, current: number) => {
+      return total + current;
+    });
+    let allLateAndEarlyLeaveBymonth = this.dataAfterFormat.map((i: any) => i.lateAndEarlyLeave).reduce((total: number, current: number) => {
+      return total + current;
+    });
+    let allNoPermissionsRateBymonth = 0;
+    let allDisciplinaryPointBymonth = 0;
+    allNoPermissionsRateBymonth  = allCoefficientX / allCoefficientY;
+    // Caculation for allDisciplinaryPointBymonth variable.
+    let notPresentTime = (allLateAndEarlyLeaveBymonth / 2) + (allAbsentTimeBymonth / totalNumberOfAttendances);
+    let notAttendanceRate = notPresentTime / totalNumberOfAttendances;
+    if(notPresentTime <= 5){allDisciplinaryPointBymonth = 100}
+    if(notAttendanceRate > 5 && notAttendanceRate <= 20 ){
+      allDisciplinaryPointBymonth = 80;
+    }else if(notAttendanceRate > 20 && notAttendanceRate <= 30 ){
+      allDisciplinaryPointBymonth = 60;
+    }else if(notAttendanceRate > 30 && notAttendanceRate < 50 ){
+      allDisciplinaryPointBymonth = 50;
+    }else if (notAttendanceRate >= 50 || allNoPermissionsRateBymonth < 20) {
+      allDisciplinaryPointBymonth = 20;
+    }else {
+      allDisciplinaryPointBymonth = 0;
+    }
+
+    return [{
+      name: 'Final',
+      absentTime: allAbsentTimeBymonth,
+      lateAndEarlyLeave: allLateAndEarlyLeaveBymonth, 
+      noPermissionsRate: allNoPermissionsRateBymonth.toFixed(2) + '%', 
+      disciplinaryPoint: allDisciplinaryPointBymonth + '%',
     }]
   }
 

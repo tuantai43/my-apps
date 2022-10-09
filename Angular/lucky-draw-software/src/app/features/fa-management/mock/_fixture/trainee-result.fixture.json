@@ -57,22 +57,72 @@
           }
         ]
       },
-      "attendanceStatus": {
-        "result": [
-          {
-            "name": "Thg1-22",
-            "statusOfEachDay": ["P", ", ", "P", "A", "A", "E", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "E", "E", "A", "L", "L" , ", "]
-          },
-          {
-            "name": "Thg2-22",
-            "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "P", "P", "A", "L", "L" , "P", "P"]
-          },
-          {
-            "name": "Thg3-22",
-            "statusOfEachDay": ["A", "A", "A", "P", "A", "P", "E", "E", "P", "P", "P", "P", "E", "P", "P", "E", "P", "P", "P", "Ln", "An", "P", "A", "L", "E", "E", "A", "L", "P" , "Ln", "A"]
-          }
-        ]
-      }
+      "attendanceStatus": [
+        {
+          "name": "Thg1-22",
+          "statusOfEachDay": ["P", "", "", "P", "A", "A", "E", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "E", "E", "A", "L", "L" , "", ""]
+        },
+        {
+          "name": "Thg2-22",
+          "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "P", "P", "A", "L", "L" , "P", "P"]
+        },
+        {
+          "name": "Thg3-22",
+          "statusOfEachDay": ["A", "A", "A", "P", "A", "P", "E", "E", "P", "P", "P", "P", "E", "P", "P", "E", "P", "P", "P", "Ln", "An", "P", "A", "L", "E", "E", "A", "L", "P" , "Ln", "A"]
+        }
+      ],
+      "topicMark": [
+        {
+          "milestoneName": "thg2-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "SQL",
+              "score": "8,5"
+            },
+            {
+              "name": "Java",
+              "score": "8,6"
+            },
+            {
+              "name": "PHP",
+              "score": "7,9"
+            }
+          ]
+        },
+        {
+          "milestoneName": "thg3-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "Mobile",
+              "score": "8,5"
+            },
+            {
+              "name": "Reactjs",
+              "score": "8,6"
+            }
+          ]
+        },
+        {
+          "milestoneName": "thg4-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "CSDL",
+              "score": "8,0"
+            },
+            {
+              "name": "C#",
+              "score": "8,0"
+            },
+            {
+              "name": "C++",
+              "score": "7,9"
+            }
+          ]
+        }
+      ]
     },
     {
       "className": "Class EZOS",
@@ -129,22 +179,76 @@
           }
         ]
       },
-      "attendanceStatus": {
-        "result": [
-          {
-            "name": "Thg4-22",
-            "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "P", "P", "A", "L", "L" , "P", "P"]
-          },
-          {
-            "name": "Thg6-22",
-            "statusOfEachDay": ["A", "A", "A", "P", "A", "P", "E", "E", "P", "P", "P", "P", "E", "P", "P", "E", "P", "P", "P", "Ln", "An", "P", "A", "L", "E", "E", "A", "L", "P" , "Ln", "A"]
-          },
-          {
-            "name": "Thg5-22",
-            "statusOfEachDay": ["P", ", ", "P", "A", "A", "E", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "E", "E", "A", "L", "L" , ", "]
-          }
-        ]
-      }
+      "attendanceStatus": [
+        {
+          "name": "Thg4-22",
+          "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "", "", "", "", "Ln", "An", "En", "A", "L", "P", "P", "A", "L", "L" , "P", "P"]
+        },
+        {
+          "name": "Thg6-22",
+          "statusOfEachDay": ["A", "A", "A", "P", "A", "P", "E", "E", "P", "P", "P", "P", "E", "P", "P", "E", "P", "", "", "Ln", "An", "", "A", "L", "", "", "A", "L", "P" , "Ln", "A"]
+        },
+        {
+          "name": "Thg5-22",
+          "statusOfEachDay": ["P", "", "", "P", "A", "A", "E", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "", "E", "A", "", "" , "", ""]
+        }
+      ],
+      "topicMark": [
+        {
+          "milestoneName": "thg5-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "App",
+              "score": "7,9"
+            },
+            {
+              "name": "Web",
+              "score": "7,9"
+            },
+            {
+              "name": "AI",
+              "score": "7,9"
+            }
+          ]
+        },
+        {
+          "milestoneName": "thg6-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "C++",
+              "score": "8,6"
+            },
+            {
+              "name": "Web",
+              "score": "9,0"
+            },
+            {
+              "name": "WinForm",
+              "score": "7,9"
+            }
+          ]
+        },
+        {
+          "milestoneName": "thg7-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "C++",
+              "score": "7,6"
+            },
+            {
+              "name": "Web",
+              "score": "8,0"
+            },
+            {
+              "name": "WinForm",
+              "score": "7,9"
+            }
+          ]
+        }
+      ]
     },
     {
       "className": "Class CASIO",
@@ -201,22 +305,76 @@
           }
         ]
       },
-      "attendanceStatus": {
-        "result": [
-          {
-            "name": "Thg7-22",
-            "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "Ln", "An", "P", "P", "L", "E", "", "P", "", "P" , "P", "A"]
-          },
-          {
-            "name": "Thg8-22",
-            "statusOfEachDay": ["P", ", ", "P", "A", "A", "P", "P", "P", "P", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "E", "E", "A", "L", "L" , ", "]
-          },
-          {
-            "name": "Thg9-22",
-            "statusOfEachDay": ["P", "P", "P", "P", "P", "P", "E", "P", "An", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "En", "A", "L", "P", "P", "A", "L", "L" , "P", "P"]
-          }
-        ]
-      }
+      "attendanceStatus": [
+        {
+          "name": "Thg7-22",
+          "statusOfEachDay": ["", "", "", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "Ln", "An", "P", "P", "L", "E", "", "P", "", "P" , "P", "A"]
+        },
+        {
+          "name": "Thg8-22",
+          "statusOfEachDay": ["P", "", "", "P", "A", "A", "P", "P", "P", "P", "En", "Ln", "", "P", "P", "P", "P", "P", "P", "", "An", "En", "A", "L", "E", "", "A", "", "L" , "", ""]
+        },
+        {
+          "name": "Thg9-22",
+          "statusOfEachDay": ["", "", "", "", "", "", "E", "P", "", "En", "Ln", "Ln", "P", "P", "P", "P", "P", "P", "Ln", "An", "", "A", "L", "P", "P", "A", "", "L" , "P", "P"]
+        }
+      ],
+      "topicMark": [
+        {
+          "milestoneName": "thg8-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "NodeJS",
+              "score": "7,9"
+            },
+            {
+              "name": "MongoDB",
+              "score": "7,9"
+            },
+            {
+              "name": "SQL",
+              "score": "7,9"
+            }
+          ]
+        },
+        {
+          "milestoneName": "thg9-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "C++",
+              "score": "8,6"
+            },
+            {
+              "name": "Web",
+              "score": "9,0"
+            },
+            {
+              "name": "WinForm",
+              "score": "7,9"
+            }
+          ]
+        },
+        {
+          "milestoneName": "thg10-22",
+          "sum": 70,
+          "topicScore": [
+            {
+              "name": "MMT",
+              "score": "8,6"
+            },
+            {
+              "name": "HQTSQL",
+              "score": "9,0"
+            },
+            {
+              "name": "LTCB",
+              "score": "7,0"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

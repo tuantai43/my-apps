@@ -1,4 +1,4 @@
-<mat-expansion-panel [expanded]="expanded" [hideToggle]="true">
+<mat-expansion-panel [expanded]="!expanded" [hideToggle]="true">
   <mat-expansion-panel-header>
     <mat-panel-title 
       (click)="$event.stopPropagation()"
@@ -30,15 +30,19 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="noPermissionsRate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header translate="">noPermissionsRate</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header translate="">No Permissions Rate</th>
       <td mat-cell *matCellDef="let row">{{row.noPermissionsRate}}</td>
     </ng-container>
 
     <!-- DOB Column -->
     <ng-container matColumnDef="disciplinaryPoint">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header translate="dob">Disciplinary Point</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header translate="">Disciplinary Point</th>
       <td mat-cell *matCellDef="let row">{{row.disciplinaryPoint}}</td>
     </ng-container>
+
+    <!-- <tr mat-row>
+      <td mat-cell>Final</td>
+    </tr> -->
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumns" (click)="openDialogConfirm(row, i)"></tr>

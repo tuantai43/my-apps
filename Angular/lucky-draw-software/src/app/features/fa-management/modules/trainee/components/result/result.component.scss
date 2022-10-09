@@ -14,27 +14,26 @@
   }
 
   .topic {
-    @include padding();
+   padding-bottom: 15px;
   }
 
   .reward-penalty {
-    @include padding();
+   padding-bottom: 15px;
   }
   
   .gpa {
-    @include padding();
+   padding-bottom: 15px;
   }
 
   .commitment {
-    @include padding();
+   padding-bottom: 15px;
   }
 
   .allowance {
-    @include padding();
+   padding-bottom: 15px;
   }
 
   .allocation {
-    @include padding();
   }
 
   .actions {

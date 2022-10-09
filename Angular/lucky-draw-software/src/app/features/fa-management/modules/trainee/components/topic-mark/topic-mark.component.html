@@ -1,5 +1,39 @@
-<mat-expansion-panel [expanded]="true">
+<mat-expansion-panel [expanded]="!expanded" [hideToggle]="true">
   <mat-expansion-panel-header>
-    <mat-panel-title translate="traineeResult.topic"> </mat-panel-title>
+    <mat-panel-title 
+      (click)="$event.stopPropagation()"
+      class="title" translate="traineeResult.topic"
+    ></mat-panel-title>
+    <mat-icon (click)="$event.preventDefault()" (click)="expandForExpansion()" class="icon-expand">
+      {{toggleIcon ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+    </mat-icon>
   </mat-expansion-panel-header>
+  <div class="body" [formGroup]="form">
+    <div class="array-topic-mark" formArrayName="topicScore">
+      <div class="topic-mark-item" *ngFor="let topicMilestone of arrFormTopicScore.controls; let indexMilestone = index"
+      [formGroupName]="indexMilestone">
+        <div class="common-row milestone">
+          <div class="common-row-label name">{{ topicMilestone.get('milestoneName')?.value }}</div>
+          <div class="common-row-value score">{{ topicMilestone.get('sum')?.value }}%</div>
+        </div>
+        <div class="common-row topic-label-block" >
+          <div class="common-row-label topic">Topic</div>
+          <div class="common-row-value score">Score</div>
+        </div>
+        <div formArrayName="topicScoreItem">
+          <div class="common-row topic-score-item" *ngFor="let tpc of topicScoreItem(indexMilestone)?.controls; let indexTopic = index" [formGroupName]="indexTopic">
+            <div class="common-row-label item-name">
+              {{  tpc.get('name')?.value }}
+            </div>
+            <div class="common-row-value item-score">
+              <mat-form-field class="form-control control-{{mode}}" appearance="fill">
+                <input matInput formControlName="score">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </mat-expansion-panel>

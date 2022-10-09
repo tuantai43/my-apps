@@ -10,13 +10,25 @@
     ></app-trainee-milestone-config>
     <app-trainee-attendance-status 
       class="attendance"
-      [dataAttendanceStatus]="data.attendanceStatus.result"
+      [dataAttendanceStatus]="data.attendanceStatus"
       [formResult]="formResult"
       [isEditControl]="isEditControl"
     ></app-trainee-attendance-status>
-    <!-- <app-trainee-topic-mark class="topic"></app-trainee-topic-mark>
-      <app-trainee-reward-penalty class="reward-penalty"></app-trainee-reward-penalty>
-      <app-trainee-gpa class="gpa"></app-trainee-gpa>
+    <app-trainee-topic-mark 
+      class="topic"
+      [formResult]="formResult"
+      [dataTopicMark]="data.topicMark"
+      [mode]="mode"
+      [isEditControl]="isEditControl"
+      ></app-trainee-topic-mark>
+      <app-trainee-reward-penalty 
+        class="reward-penalty"
+        [formResult]="formResult"
+        [mode]="mode"
+        [isEditControl]="isEditControl"
+      ></app-trainee-reward-penalty>
+      <!-- <app-trainee-gpa class="gpa"></app-trainee-gpa>
+        [dataRewardAndPenalty]="data.rewardAndPenalty"
       <app-trainee-commitment class="commitment"></app-trainee-commitment>
       <app-trainee-allowance class="allowance"></app-trainee-allowance>
       <app-trainee-allocation class="allocation"></app-trainee-allocation> -->
