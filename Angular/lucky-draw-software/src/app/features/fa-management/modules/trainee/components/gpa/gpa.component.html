@@ -1,5 +1,29 @@
-<mat-expansion-panel [expanded]="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title translate="traineeResult.gpa"> </mat-panel-title>
+<mat-expansion-panel [expanded]="!expanded" [hideToggle]="true">
+  <mat-expansion-panel-header (click)="$event.stopPropagation()">
+    <mat-panel-title (click)="$event.stopPropagation()" class="title" translate="traineeResult.gpa">
+    </mat-panel-title>
+    <mat-icon (click)="$event.preventDefault()" (click)="expandForExpansion()" class="icon-expand">
+      {{toggleIcon ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+    </mat-icon>
   </mat-expansion-panel-header>
+  <div class="gpa-body">
+    <div class="body-header">
+      <div class="common-column column-empty"><span class="pl-5"></span></div>
+      <div class="common-column column-academic"><span class="pl-5">Academic Mark</span></div>
+      <div class="common-column column-disciplinary"><span class="pl-5">Disciplinary Point</span></div>
+      <div class="common-column column-bonus"><span class="pl-5">Bonus</span></div>
+      <div class="common-column column-penalty"><span class="pl-5">Penalty</span></div>
+      <div class="common-column column-gpa"><span class="pl-5">GPA</span></div>
+    </div>
+    <div class="body-content">
+      <div class="row-item" *ngFor="let item of data">
+        <div class="common-column column-empty"><span class="pl-5">{{item.milestone}}%</span></div>
+        <div class="common-column column-academic"><span class="pl-5">{{item.academicMark}}%</span></div>
+        <div class="common-column column-disciplinary"><span class="pl-5">{{item.disciplinaryMark}}%</span></div>
+        <div class="common-column column-bonus"><span class="pl-5">{{item.bonus}}%</span></div>
+        <div class="common-column column-penalty"><span class="pl-5">{{item.penalty}}%</span></div>
+        <div class="common-column column-gpa"><span class="pl-5">{{item.gpa}}%</span></div>
+      </div>
+    </div>
+  </div>
 </mat-expansion-panel>

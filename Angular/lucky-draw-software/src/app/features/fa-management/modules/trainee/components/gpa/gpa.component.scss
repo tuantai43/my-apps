@@ -4,4 +4,105 @@
   display: flex;
   flex-direction: column;
   @include gap();
+
+  .line-block{
+    width: 1px;
+    background-color: #000000;
+  }
+
+  ::ng-deep {
+    .mat-expansion-panel-body {
+      padding: 0 !important;
+    }
+  }
+
+  mat-expansion-panel-header{
+    background-color: var(--p-A200);
+  }
+  mat-expansion-panel-header:hover{
+    background-color: var(--p-A200);
+  }
+
+  .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
+    background-color: var(--p-A200);
+  }
+
+  .mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover {
+    background-color: var(--p-A200);
+  }
+
+  .mat-expanded mat-expansion-panel-header{
+    border-bottom: 1px solid #000;
+  }
+
+  .title {
+    margin-right: 0;
+    height: 48px;
+    margin-left: 20px;
+    cursor: default;
+  }
+
+  .mat-expanded .title{
+    height: 65px;
+    cursor: default;
+  }
+
+  .icon-expand {
+    position: absolute;
+    left: 10px;
+    margin-top: 12px;
+  }
+
+  .mat-expanded .icon-expand {
+    margin-top: 21px;
+  }
+
+  .body-header {
+    display: flex;
+    border-bottom: 1px solid;
+  }
+
+  .body-content {
+    .row-item{
+      display: flex;
+      border-bottom: 1px solid;
+    }
+  }
+
+  .common-column {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    // padding-left: 5px;
+    border-right: 1px solid;
+    background-color: var(--p-50);
+  }
+
+  .common-column:first-child{
+    border-left: 1px solid;
+  }
+
+  .column-empty{
+    width: 15%;
+  }
+  .column-disciplinary{
+    width: 17%;
+  }
+  .column-academic{
+    width: 17%;
+  }
+  .column-bonus{
+    width: 17%;
+  }
+  .column-penalty{
+    width: 17%;
+  }
+  .column-gpa{
+    width: 17%;
+  }
+
+  .pl-5{
+    padding-left: 5px;
+  }
+
 }

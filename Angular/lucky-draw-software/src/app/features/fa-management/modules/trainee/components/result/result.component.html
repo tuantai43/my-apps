@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group [(selectedIndex)]="selectedTabClassIndex" (selectedTabChange)="onTabChanged($event)">
   <!--loop tab here-->
   <mat-tab *ngFor="let data of resultMilestone" [label]="data.className">
     <app-trainee-milestone-config 
@@ -20,18 +20,32 @@
       [dataTopicMark]="data.topicMark"
       [mode]="mode"
       [isEditControl]="isEditControl"
-      ></app-trainee-topic-mark>
-      <app-trainee-reward-penalty 
-        class="reward-penalty"
+    ></app-trainee-topic-mark>
+    <app-trainee-reward-penalty 
+      class="reward-penalty"
+      [formResult]="formResult"
+      [mode]="mode"
+      [isEditControl]="isEditControl"
+    ></app-trainee-reward-penalty>
+      <app-trainee-gpa 
+        class="gpa"
         [formResult]="formResult"
         [mode]="mode"
         [isEditControl]="isEditControl"
-      ></app-trainee-reward-penalty>
-      <!-- <app-trainee-gpa class="gpa"></app-trainee-gpa>
-        [dataRewardAndPenalty]="data.rewardAndPenalty"
-      <app-trainee-commitment class="commitment"></app-trainee-commitment>
-      <app-trainee-allowance class="allowance"></app-trainee-allowance>
-      <app-trainee-allocation class="allocation"></app-trainee-allocation> -->
+      ></app-trainee-gpa>
+      <app-trainee-commitment 
+        class="commitment"
+        [formResult]="formResult"
+        [mode]="mode"
+        [isEditControl]="isEditControl"
+      ></app-trainee-commitment>
+      <app-trainee-allowance
+        class="allowance"
+        [formResult]="formResult"
+        [mode]="mode"
+        [isEditControl]="isEditControl"
+      ></app-trainee-allowance>
+      <app-trainee-allocation class="allocation"></app-trainee-allocation>
     </mat-tab>
 </mat-tab-group>
 <div class="actions">

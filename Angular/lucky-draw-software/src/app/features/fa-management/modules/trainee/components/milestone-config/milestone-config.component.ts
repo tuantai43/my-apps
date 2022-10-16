@@ -25,11 +25,11 @@ export class MilestoneConfigComponent implements OnInit {
   @Input() set mode(value: string) {
     this._mode = value;
     if(value === 'view'){
-      (this.formResult?.get('milestone') as FormArray)?.controls.forEach((control) =>{
+      (this.form?.get('milestone') as FormArray)?.controls.forEach((control) =>{
         control.disable();
       })
     }else{
-      (this.formResult?.get('milestone') as FormArray)?.controls.forEach((control) =>{
+      (this.form?.get('milestone') as FormArray)?.controls.forEach((control) =>{
         control.enable();
       })
     }
@@ -44,24 +44,25 @@ export class MilestoneConfigComponent implements OnInit {
   toggleIcon = false; // Used for custom icon mat-expansion-panel.
   expandMilestone = true;
   expandTopic = true;
-
+  form!: FormGroup;
 
   get formMilestone () {
-    return this.formResult?.get('milestone') as FormArray;
+    return this.form?.get('milestone') as FormArray;
   }
 
   get formArrayTopic () {
-    return this.formResult?.get('milestone')?.get('topic') as FormArray;
+    return this.form?.get('milestone')?.get('topic') as FormArray;
   }
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    console.log(this.dataMilestone);
     // this.formResult.addControl('milestone', new FormArray([]));
     // console.log(this.formResult)
-    // this.formResult = this.fb.group({
-    //   milestone: this.fb.array
-    // })
+    this.form = this.fb.group({
+      milestone: this.fb.array([])
+    })
     this.initForm();
     // console.log(this.formResult.value)
   }

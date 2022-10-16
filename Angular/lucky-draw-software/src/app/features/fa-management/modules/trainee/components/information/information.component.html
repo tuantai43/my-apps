@@ -4,31 +4,31 @@
     <tr>
       <th>Empl ID</th>
       <td>
-        <!-- <mat-form-field class="form-control control-emplid" appearance="fill">
+        <mat-form-field class="form-control control-emplid" appearance="fill">
           <input matInput formControlName="emplId">
-        </mat-form-field> -->
-        <div class="form-control control-label"></div>
+        </mat-form-field>
+        <!-- <div class="form-control control-label"></div> -->
       </td>
       <th>Type</th>
       <td>
-        <!-- <mat-form-field class="form-control control-account" appearance="fill">
+        <mat-form-field class="form-control control-account" appearance="fill">
           <input matInput formControlName="account">
-        </mat-form-field> -->
-        <div class="form-control control-label"></div>
+        </mat-form-field>
+        <!-- <div class="form-control control-label"></div> -->
       </td>
       <th>Status</th>
       <td>
-        <!-- <mat-form-field class="form-control control-status" appearance="fill">
+        <mat-form-field class="form-control control-status" appearance="fill">
           <input matInput formControlName="status">
-        </mat-form-field> -->
-        <div class="form-control control-label"></div>
+        </mat-form-field>
+        <!-- <div class="form-control control-label"></div> -->
       </td>
       <th>Allocation Status</th>
       <td>
-        <!-- <mat-form-field class="form-control control-allocation-status" appearance="fill">
+        <mat-form-field class="form-control control-allocation-status" appearance="fill">
           <input matInput formControlName="allocationStatus">
-        </mat-form-field> -->
-        <div class="form-control"></div>
+        </mat-form-field>
+        <!-- <div class="form-control"></div> -->
       </td>
     </tr>
     <tr>
@@ -62,8 +62,13 @@
       </td>
       <th>DOB *</th>
       <td colspan="3">
-        <mat-form-field class="form-control control-dob control-{{mode}}" appearance="fill">
+        <!-- <mat-form-field class="form-control control-dob control-{{mode}}" appearance="fill">
           <input matInput formControlName="dob" [disabled]="true">
+        </mat-form-field> -->
+        <mat-form-field class="form-control control-dob control-{{mode}}" appearance="fill">
+          <input class="control-dob" matInput formControlName="dob" [matDatepicker]="dob" [max]="currentDate"/>
+          <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+          <mat-datepicker #dob></mat-datepicker>
         </mat-form-field>
       </td>
     </tr>

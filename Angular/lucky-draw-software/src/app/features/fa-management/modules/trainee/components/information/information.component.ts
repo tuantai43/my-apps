@@ -15,6 +15,7 @@ export class InformationComponent implements OnInit {
   @Input() emplId!: number;
   informationForm = new FormGroup({});
   mode = 'view';
+  currentDate = new Date();
 
   arrUnivers = [
     {label: 'HITC', value: 'HITC'},
@@ -42,7 +43,6 @@ export class InformationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.emplId);
     this.buildForm();
     this.traineeDetailsFacade.loadedTrainee();
     this.traineeDetailsFacade.trainee$.subscribe(((value) => {

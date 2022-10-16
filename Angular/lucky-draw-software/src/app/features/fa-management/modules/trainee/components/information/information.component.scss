@@ -17,6 +17,12 @@
     .control-edit .mat-form-field-flex{
       background-color: #ffffff;
     }
+
+    .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button{
+      width: unset;
+      height: unset
+    }
+    
     .orther-option-input{
       border: 1px solid !important;
       width: 100%;

@@ -69,10 +69,18 @@
   .mat-expanded .icon-expand {
     margin-top: 21px;
   }
+  
   .milestone-header{
     display: flex;
     border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
   }
+
+  .milestone-body{
+    border-left: 1px solid;
+  }
+
   .title-common{
     flex: 1;
     text-align: center;

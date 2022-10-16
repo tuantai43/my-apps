@@ -19,6 +19,9 @@ export class SearchComponent implements OnInit {
     phone: '',
     email: '',
   };
+
+  currentDate = new Date();
+  
   constructor( private traineeFacade: TraineeFacade) { }
 
   ngOnInit(): void {

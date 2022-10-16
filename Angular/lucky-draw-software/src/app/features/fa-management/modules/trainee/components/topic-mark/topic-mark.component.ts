@@ -29,7 +29,7 @@ export class TopicMarkComponent implements OnInit {
 
   form!: FormGroup;
   expanded = true;
-  toggleIcon = true; // Used for custom icon mat-expansion-panel.
+  toggleIcon = false; // Used for custom icon mat-expansion-panel.
   selectionTable = new SelectionTable<any>([], [], true);
   dataAfterFormat: any = [];
 

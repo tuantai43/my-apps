@@ -24,6 +24,10 @@
     border-bottom: 1px solid #000;
   }
 
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+  }
+
   .title {
     margin-right: 0;
     height: 48px;
@@ -44,6 +48,24 @@
 
   .mat-expanded .icon-expand {
     margin-top: 21px;
+  }
+
+  td.mat-cell {
+    border-left: 1px solid;
+    padding-left: 5px;
+  }
+  
+  td.mat-cell:last-child {
+    border-right: 1px solid;
+  }
+
+  th.mat-header-cell{
+    border-left: 1px solid;
+    padding-left: 5px;
+  }
+
+  th.mat-header-cell:last-child{
+    border-right: 1px solid;
   }
   
 }

@@ -1,5 +1,29 @@
-<mat-expansion-panel [expanded]="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title translate="traineeResult.commitment"> </mat-panel-title>
+<mat-expansion-panel [expanded]="!expanded" [hideToggle]="true">
+  <mat-expansion-panel-header (click)="$event.stopPropagation()">
+    <mat-panel-title (click)="$event.stopPropagation()" class="title" translate="traineeResult.commitment">
+    </mat-panel-title>
+    <mat-icon (click)="$event.preventDefault()" (click)="expandForExpansion()" class="icon-expand">
+      {{toggleIcon ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+    </mat-icon>
   </mat-expansion-panel-header>
+  <div class="gpa-body">
+    <div class="body-header">
+      <div class="common-column column-academic"><span class="pl-5">Commited Value</span></div>
+      <div class="common-column column-disciplinary"><span class="pl-5">Commited Working Duration</span></div>
+      <div class="common-column column-bonus"><span class="pl-5">Commited Working Start Date</span></div>
+      <div class="common-column column-penalty"><span class="pl-5">Commited Working End Date</span></div>
+      <div class="common-column column-empty"><span class="pl-5"></span>Remarks</div>
+    </div>
+    <div class="body-content" [formGroup]="form">
+      <div class="common-column column-empty"><span class="pl-5">50.000.000</span></div>
+      <div class="common-column column-academic"><span class="pl-5">12</span></div>
+      <div class="common-column column-disciplinary"><span class="pl-5">16/10/2022</span></div>
+      <div class="common-column column-bonus"><span class="pl-5"></span>16/10/2023</div>
+      <div class="common-column column-penalty">
+        <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+          <input matInput formControlName="remarks"/>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
 </mat-expansion-panel>

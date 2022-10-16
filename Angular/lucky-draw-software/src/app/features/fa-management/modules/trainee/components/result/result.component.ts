@@ -16,6 +16,7 @@ export class ResultComponent implements OnInit {
   @Input() emplId!: number;
   mode = 'view';
   isEditControl = false;
+  selectedTabClassIndex = 0;
 
   formResult!: FormGroup;
 
@@ -65,6 +66,10 @@ export class ResultComponent implements OnInit {
       this.mode = 'view';
       this.isEditControl = false;
     }
+  }
+
+  onTabChanged(e: any) {
+    console.log(e);
   }
 
 }
