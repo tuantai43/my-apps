@@ -1,4 +1,4 @@
-<mat-expansion-panel [expanded]="expanded" [hideToggle]="true">
+<mat-expansion-panel [expanded]="!expanded" [hideToggle]="true">
   <mat-expansion-panel-header (click)="$event.stopPropagation()">
     <mat-panel-title (click)="$event.stopPropagation()" class="title" translate="traineeResult.allowance">
     </mat-panel-title>
@@ -17,11 +17,11 @@
     </div>
     <div class="body-content">
       <div class="row-item" *ngFor="let item of data">
-        <div class="common-column column-empty"><span class="pl-5">{{item.milestone}}%</span></div>
+        <div class="common-column column-empty"><span class="pl-5">{{item.milestone}}</span></div>
         <div class="common-column column-gpa"><span class="pl-5">{{item.gpa}}%</span></div>
-        <div class="common-column column-level"><span class="pl-5">{{item.level}}%</span></div>
-        <div class="common-column column-salary"><span class="pl-5">{{item.salaryPaid}}%</span></div>
-        <div class="common-column column-standard"><span class="pl-5">{{item.standardAllowance}}%</span></div>
+        <div class="common-column column-level"><span class="pl-5">{{item.level}}</span></div>
+        <div class="common-column column-salary"><span class="pl-5">{{item.salaryPaid}}</span></div>
+        <div class="common-column column-standard"><span class="pl-5">{{item.standardAllowance}}</span></div>
         <div class="common-column column-remarks column-remarks-control">
           <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
             <input matInput/>

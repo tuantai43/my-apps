@@ -24,6 +24,10 @@
     border-bottom: 1px solid #000;
   }
 
+  .mat-expansion-panel-header{
+    border-radius: unset;
+  }
+
   ::ng-deep .mat-expansion-panel-body {
     padding: 0 !important;
   }
@@ -53,6 +57,7 @@
   td.mat-cell {
     border-left: 1px solid;
     padding-left: 5px;
+    background-color: var(--p-50);
   }
   
   td.mat-cell:last-child {
@@ -62,10 +67,18 @@
   th.mat-header-cell{
     border-left: 1px solid;
     padding-left: 5px;
+    background-color: #d9d9d9;
   }
 
   th.mat-header-cell:last-child{
     border-right: 1px solid;
   }
+
+  .mat-column-name{
+    background-color: #d9d9d9 !important;
+  }
   
+  tr.mat-row:hover {
+    background-color: red;
+  }
 }

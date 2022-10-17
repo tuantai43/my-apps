@@ -16,8 +16,12 @@ export class TopicMarkComponent implements OnInit {
   private _mode!: string;
   @Input() set mode(value: string){
     if(value === 'edit'){
-      this.arrFormTopicScore.controls.forEach((control) =>{
+      this.arrFormTopicScore?.controls.forEach((control) =>{
         control.enable();
+      })
+    }else{
+      this.arrFormTopicScore?.controls.forEach((control) =>{
+        control.disable();
       })
     }
     this._mode = value;
@@ -42,7 +46,7 @@ export class TopicMarkComponent implements OnInit {
   ];
 
   get arrFormTopicScore () {
-    return this.form.get('topicScore') as FormArray;
+    return this.form?.get('topicScore') as FormArray;
   }
 
   constructor(private fb: FormBuilder) { }

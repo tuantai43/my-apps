@@ -24,6 +24,10 @@
     border-bottom: 1px solid #000;
   }
 
+  .mat-expansion-panel-header{
+    border-radius: unset;
+  }
+
   ::ng-deep{
     .mat-form-field-wrapper {
       padding-bottom: 0px;
@@ -91,15 +95,20 @@
     min-height: 40px;
     display: flex;
     align-items: center;
-    background: #cdcdcd;
+    background: #d9d9d9;
+    padding-left: 5px;
   }
   
   .common-row-value{
     width: 40%;
     min-height: 40px;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.06);
+    background-color: var(--p-50);
     align-items: center;
+  }
+
+  .common-row-value.score {
+    padding-left: 3px;
   }
   
 }

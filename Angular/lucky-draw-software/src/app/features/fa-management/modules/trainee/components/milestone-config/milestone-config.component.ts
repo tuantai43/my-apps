@@ -57,7 +57,6 @@ export class MilestoneConfigComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    console.log(this.dataMilestone);
     // this.formResult.addControl('milestone', new FormArray([]));
     // console.log(this.formResult)
     this.form = this.fb.group({

@@ -48,6 +48,10 @@
     border-bottom: 1px solid #000;
   }
 
+  .mat-expansion-panel-header{
+    border-radius: unset;
+  }
+
   .title {
     margin-right: 0;
     height: 48px;

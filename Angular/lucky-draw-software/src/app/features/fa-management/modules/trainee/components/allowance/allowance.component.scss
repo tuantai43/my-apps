@@ -48,6 +48,10 @@
     border-bottom: 1px solid #000;
   }
 
+  .mat-expansion-panel-header{
+    border-radius: unset;
+  }
+
   .title {
     margin-right: 0;
     height: 48px;
@@ -132,7 +136,7 @@
     width: 66%
   }
   .column-value{
-    width: 34%;
+    width: 33.9%;
   }
 
   .pl-5{

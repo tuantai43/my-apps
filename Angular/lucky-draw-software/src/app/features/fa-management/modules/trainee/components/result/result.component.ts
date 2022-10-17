@@ -69,7 +69,6 @@ export class ResultComponent implements OnInit {
   }
 
   onTabChanged(e: any) {
-    console.log(e);
   }
 
 }

@@ -1,5 +1,50 @@
-<mat-expansion-panel [expanded]="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title translate="traineeResult.allocation"> </mat-panel-title>
+<mat-expansion-panel [expanded]="!expanded" [hideToggle]="true">
+  <mat-expansion-panel-header (click)="$event.stopPropagation()">
+    <mat-panel-title (click)="$event.stopPropagation()" class="title" translate="traineeResult.allocation">
+    </mat-panel-title>
+    <mat-icon (click)="$event.preventDefault()" (click)="expandForExpansion()" class="icon-expand">
+      {{toggleIcon ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+    </mat-icon>
   </mat-expansion-panel-header>
+  <div class="gpa-body">
+    <div class="body-header">
+      <div class="common-column column-fsu"><span class="pl-5">Allocated FSU</span></div>
+      <div class="common-column column-salary"><span class="pl-5">Salary</span></div>
+      <div class="common-column column-start"><span class="pl-5">Start Date</span></div>
+      <div class="common-column column-status"><span class="pl-5">Allocation Status</span></div>
+      <div class="common-column column-remarks"><span class="pl-5"></span>Remarks</div>
+    </div>
+    <div class="body-content" [formGroup]="form">
+      <div class="common-column column-fsu">
+        <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+          <input matInput formControlName="allocatedFsu"/>
+        </mat-form-field>
+      </div>
+      <div class="common-column column-salary">
+        <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+          <input matInput formControlName="salary"/>
+        </mat-form-field>
+      </div>
+      <div class="common-column column-start">
+        <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+          <input matInput [matDatepicker]="startDate" [max]="currentDate" formControlName="startDate"/>
+          <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="common-column column-status">
+        <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+          <mat-select formControlName="status">
+            <mat-option value="1">Allocated</mat-option>
+            <mat-option value="0">Not allocated</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="common-column column-remarks">
+        <mat-form-field class="control-{{mode}}" appearance="fill" color="primary">
+          <input matInput formControlName="remarks"/>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
 </mat-expansion-panel>
