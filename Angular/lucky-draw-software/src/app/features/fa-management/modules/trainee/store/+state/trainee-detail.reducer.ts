@@ -7,7 +7,7 @@ export enum TraineeType {
   trainee = 'Trainee',
 }
 
-export interface TraineeDetails extends TraineeView {
+export interface TraineeDetail extends TraineeView {
   type: string;
   allocationStatus: string;
   salaryPaid: string;
@@ -17,7 +17,7 @@ export interface TraineeDetails extends TraineeView {
   commitment: string;
 }
 
-export const initialTraineeDetail = (): TraineeDetails => ({
+export const initialTraineeDetail = (): TraineeDetail => ({
   ...initialTrainee(),
   type: '',
   allocationStatus: '',
@@ -29,7 +29,7 @@ export const initialTraineeDetail = (): TraineeDetails => ({
 });
 
 export interface TraineeDetailsState {
-  trainee: TraineeDetails;
+  trainee: TraineeDetail;
   isLoadedTrainee: boolean;
 }
 
@@ -38,18 +38,70 @@ const initialState = (): TraineeDetailsState => ({
   isLoadedTrainee: false,
 });
 
+// export function traineeDetailsReducer(state = initialState(), action: TraineeActions): TraineeDetailsState {
+//   switch (action.type) {
+//     case TraineeDetailsActionTypes.LoadTrainee: {
+//       return state;
+//     }
+//     case TraineeDetailsActionTypes.LoadedTrainee: {
+//       return {
+//         ...state,
+//         isLoadedTrainee: true,
+//         trainee: action.traineeDetail,
+//       };
+//     }
+//     default: {
+//       return state;
+//     }
+//   }
+// }
+
 export function traineeDetailsReducer(state = initialState(), action: TraineeActions): TraineeDetailsState {
   switch (action.type) {
     case TraineeDetailsActionTypes.LoadTrainee: {
-      return state;
+      return {
+        ...state,
+        trainee: initialTraineeDetail(),
+        isLoadedTrainee: false,
+      };
     }
     case TraineeDetailsActionTypes.LoadedTrainee: {
       return {
         ...state,
         isLoadedTrainee: true,
-        trainee: action.traineeDetails,
+        trainee: action.traineeDetail,
       };
     }
+    // case TraineeDetailsActionTypes.ResetClass: {
+    //   return {
+    //     ...state,
+    //     class: initialClassDetail(),
+    //   };
+    // }
+    // case TraineeDetailsActionTypes.CreatedClass: {
+    //   return {
+    //     ...state,
+    //     isCreating: true,
+    //   };
+    // }
+    // case TraineeDetailsActionTypes.CreateClass: {
+    //   return {
+    //     ...state,
+    //     isCreating: false,
+    //   };
+    // }
+    // case TraineeDetailsActionTypes.UpdateClass: {
+    //   return {
+    //     ...state,
+    //     isUpdating: true,
+    //   };
+    // }
+    // case TraineeDetailsActionTypes.UpdatedClass: {
+    //   return {
+    //     ...state,
+    //     isUpdating: false,
+    //   };
+    // }
     default: {
       return state;
     }

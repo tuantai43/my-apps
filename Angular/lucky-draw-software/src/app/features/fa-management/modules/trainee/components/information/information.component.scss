@@ -20,22 +20,16 @@
 
     .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button{
       width: unset;
-      height: unset
-    }
-    
-    .orther-option-input{
-      border: 1px solid !important;
-      width: 100%;
-      height: 30px;
-      background: blue;
+      height: unset;
     }
 
-    .span-custom{
-      display: block;
+    .mat-form-field-appearance-legacy .mat-form-field-infix {
+      padding: 12px 10px;
     }
+
   }
   .actions {
-    margin-top: 20px;
+    margin: 20px 0;
     display: flex;
     @include gap();
   }
@@ -65,4 +59,19 @@
     min-height: 40px;
   }
 
+}
+
+span.span-custom {
+  display: inline-block;
+  width: 100% !important;
+}
+
+input.orther-option-input {
+  width: 92%;
+  height: 40px;
+  border: none;
+  background: #d9d9d9;
+  padding: 0 20px 0 17px;
+  outline: none;
+  font-size: 16px;
 }

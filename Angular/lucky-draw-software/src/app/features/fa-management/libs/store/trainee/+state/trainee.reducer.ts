@@ -7,7 +7,7 @@ export enum TraineeStatus {
 }
 
 export interface TraineeView {
-  emplId: number;
+  emplId: string;
   account: string;
   name: string;
   dob: string;
@@ -20,7 +20,7 @@ export interface TraineeView {
 }
 
 export const initialTrainee = (): TraineeView => ({
-  emplId: -1,
+  emplId: '',
   account: '',
   name: '',
   dob: '',
@@ -33,7 +33,7 @@ export const initialTrainee = (): TraineeView => ({
 });
 
 export interface DataSearch {
-  emplId: number;
+  emplId: string;
   account: string;
   name: string;
   dob: string;
@@ -51,7 +51,7 @@ const initialState = (): InitState => ({
   list: [],
   isLoadedList: false,
   dataSearch: {
-    emplId: -1,
+    emplId: '',
     account: '',
     name: '',
     dob: '',

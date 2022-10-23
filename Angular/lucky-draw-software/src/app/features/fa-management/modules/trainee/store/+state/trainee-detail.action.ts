@@ -1,5 +1,5 @@
+import { TraineeDetail } from '@app/features/fa-management/libs/utils/models';
 import { Action } from '@ngrx/store';
-import { TraineeDetails } from './trainee-detail.reducer';
 
 export enum TraineeDetailsActionTypes {
   LoadTrainee = '[TraineeActionTypes] Load trainee details',
@@ -8,11 +8,12 @@ export enum TraineeDetailsActionTypes {
 
 export class LoadTrainee implements Action {
   readonly type = TraineeDetailsActionTypes.LoadTrainee;
+  constructor(public empId: string) {};
 }
 
 export class LoadedTrainee implements Action {
   readonly type = TraineeDetailsActionTypes.LoadedTrainee;
-  constructor(public traineeDetails: TraineeDetails) {}
+  constructor(public traineeDetail: TraineeDetail) {}
 }
 
 export type TraineeActions = LoadTrainee | LoadedTrainee;

@@ -1,23 +1,5 @@
 {
-  "API_KEY": "trainee/:emplId",
-  "API_NAME": "Trainee-detail API",
-  "data": {
-    "emplId": 1,
-    "type": "TraineeType.trainee",
-    "status":  0,
-    "allocationStatus": "Not Allocated",
-    "account": "David",
-    "name": "David Beckham",
-    "gender": "Male",
-    "dob": "26/01/1998",
-    "university": "ManU",
-    "faculty": "Sport",
-    "phone": "0979456789",
-    "email": "David@gmail.com",
-    "salaryPaid": "...",
-    "tpBankAccount": 1234567899,
-    "allowanceGroup": "DEV-1",
-    "commitment": "6 months",
-    "history": "create by David"
-  }
+  "API_KEY": "trainees/:emplId",
+  "API_NAME": "Trainees-detail API",
+  "data": []
 }

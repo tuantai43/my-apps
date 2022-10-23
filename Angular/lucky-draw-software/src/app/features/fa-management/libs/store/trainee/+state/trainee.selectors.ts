@@ -8,7 +8,7 @@ export const traineeQuery = {
     state.list.filter((t) => {
       const { emplId, account, name, dob, phone, email, } = state.dataSearch;
       return (
-        (!emplId || emplId === -1 || emplId === t.emplId) &&
+        (!emplId || emplId === t.emplId) &&
         (!account || account === t.account) &&
         (!name || name === t.name) &&
         (!dob || dob === t.dob) &&

@@ -13,7 +13,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class ResultComponent implements OnInit {
 
-  @Input() emplId!: number;
+  @Input() emplId!: string;
   mode = 'view';
   isEditControl = false;
   selectedTabClassIndex = 0;

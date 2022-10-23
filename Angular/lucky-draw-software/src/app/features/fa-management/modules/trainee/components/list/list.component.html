@@ -103,11 +103,21 @@
   aria-label="Select class of classes">
 </mat-paginator>
 <div class="actions">
-  <a mat-stroked-button color="primary">
-    <mat-icon>update</mat-icon>
+  <button 
+    [disabled]="allowUpdate"
+    mat-raised-button
+    class="color-icon accent"
+    (click)="updateTrainee()"
+  >
+    <mat-icon>edit</mat-icon>
     {{ 'updateTrainee' | translate }}
-  </a>
-  <button mat-stroked-button color="accent">
+  </button>
+  <button 
+    mat-raised-button
+    [disabled]="disableDeleteButton"
+    class="color-icon warn"
+    (click)="deleteTrainee()"
+  >
     <mat-icon>delete</mat-icon>
     {{ 'deleteTrainee' | translate }}
   </button>

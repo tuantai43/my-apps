@@ -12,7 +12,7 @@ import { TraineeDetailsFacade } from '../../store';
 })
 export class InformationComponent implements OnInit {
 
-  @Input() emplId!: number;
+  @Input() emplId!: string;
   informationForm = new FormGroup({});
   mode = 'view';
   currentDate = new Date();
@@ -27,11 +27,14 @@ export class InformationComponent implements OnInit {
     {label: 'GDTC', value: 'GDTC'},
     {label: 'NN', value: 'NN'},
     {label: 'CNTT', value: 'CNTT'},
-    {label: 'OTHER', value: 'OTHER'},
   ];
 
   get faculty () {
     return this.informationForm.get('faculty') as FormControl;
+  }
+
+  get university () {
+    return this.informationForm.get('university') as FormControl;
   }
 
   constructor( 
@@ -44,7 +47,7 @@ export class InformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this.traineeDetailsFacade.loadedTrainee();
+    this.traineeDetailsFacade.loadTrainee(this.emplId);
     this.traineeDetailsFacade.trainee$.subscribe(((value) => {
       this.informationForm.patchValue(value);
     }));
@@ -102,8 +105,36 @@ export class InformationComponent implements OnInit {
     }
   }
 
+  activeClass = '';
+  showInput = false;
   chooseOrtherOption(e: any) {
     e.stopPropagation();
+    this.activeClass = 'mat-active';
+    this.showInput = true;
+  }
+
+  resetOtherInput() {
+    this.showInput = false;
+  }
+
+  onInputValueOther(e: any, nameControl: string){
+    e.stopPropagation();
+    console.log(e);
+    
+    console.log(nameControl);
+    // switch(nameControl){
+    //   case 'university': {
+    //     this.university.setValue(e);
+    //     this.resetOtherInput()
+    //     break;
+    //   }
+    //   case 'faculty': {
+    //     this.faculty.setValue(e);
+    //     this.resetOtherInput()
+    //     break;
+    //   }
+    // }
+    console.log(this.informationForm.value);
   }
 
   onDelete() {}
@@ -120,7 +151,7 @@ export class InformationComponent implements OnInit {
   }
 
   selectionChange(event: any) {
-    //DOING...
+    this.showInput = false;    
   }
 
 }

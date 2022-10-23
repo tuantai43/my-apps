@@ -80,10 +80,16 @@
             <mat-select matNativeControl formControlName="university" (selectionChange)="selectionChange($event)">
               <mat-option value=""></mat-option>
               <mat-option *ngFor="let uni of arrUnivers" [value]="uni.value">{{uni.label}}</mat-option>
-              <mat-option value="orther">
-                <span class="span-custom" (click)="chooseOrtherOption($event)">ORTHER</span>
+              <mat-option value="orther {{activeClass}}">
+                <span class="span-custom" (click)="chooseOrtherOption($event)">OTHER</span>
               </mat-option>
-              <!-- <input class="orther-option-input"> -->
+              <input
+                *ngIf="showInput"
+                #university
+                class="orther-option-input" 
+                (keyup)="onInputValueOther($event, 'university')" 
+                (keyup.enter)="onInputValueOther($event, 'university')"
+              >
               <!--DOING...-->
             </mat-select>
           </mat-form-field>
@@ -101,6 +107,16 @@
             <mat-select matNativeControl formControlName="faculty">
               <mat-option value=""></mat-option>
               <mat-option *ngFor="let item of arrFaculty" [value]="item.value">{{ item.label }}</mat-option>
+              <mat-option value="orther {{activeClass}}">
+                <span class="span-custom" (click)="chooseOrtherOption($event)">OTHER</span>
+              </mat-option>
+              <input
+                *ngIf="showInput"
+                #faculty
+                class="orther-option-input" 
+                (keyup)="onInputValueOther($event, 'faculty')"
+                (keyup.enter)="onInputValueOther($event, 'faculty')"
+              >
             </mat-select>
           </mat-form-field>
         </ng-container>
@@ -183,21 +199,39 @@
 </div>
 <div class="actions">
   <ng-container *ngIf="mode === 'view'; else btnSubmit">
-    <button mat-stroked-button color="primary" (click)="onUpdate()">
-      <mat-icon>update</mat-icon>
+    <button 
+      mat-raised-button 
+      class="color-icon accent"
+      (click)="onUpdate()"
+    >
+      <mat-icon>edit</mat-icon>
       {{ 'updateTrainee' | translate }}
     </button>
   </ng-container>
   <ng-template #btnSubmit>
-    <button mat-button mat-flat-button color="primary" (click)="onUpdate()">
+    <button 
+      mat-button 
+      mat-raised-button 
+      color="primary"
+      (click)="onUpdate()"
+    >
       {{ 'submit' | translate }}
     </button>
   </ng-template>
-  <button mat-stroked-button color="warn" *ngIf="mode === 'view'" (click)="onDelete()">
+  <button 
+    mat-raised-button
+    class="color-icon warn"
+    *ngIf="mode === 'view'" 
+    (click)="onDelete()"
+  >
     <mat-icon>delete</mat-icon>
     {{ 'deleteTrainee' | translate }}
   </button>
-  <button mat-stroked-button color="accent" (click)="onClose()">
+  <button 
+    mat-raised-button
+    class="color-icon accent"
+    (click)="onClose()"
+  >
       <mat-icon>undo</mat-icon>
       {{ 'close' | translate }}
   </button>

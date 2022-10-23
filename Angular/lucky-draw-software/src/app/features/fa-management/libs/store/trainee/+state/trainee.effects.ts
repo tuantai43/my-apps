@@ -4,6 +4,7 @@ import { map, mergeMap } from 'rxjs';
 import { TraineeActions, ActionTypes, LoadedList } from './trainee.action';
 import { TraineeView } from './trainee.reducer';
 import { TraineeService } from '@fa-management/services';
+import { TraineeDetail } from '../../../utils/models';
 
 @Injectable()
 export class Effects {
@@ -14,5 +15,5 @@ export class Effects {
     )
   );
 
-  constructor(private action$: Actions<TraineeActions>, private traineeService: TraineeService) {}
+  constructor(private action$: Actions<TraineeActions>, private traineeService: TraineeService<TraineeDetail>) {}
 }

@@ -11,7 +11,7 @@ export class TraineeDetailsFacade {
 
   constructor(private store: Store<TraineeDetailsState>) {}
 
-  loadedTrainee() {
-    this.store.dispatch(new LoadTrainee());
+  loadTrainee(emplId: string) {
+    this.store.dispatch(new LoadTrainee(emplId));
   }
 }

@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
   initConditionEmplId: any = null;
 
   dataSearch: DataSearch = {
-    emplId: -1,
+    emplId: '',
     account: '',
     name: '',
     dob: '',
@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
   onSearch() {
     // const formatDob = moment(this.dataSearch.dob).format("DD/MM/YYYY");
     this.traineeFacade.updateDataSearch({
-      emplId: Number(this.dataSearch.emplId),
+      emplId: this.dataSearch.emplId,
       account: this.dataSearch.account,
       name: this.dataSearch.name,
       dob: this.dataSearch.dob,

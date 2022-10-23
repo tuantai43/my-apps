@@ -3,6 +3,7 @@ import { OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TraineeFacade, TraineeView } from '@app/features/fa-management/libs/store/trainee';
 import { CONFIG_TABLE } from '@app/features/fa-management/libs/utils/configs';
 import { SelectionTable } from '@app/features/fa-management/libs/utils/functions';
@@ -20,6 +21,15 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly configTable = CONFIG_TABLE;
   // actionType = ActionType; // TODO...
   destroy$ = new Subject();
+  
+  get allowUpdate(): boolean {
+    return this.selectionTable.selection.selected.length !== 1;
+  }
+
+  get disableDeleteButton(): boolean {
+    return this.selectionTable.selection.selected.length === 0;
+  }
+
   selectionTable = new SelectionTable<TraineeView>([], [], true);
   displayedColumns: string[] = [
     'select',
@@ -36,7 +46,11 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     'status'
   ];
 
-  constructor(private traineeFacade: TraineeFacade) {
+  constructor(
+    private traineeFacade: TraineeFacade,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.traineeFacade.loadList();
     this.traineeFacade.list$.pipe(takeUntil(this.destroy$)).subscribe((trainee) => {
       this.selectionTable.dataSource.data = trainee;
@@ -69,5 +83,13 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log('dss')
     }
     return `${this.selectionTable.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+  updateTrainee() {
+    this.router.navigate(['profile', this.selectionTable.selection.selected[0].emplId], { relativeTo: this.route });
+  }
+
+  deleteTrainee() {
+    console.log(this.selectionTable.selection.selected);
   }
 }

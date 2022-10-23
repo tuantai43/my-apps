@@ -3,7 +3,7 @@
   "API_NAME": "Trainee-result API",
   "data": [
     {
-      "className": "Class HITOC",
+      "className": "Class JAVA",
       "milestoneConfig": {
         "totalMaxScore": 1998,
         "totalPassingScore": 6789,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "className": "Class EZOS",
+      "className": "Class C#",
       "milestoneConfig": {
         "totalMaxScore": 3244,
         "totalPassingScore": 3466,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "className": "Class CASIO",
+      "className": "Class PHP",
       "milestoneConfig": {
         "totalMaxScore": 2356,
         "totalPassingScore": 1102,

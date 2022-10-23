@@ -5,7 +5,7 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root',
 })
-export class TraineeService extends BaseService {
+export class TraineeService<T> extends BaseService<T> {
   constructor(http: HttpClient) {
     super(http, 'trainees');
   }

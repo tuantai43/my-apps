@@ -24,7 +24,7 @@ export class TraineeFacade {
   resetSearch() {
     this.store.dispatch(
       new UpdateDataSearch({
-        emplId: -1,
+        emplId: '',
         account: '',
         name: '',
         dob: '',

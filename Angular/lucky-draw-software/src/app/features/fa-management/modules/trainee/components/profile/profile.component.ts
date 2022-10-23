@@ -10,7 +10,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
 
-  emplId!: number;
+  emplId!: string;
   selectedTabIndex!: number;
   currentTab = 'information';
   tabTrainee = [
@@ -26,7 +26,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  this.emplId = Number(this.activatedRoute.snapshot.params['id']);
+  this.emplId = this.activatedRoute.snapshot.params['id'];
+  console.log(this.emplId);
     this.activatedRoute.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params: Params) =>{
       this.currentTab = params['tab'];
       const index = this.tabTrainee.findIndex((t) => params['tab'] && t.tab === params['tab']);
@@ -36,7 +37,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onTabChanged(e: MatTabChangeEvent) {
-    this.route.navigate(['/fa-management/trainee-management/profile/2'], {
+    this.route.navigate([`/fa-management/trainee-management/profile/${this.emplId}`], {
       queryParams: { tab: this.tabTrainee[e.index].tab}
     })
   }
