@@ -68,7 +68,34 @@ export class TraineesDetailAPI extends BaseAPI implements IApiClass {
   //   }
   // }
   
-  public override delete(req: http.IncomingMessage, res: http.ServerResponse, next: Function): void {
-    super.resultJSON(req, res, next);
+  // public override delete(req: http.IncomingMessage, res: http.ServerResponse, next: Function): void {
+  //   super.resultJSON(req, res, next);
+  // }
+  public override async delete(req: http.IncomingMessage, res: http.ServerResponse, next: Function): Promise<void> {
+    try {
+      console.log('ssssss')
+      const fixture = await this.DB.search(TraineeApiKey);
+      console.log(fixture);
+      const data = fixture.data as TraineeDetail[];
+      console.log('-----------------data----------------------');
+      console.log(data);
+      const empId = req.url?.replace(/(\/api\/trainees\/)([\w-]+$)/gm, '' + '$2');
+      console.log('-----------------empId----------------------');
+      console.log(empId);
+      const traineeDetail = data.find((i) => i.emplId === empId);
+      console.log(traineeDetail);
+      if (traineeDetail) {
+        super.resultCustomJSON(req, res, next, traineeDetail);
+      } else {
+        res.statusCode = 400;
+        super.resultCustomJSON(req, res, next, {
+          msg: 'Trainee not found',
+        });
+      }
+    } catch (e) {
+      console.log(e);
+      res.statusCode = 500;
+      res.end();
+    }
   }
 }

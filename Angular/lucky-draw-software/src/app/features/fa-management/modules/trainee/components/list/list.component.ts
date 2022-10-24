@@ -90,6 +90,6 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   deleteTrainee() {
-    console.log(this.selectionTable.selection.selected);
+    this.traineeFacade.delete(this.selectionTable.selection.selected[0].emplId);
   }
 }

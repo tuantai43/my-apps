@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { LoadList, UpdateDataSearch } from './trainee.action';
+import { DeleteTrainee, LoadList, UpdateDataSearch } from './trainee.action';
 import { InitState, DataSearch } from './trainee.reducer';
 import { traineeQuery } from './trainee.selectors';
 // import { traineeQuery } from './trainee.selectors';
@@ -32,5 +32,9 @@ export class TraineeFacade {
         email: '',
       })
     );
+  }
+
+  delete(emplId: string): void {
+    this.store.dispatch(new DeleteTrainee(emplId));
   }
 }

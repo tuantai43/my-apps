@@ -45,6 +45,7 @@ export interface InitState {
   list: TraineeView[];
   isLoadedList: boolean;
   dataSearch: DataSearch;
+  isDeleted: boolean;
 }
 
 const initialState = (): InitState => ({
@@ -58,6 +59,7 @@ const initialState = (): InitState => ({
     phone: '',
     email: '',
   },
+  isDeleted: false,
 });
 
 export function reducer(state = initialState(), action: TraineeActions): InitState {
@@ -76,6 +78,19 @@ export function reducer(state = initialState(), action: TraineeActions): InitSta
       return {
         ...state,
         dataSearch: action.dataSearch,
+      };
+    }
+    case ActionTypes.DeleteTrainee: {
+      return {
+        ...state,
+        isDeleted: true,
+      };
+    }
+
+    case ActionTypes.DeletedTrainee: {
+      return {
+        ...state,
+        isDeleted: false,
       };
     }
     default: {

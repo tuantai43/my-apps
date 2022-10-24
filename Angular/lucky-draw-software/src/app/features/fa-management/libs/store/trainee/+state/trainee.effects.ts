@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, mergeMap } from 'rxjs';
+import { concatMap, map, mergeMap } from 'rxjs';
 import { TraineeActions, ActionTypes, LoadedList } from './trainee.action';
 import { TraineeView } from './trainee.reducer';
 import { TraineeService } from '@fa-management/services';
@@ -15,5 +15,14 @@ export class Effects {
     )
   );
 
-  constructor(private action$: Actions<TraineeActions>, private traineeService: TraineeService<TraineeDetail>) {}
+  deleteTrainee$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(ActionTypes.DeleteTrainee),
+      concatMap(({ emplId }) =>
+        this.traineeService.delete(emplId).pipe(map((res) => new LoadedList(res)))
+      )
+    )
+  );
+
+  constructor(private action$: Actions<TraineeActions>, private traineeService: TraineeService<TraineeView[]>) {}
 }

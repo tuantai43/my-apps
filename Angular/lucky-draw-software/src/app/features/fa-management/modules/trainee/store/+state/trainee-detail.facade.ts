@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { TraineeDetail } from '@app/features/fa-management/libs/utils/models';
 import { Store } from '@ngrx/store';
-import { LoadTrainee } from './trainee-detail.action';
+import { LoadTrainee, UpdateTrainee } from './trainee-detail.action';
 import { TraineeDetailsState } from './trainee-detail.reducer';
 import { traineeQuery } from './trainee-detail.selectors';
 
@@ -13,5 +14,9 @@ export class TraineeDetailsFacade {
 
   loadTrainee(emplId: string) {
     this.store.dispatch(new LoadTrainee(emplId));
+  }
+
+  update(emplId: string, traineeDetail: TraineeDetail): void {
+    this.store.dispatch(new UpdateTrainee(emplId, traineeDetail));
   }
 }

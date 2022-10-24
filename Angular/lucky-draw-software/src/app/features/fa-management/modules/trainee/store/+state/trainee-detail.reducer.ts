@@ -31,11 +31,15 @@ export const initialTraineeDetail = (): TraineeDetail => ({
 export interface TraineeDetailsState {
   trainee: TraineeDetail;
   isLoadedTrainee: boolean;
+  isUpdated: boolean;
+  isDeleted: boolean;
 }
 
 const initialState = (): TraineeDetailsState => ({
   trainee: initialTraineeDetail(),
   isLoadedTrainee: false,
+  isUpdated: false,
+  isDeleted: false,
 });
 
 // export function traineeDetailsReducer(state = initialState(), action: TraineeActions): TraineeDetailsState {
@@ -72,36 +76,21 @@ export function traineeDetailsReducer(state = initialState(), action: TraineeAct
         trainee: action.traineeDetail,
       };
     }
-    // case TraineeDetailsActionTypes.ResetClass: {
-    //   return {
-    //     ...state,
-    //     class: initialClassDetail(),
-    //   };
-    // }
-    // case TraineeDetailsActionTypes.CreatedClass: {
-    //   return {
-    //     ...state,
-    //     isCreating: true,
-    //   };
-    // }
-    // case TraineeDetailsActionTypes.CreateClass: {
-    //   return {
-    //     ...state,
-    //     isCreating: false,
-    //   };
-    // }
-    // case TraineeDetailsActionTypes.UpdateClass: {
-    //   return {
-    //     ...state,
-    //     isUpdating: true,
-    //   };
-    // }
-    // case TraineeDetailsActionTypes.UpdatedClass: {
-    //   return {
-    //     ...state,
-    //     isUpdating: false,
-    //   };
-    // }
+
+    case TraineeDetailsActionTypes.UpdateTrainee: {
+      return {
+        ...state,
+        isUpdated: true,
+      };
+    }
+
+    case TraineeDetailsActionTypes.UpdatedTrainee: {
+      return {
+        ...state,
+        isUpdated: false,
+      };
+    }
+
     default: {
       return state;
     }
