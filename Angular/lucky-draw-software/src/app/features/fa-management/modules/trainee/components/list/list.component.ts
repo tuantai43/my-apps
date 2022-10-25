@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TraineeService } from '@app/features/fa-management/libs/services';
 import { TraineeFacade, TraineeView } from '@app/features/fa-management/libs/store/trainee';
 import { CONFIG_TABLE } from '@app/features/fa-management/libs/utils/configs';
 import { SelectionTable } from '@app/features/fa-management/libs/utils/functions';
@@ -29,6 +30,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   get disableDeleteButton(): boolean {
     return this.selectionTable.selection.selected.length === 0;
   }
+  selected = [];
 
   selectionTable = new SelectionTable<TraineeView>([], [], true);
   displayedColumns: string[] = [
@@ -49,15 +51,22 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private traineeFacade: TraineeFacade,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private traineeService: TraineeService<any>
   ) {
-    this.traineeFacade.loadList();
-    this.traineeFacade.list$.pipe(takeUntil(this.destroy$)).subscribe((trainee) => {
-      this.selectionTable.dataSource.data = trainee;
-    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.traineeFacade.resetSearch();
+    this.getList();
+  }
+
+  getList(){
+    this.traineeFacade.loadList();
+        this.traineeFacade.list$.pipe(takeUntil(this.destroy$)).subscribe((trainee) => {
+          this.selectionTable.dataSource.data = trainee;
+        });
+  }
 
   ngAfterViewInit() {
     this.selectionTable.dataSource.paginator = this.paginator;
@@ -69,27 +78,21 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  isAllSelected() {
-    console.log('iss...')
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  toggleAllRows() {
-    console.log('tg...')
-  }
-
-  checkboxLabel(row?: any): string {
-    if (!row) {
-      console.log('dss')
-    }
-    return `${this.selectionTable.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  }
-
   updateTrainee() {
     this.router.navigate(['profile', this.selectionTable.selection.selected[0].emplId], { relativeTo: this.route });
   }
 
   deleteTrainee() {
-    this.traineeFacade.delete(this.selectionTable.selection.selected[0].emplId);
+    const arrEmplId = this.selectionTable.selection.selected.map((i) => i.emplId)
+    this.traineeService.delete(arrEmplId).subscribe(
+      () =>{
+        this.getList();
+        this.selectionTable.selection.clear();
+      },
+      (err) =>{
+        console.log(err);
+        this.selectionTable.selection.clear();
+      }
+    )
   }
 }

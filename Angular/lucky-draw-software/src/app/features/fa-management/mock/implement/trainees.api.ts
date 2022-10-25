@@ -5,8 +5,10 @@ import { TraineeDetail } from '../../libs/utils/models';
 export const TraineeApiKey = 'trainees';
 
 export class TraineesAPI extends BaseAPI implements IApiClass {
+  // private DB: DB;
   constructor(DB: IDB) {
     super(DB as DB, TraineeApiKey);
+    // this.DB = DB as DB;
   }
 
   public override async get(req: http.IncomingMessage, res: http.ServerResponse, next: Function): Promise<void> {
@@ -29,4 +31,26 @@ export class TraineesAPI extends BaseAPI implements IApiClass {
       }))
     );
   }
+
+  // public override async post(req: http.IncomingMessage, res: http.ServerResponse, next: Function): Promise<void> {
+  //   try {
+  //     const body = await super.getBody(req);
+  //     console.log('body', body);
+  //     const fixture = await this.DB.search(TraineeApiKey);
+  //     const data = fixture.data as TraineeDetail[];
+  //     console.log('data', data);
+  //     if (body) {
+  //       super.resultCustomJSON(req, res, next, {});
+  //     } else {
+  //       res.statusCode = 400;
+  //       super.resultCustomJSON(req, res, next, {
+  //         msg: 'Trainee not found',
+  //       });
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //     res.statusCode = 500;
+  //     res.end();
+  //   }
+  // }
 }

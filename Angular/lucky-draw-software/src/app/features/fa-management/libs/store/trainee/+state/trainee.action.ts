@@ -23,13 +23,4 @@ export class UpdateDataSearch implements Action {
   constructor(public dataSearch: DataSearch) {}
 }
 
-export class DeleteTrainee implements Action {
-  readonly type = ActionTypes.DeleteTrainee;
-  constructor(public emplId: string) {}
-}
-
-export class DeletedTrainee implements Action {
-  readonly type = ActionTypes.DeletedTrainee;
-}
-
-export type TraineeActions = LoadList | LoadedList | UpdateDataSearch | DeleteTrainee | DeletedTrainee;
+export type TraineeActions = LoadList | LoadedList | UpdateDataSearch;

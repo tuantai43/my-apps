@@ -7,28 +7,24 @@
         <mat-form-field class="form-control control-emplid" appearance="fill">
           <input matInput formControlName="emplId">
         </mat-form-field>
-        <!-- <div class="form-control control-label"></div> -->
       </td>
       <th>Type</th>
       <td>
         <mat-form-field class="form-control control-account" appearance="fill">
           <input matInput formControlName="account">
         </mat-form-field>
-        <!-- <div class="form-control control-label"></div> -->
       </td>
       <th>Status</th>
       <td>
         <mat-form-field class="form-control control-status" appearance="fill">
           <input matInput formControlName="status">
         </mat-form-field>
-        <!-- <div class="form-control control-label"></div> -->
       </td>
       <th>Allocation Status</th>
       <td>
         <mat-form-field class="form-control control-allocation-status" appearance="fill">
           <input matInput formControlName="allocationStatus">
         </mat-form-field>
-        <!-- <div class="form-control"></div> -->
       </td>
     </tr>
     <tr>
@@ -50,8 +46,8 @@
       <td colspan="3">
         <ng-container *ngIf="mode === 'edit'; else viewGender">
             <mat-radio-group class="radio-edit-common control-edit-gender" aria-label="Select an option" formControlName="gender">
-              <mat-radio-button value="male" class="gender-male">Male</mat-radio-button>
-              <mat-radio-button value="female" class="gender-female">Female</mat-radio-button>
+              <mat-radio-button value="Male" class="gender-male">Male</mat-radio-button>
+              <mat-radio-button value="Female" class="gender-female">Female</mat-radio-button>
             </mat-radio-group>
         </ng-container>
         <ng-template #viewGender>
@@ -62,11 +58,8 @@
       </td>
       <th>DOB *</th>
       <td colspan="3">
-        <!-- <mat-form-field class="form-control control-dob control-{{mode}}" appearance="fill">
-          <input matInput formControlName="dob" [disabled]="true">
-        </mat-form-field> -->
         <mat-form-field class="form-control control-dob control-{{mode}}" appearance="fill">
-          <input class="control-dob" matInput formControlName="dob" [matDatepicker]="dob" [max]="currentDate"/>
+          <input matInput [matDatepicker]="dob" formControlName="dob">
           <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
           <mat-datepicker #dob></mat-datepicker>
         </mat-form-field>
@@ -80,17 +73,6 @@
             <mat-select matNativeControl formControlName="university" (selectionChange)="selectionChange($event)">
               <mat-option value=""></mat-option>
               <mat-option *ngFor="let uni of arrUnivers" [value]="uni.value">{{uni.label}}</mat-option>
-              <mat-option value="orther {{activeClass}}">
-                <span class="span-custom" (click)="chooseOrtherOption($event)">OTHER</span>
-              </mat-option>
-              <input
-                *ngIf="showInput"
-                #university
-                class="orther-option-input" 
-                (keyup)="onInputValueOther($event, 'university')" 
-                (keyup.enter)="onInputValueOther($event, 'university')"
-              >
-              <!--DOING...-->
             </mat-select>
           </mat-form-field>
         </ng-container>
@@ -107,16 +89,6 @@
             <mat-select matNativeControl formControlName="faculty">
               <mat-option value=""></mat-option>
               <mat-option *ngFor="let item of arrFaculty" [value]="item.value">{{ item.label }}</mat-option>
-              <mat-option value="orther {{activeClass}}">
-                <span class="span-custom" (click)="chooseOrtherOption($event)">OTHER</span>
-              </mat-option>
-              <input
-                *ngIf="showInput"
-                #faculty
-                class="orther-option-input" 
-                (keyup)="onInputValueOther($event, 'faculty')"
-                (keyup.enter)="onInputValueOther($event, 'faculty')"
-              >
             </mat-select>
           </mat-form-field>
         </ng-container>
@@ -170,7 +142,7 @@
           <mat-form-field class="form-control control-allowance-group" color="primary">
             <mat-select matNativeControl formControlName="allowanceGroup">
               <mat-option value=""></mat-option>
-              <mat-option *ngFor="let item of arrFaculty" [value]="item.value">{{ item.label }}</mat-option>
+              <mat-option *ngFor="let item of arrAllowanceGroup" [value]="item.value">{{ item.label }}</mat-option>
             </mat-select>
           </mat-form-field>
         </ng-container>
@@ -218,15 +190,6 @@
       {{ 'submit' | translate }}
     </button>
   </ng-template>
-  <button 
-    mat-raised-button
-    class="color-icon warn"
-    *ngIf="mode === 'view'" 
-    (click)="onDelete()"
-  >
-    <mat-icon>delete</mat-icon>
-    {{ 'deleteTrainee' | translate }}
-  </button>
   <button 
     mat-raised-button
     class="color-icon accent"

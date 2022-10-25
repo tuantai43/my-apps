@@ -29,7 +29,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ResultComponent } from './components/result/result.component';
 import { MatCardModule } from '@angular/material/card';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import { FORMAT_DATE } from '../../libs/utils/configs';
+import { FORMAT_DATE, FORMAT_DATE_VN } from '../../libs/utils/configs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MilestoneConfigComponent } from './components/milestone-config/milestone-config.component';
 import { AttendanceStatusComponent } from './components/attendance-status/attendance-status.component';
@@ -94,7 +94,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     {
       provide: MAT_DATE_FORMATS,
-      useValue: FORMAT_DATE.SELECT_DATE,
+      useValue: FORMAT_DATE_VN.SELECT_DATE,
     },
   ],
 })

@@ -9,4 +9,8 @@ export class TraineeService<T> extends BaseService<T> {
   constructor(http: HttpClient) {
     super(http, 'trainees');
   }
+  
+  delete(arrEmplId: string[]) {
+    return this.http.post(`${this.api}/delete`, arrEmplId);
+  }
 }

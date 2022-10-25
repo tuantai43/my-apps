@@ -22,8 +22,4 @@ export abstract class BaseService<B = any> {
   update<T = B, U = any>(id: string, payload: T): Observable<U> {
     return this.http.put<U>(`${this.api}/${id}`, payload);
   }
-
-  delete<T = B>(id: string): Observable<T> {
-    return this.http.delete<T>(`${this.api}/${id}`);
-  }
 }

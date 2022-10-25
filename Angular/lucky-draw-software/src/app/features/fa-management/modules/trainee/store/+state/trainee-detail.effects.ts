@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatMap, map, of } from 'rxjs';
-import { TraineeActions, TraineeDetailsActionTypes, LoadedTrainee, UpdateTrainee } from './trainee-detail.action';
+import { TraineeActions, TraineeDetailsActionTypes, LoadedTrainee, UpdateTrainee, UpdatedTrainee } from './trainee-detail.action';
 import { TraineeDetailsService, TraineeService } from '@fa-management/services';
 import { TraineeDetail } from '@app/features/fa-management/libs/utils/models';
 
@@ -20,14 +20,14 @@ export class TraineeDetailsEffects {
     )
   );
 
-  // updateTrainee$ = createEffect(() =>
-  //   this.action$.pipe(
-  //     ofType(TraineeDetailsActionTypes.UpdateTrainee),
-  //     concatMap(({ emplId, traineeDetail }) =>
-  //       this.traineeService.update(emplId, traineeDetail).pipe(map(() => new UpdatedTrainee()))
-  //     )
-  //   )
-  // );
+  updateTrainee$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(TraineeDetailsActionTypes.UpdateTrainee),
+      concatMap(({ emplId, traineeDetail }) =>
+        this.traineeService.update(emplId, traineeDetail).pipe(map(() => new UpdatedTrainee()))
+      )
+    )
+  );
 
   constructor(private action$: Actions<TraineeActions>, private traineeService: TraineeService<TraineeDetail>) {}
 }

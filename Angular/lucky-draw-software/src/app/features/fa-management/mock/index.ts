@@ -20,6 +20,7 @@ import { TraineesDetailAPI } from './implement/trainee-detail.api';
 import { TraineeResultAPI } from './implement/trainee-result.api';
 import { UserInfoApi } from './implement/user-info.api';
 import { CancelClasssAPI } from './implement/class.cancel.api';
+import { TraineesDeleteAPI } from './implement/trainee-delete.api';
 
 const util = new UtilRouter(new DB(resolve(__dirname, '_fixture'), 'api'), 'api');
 
@@ -38,9 +39,10 @@ const MOCK_API: Array<browserSync.PerRouteMiddleware | browserSync.MiddlewareHan
   ...util.createAppApi(SubSubjectTypesAPI),
   ...util.createAppApi(SubjectTypesAPI),
   ...util.createAppApi(TrainersAPI),
+  ...util.createAppApi(TraineesDeleteAPI),
+  ...util.createAppApi(TraineesDetailAPI),
   ...util.createAppApi(TraineesAPI),
   ...util.createAppApi(TraineeResultAPI),
-  ...util.createAppApi(TraineesDetailAPI),
   ...util.createAppApi(UserInfoApi),
 ];
 

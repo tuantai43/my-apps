@@ -15,14 +15,5 @@ export class Effects {
     )
   );
 
-  deleteTrainee$ = createEffect(() =>
-    this.action$.pipe(
-      ofType(ActionTypes.DeleteTrainee),
-      concatMap(({ emplId }) =>
-        this.traineeService.delete(emplId).pipe(map((res) => new LoadedList(res)))
-      )
-    )
-  );
-
   constructor(private action$: Actions<TraineeActions>, private traineeService: TraineeService<TraineeView[]>) {}
 }

@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
   this.emplId = this.activatedRoute.snapshot.params['id'];
-  console.log(this.emplId);
     this.activatedRoute.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params: Params) =>{
       this.currentTab = params['tab'];
       const index = this.tabTrainee.findIndex((t) => params['tab'] && t.tab === params['tab']);

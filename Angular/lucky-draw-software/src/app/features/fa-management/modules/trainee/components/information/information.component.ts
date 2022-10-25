@@ -1,8 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TraineeDetailsService } from '@app/features/fa-management/libs/services';
+import { Router } from '@angular/router';
+import { TraineeDetailsService, TraineeService } from '@app/features/fa-management/libs/services';
+import { TraineeDetail } from '@app/features/fa-management/libs/utils/models';
+import * as moment from 'moment';
+import { filter, take } from 'rxjs';
 import { TraineeDetailsFacade } from '../../store';
 
 @Component({
@@ -21,6 +24,9 @@ export class InformationComponent implements OnInit {
     {label: 'HITC', value: 'HITC'},
     {label: 'UEF', value: 'UEF'},
     {label: 'HUTECH', value: 'HUTECH'},
+    {label: 'HAVARD', value: 'HAVARD'},
+    {label: 'AWS', value: 'AWS'},
+    {label: 'RMIT', value: 'RMIT'},
   ]
 
   arrFaculty = [
@@ -28,6 +34,12 @@ export class InformationComponent implements OnInit {
     {label: 'NN', value: 'NN'},
     {label: 'CNTT', value: 'CNTT'},
   ];
+
+  arrAllowanceGroup = [
+    {label: 'DEV-1', value: 'DEV-1'},
+    {label: 'DEV-2', value: 'DEV-2'},
+    {label: 'DEV-3', value: 'DEV-3'},
+  ]
 
   get faculty () {
     return this.informationForm.get('faculty') as FormControl;
@@ -37,12 +49,16 @@ export class InformationComponent implements OnInit {
     return this.informationForm.get('university') as FormControl;
   }
 
+  get dob () {
+    return this.informationForm.get('dob') as FormControl;
+  }
+
   constructor( 
     private formBuilder: FormBuilder, 
     private traineeDetailsFacade: TraineeDetailsFacade,
     private route: Router,
     private traineeDetailsService: TraineeDetailsService,
-    private activatedRoute: ActivatedRoute,
+    private traineeService: TraineeService<any>
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +68,8 @@ export class InformationComponent implements OnInit {
       this.informationForm.patchValue(value);
     }));
   }
+
+  date = moment();
 
   buildForm(){
     this.informationForm = this.formBuilder.group({
@@ -93,16 +111,21 @@ export class InformationComponent implements OnInit {
       })
     }else{
       const data = this.informationForm.getRawValue()
-      this.traineeDetailsService.updateDetailTrainee(this.emplId, data).subscribe(
-        (res) => {
-          console.log(res);
-          this.route.navigate(['/fa-management/trainee-management'])
-        },
-        (err) => {
-          console.log(err)
-        }
-      );
+      this.formatDataForSave(data);
+      this.traineeDetailsFacade.update(this.emplId, data);
+      this.traineeDetailsFacade.isUpdatedTrainee$.pipe(
+        filter((loading) => !loading),
+        take(1)
+      )
+      .subscribe(() => {
+        this.route.navigate(['/fa-management/trainee-management'])
+      });
+      
     }
+  }
+
+  formatDataForSave (data: TraineeDetail) {
+    data.dob = moment(data.dob).format("DD/MM/YYYY") || '';
   }
 
   activeClass = '';
@@ -115,26 +138,6 @@ export class InformationComponent implements OnInit {
 
   resetOtherInput() {
     this.showInput = false;
-  }
-
-  onInputValueOther(e: any, nameControl: string){
-    e.stopPropagation();
-    console.log(e);
-    
-    console.log(nameControl);
-    // switch(nameControl){
-    //   case 'university': {
-    //     this.university.setValue(e);
-    //     this.resetOtherInput()
-    //     break;
-    //   }
-    //   case 'faculty': {
-    //     this.faculty.setValue(e);
-    //     this.resetOtherInput()
-    //     break;
-    //   }
-    // }
-    console.log(this.informationForm.value);
   }
 
   onDelete() {}

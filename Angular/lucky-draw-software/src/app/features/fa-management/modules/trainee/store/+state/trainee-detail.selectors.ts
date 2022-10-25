@@ -6,4 +6,5 @@ const getClassState = createFeatureSelector<TraineeDetailsState>(traineeFeatureK
 export const traineeQuery = {
   getLoadedTrainees: createSelector(getClassState, (state: TraineeDetailsState) => state.trainee),
   isLoadedTrainees: createSelector(getClassState, (state) => state.isLoadedTrainee),
+  isUpdate: createSelector(getClassState, (state) => state.isUpdated),
 };

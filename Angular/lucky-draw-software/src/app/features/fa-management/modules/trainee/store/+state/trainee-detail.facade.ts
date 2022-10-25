@@ -9,6 +9,7 @@ import { traineeQuery } from './trainee-detail.selectors';
 export class TraineeDetailsFacade {
   trainee$ = this.store.select(traineeQuery.getLoadedTrainees);
   isLoadedTrainee$ = this.store.select(traineeQuery.isLoadedTrainees);
+  isUpdatedTrainee$ = this.store.select(traineeQuery.isUpdate);
 
   constructor(private store: Store<TraineeDetailsState>) {}
 

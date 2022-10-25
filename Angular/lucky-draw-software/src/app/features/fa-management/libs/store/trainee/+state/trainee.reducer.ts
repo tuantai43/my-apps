@@ -80,19 +80,6 @@ export function reducer(state = initialState(), action: TraineeActions): InitSta
         dataSearch: action.dataSearch,
       };
     }
-    case ActionTypes.DeleteTrainee: {
-      return {
-        ...state,
-        isDeleted: true,
-      };
-    }
-
-    case ActionTypes.DeletedTrainee: {
-      return {
-        ...state,
-        isDeleted: false,
-      };
-    }
     default: {
       return state;
     }

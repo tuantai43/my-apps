@@ -28,12 +28,13 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
-    // const formatDob = moment(this.dataSearch.dob).format("DD/MM/YYYY");
+    console.log(this.dataSearch);
+    const formatDob = moment(this.dataSearch.dob).format("DD/MM/YYYY");
     this.traineeFacade.updateDataSearch({
       emplId: this.dataSearch.emplId,
       account: this.dataSearch.account,
       name: this.dataSearch.name,
-      dob: this.dataSearch.dob,
+      dob: formatDob,
       phone: this.dataSearch.phone,
       email: this.dataSearch.email,
     })
