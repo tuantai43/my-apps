@@ -5,7 +5,7 @@
   ::ng-deep{
     .mat-form-field{
       .mat-form-field-underline{
-        display:none
+        display: none;
       }
       .mat-form-field-wrapper{
         padding-bottom: 0px;
@@ -16,6 +16,14 @@
     }
     .control-edit .mat-form-field-flex{
       background-color: #ffffff;
+    }
+
+    .mat-form-field-invalid{
+      .mat-form-field-underline{
+        display: block;
+        position: absolute;
+        bottom: 0;
+      }
     }
 
     .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button{
@@ -55,8 +63,17 @@
     background-color: rgba(0, 0, 0, 0.04);
   }
 
+  table {
+    border-collapse: collapse;
+  }
+
   th, td{
     min-height: 40px;
+  }
+
+  .label-title{
+    margin: 15px 0;
+    padding-left: 15px;
   }
 
 }

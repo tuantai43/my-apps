@@ -1,4 +1,4 @@
-<mat-card-title>Personal Infotmation</mat-card-title>
+<h2 class="label-title">Personal Infotmation</h2>
 <div class="wrapper-infor" [formGroup]="informationForm">
   <table class="table" border="1">
     <tr>
@@ -46,8 +46,8 @@
       <td colspan="3">
         <ng-container *ngIf="mode === 'edit'; else viewGender">
             <mat-radio-group class="radio-edit-common control-edit-gender" aria-label="Select an option" formControlName="gender">
-              <mat-radio-button value="Male" class="gender-male">Male</mat-radio-button>
-              <mat-radio-button value="Female" class="gender-female">Female</mat-radio-button>
+              <mat-radio-button value="male" class="gender-male">Male</mat-radio-button>
+              <mat-radio-button value="female" class="gender-female">Female</mat-radio-button>
             </mat-radio-group>
         </ng-container>
         <ng-template #viewGender>
@@ -182,20 +182,32 @@
   </ng-container>
   <ng-template #btnSubmit>
     <button 
+      [disabled]="informationForm.invalid"
       mat-button 
       mat-raised-button 
       color="primary"
       (click)="onUpdate()"
     >
-      {{ 'submit' | translate }}
+      {{ 'Submit' | translate }}
     </button>
   </ng-template>
-  <button 
-    mat-raised-button
-    class="color-icon accent"
-    (click)="onClose()"
-  >
-      <mat-icon>undo</mat-icon>
-      {{ 'close' | translate }}
-  </button>
+  <ng-container *ngIf="mode === 'view'; else btnCancel">
+    <button 
+      mat-raised-button
+      class="color-icon accent"
+      (click)="onClose()"
+    >
+        <mat-icon>undo</mat-icon>
+        {{ 'Close' | translate }}
+    </button>
+  </ng-container>
+  <ng-template #btnCancel>
+    <button 
+      mat-raised-button
+      class="color-icon accent"
+      (click)="onClose()"
+    >
+        {{ 'Canel' | translate }}
+    </button>
+  </ng-template>
 </div>

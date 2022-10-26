@@ -18,9 +18,8 @@ import { Subject } from 'rxjs';
 })
 export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  // @ViewChild(MatSort) sort: MatSort; // TODO...
+  @ViewChild(MatSort) sort!: MatSort;
   readonly configTable = CONFIG_TABLE;
-  // actionType = ActionType; // TODO...
   destroy$ = new Subject();
   
   get allowUpdate(): boolean {
@@ -57,8 +56,8 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.traineeFacade.resetSearch();
     this.getList();
+    this.traineeFacade.resetSearch();
   }
 
   getList(){
@@ -70,7 +69,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.selectionTable.dataSource.paginator = this.paginator;
-    // this.selectionTable.dataSource.sort = this.sort; // TODO...
+    this.selectionTable.dataSource.sort = this.sort;
   }
 
   ngOnDestroy() {

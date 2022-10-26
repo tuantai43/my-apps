@@ -8,12 +8,12 @@ export const traineeQuery = {
     state.list.filter((t) => {
       const { emplId, account, name, dob, phone, email, } = state.dataSearch;
       return (
-        (!emplId || emplId === t.emplId) &&
-        (!account || account === t.account) &&
-        (!name || name === t.name) &&
-        (!dob || dob === t.dob) &&
-        (!phone || phone === t.phone) &&
-        (!email || email === t.email)
+        (!emplId || t.emplId.toLowerCase().includes(emplId.toLowerCase())) &&
+        (!account || t.account.toLowerCase().includes(account.toLowerCase())) &&
+        (!name || t.name.toLowerCase().includes(name.toLowerCase())) &&
+        (!dob || t.dob.toLowerCase().includes(dob.toLowerCase())) &&
+        (!phone || t.phone.toLowerCase().includes(phone.toLowerCase())) &&
+        (!email || t.email.toLowerCase().includes(email.toLowerCase()))
       );
     })
   ),  

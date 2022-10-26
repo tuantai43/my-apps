@@ -28,8 +28,7 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
-    console.log(this.dataSearch);
-    const formatDob = moment(this.dataSearch.dob).format("DD/MM/YYYY");
+    const formatDob = this.dataSearch.dob ? moment(this.dataSearch.dob).format("DD/MM/YYYY") : '';
     this.traineeFacade.updateDataSearch({
       emplId: this.dataSearch.emplId,
       account: this.dataSearch.account,
@@ -40,8 +39,4 @@ export class SearchComponent implements OnInit {
     })
   }
 
-  onKeyup(event: KeyboardEvent){
-    // this.initConditionEmplId = Number(event.key)
-    // this.dataSearch.emplId = this.initConditionEmplId
-  }
 }

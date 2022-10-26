@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TraineeDetailsService, TraineeService } from '@app/features/fa-management/libs/services';
 import { TraineeDetail } from '@app/features/fa-management/libs/utils/models';
 import * as moment from 'moment';
-import { filter, take } from 'rxjs';
+import { filter, Subject, take, takeUntil } from 'rxjs';
 import { TraineeDetailsFacade } from '../../store';
 
 @Component({
@@ -13,7 +13,7 @@ import { TraineeDetailsFacade } from '../../store';
   templateUrl: './information.component.html',
   styleUrls: ['./information.component.scss']
 })
-export class InformationComponent implements OnInit {
+export class InformationComponent implements OnInit, OnDestroy{
 
   @Input() emplId!: string;
   informationForm = new FormGroup({});
@@ -41,6 +41,8 @@ export class InformationComponent implements OnInit {
     {label: 'DEV-3', value: 'DEV-3'},
   ]
 
+  private destroy$ = new Subject();
+
   get faculty () {
     return this.informationForm.get('faculty') as FormControl;
   }
@@ -56,16 +58,15 @@ export class InformationComponent implements OnInit {
   constructor( 
     private formBuilder: FormBuilder, 
     private traineeDetailsFacade: TraineeDetailsFacade,
-    private route: Router,
-    private traineeDetailsService: TraineeDetailsService,
-    private traineeService: TraineeService<any>
+    private route: Router
   ) { }
 
   ngOnInit(): void {
     this.buildForm();
     this.traineeDetailsFacade.loadTrainee(this.emplId);
-    this.traineeDetailsFacade.trainee$.subscribe(((value) => {
+    this.traineeDetailsFacade.trainee$.pipe(takeUntil(this.destroy$)).subscribe(((value) => {
       this.informationForm.patchValue(value);
+      this.dob.setValue(moment(value.dob, "DD/MM/YYYY").toDate())
     }));
   }
 
@@ -78,7 +79,7 @@ export class InformationComponent implements OnInit {
       status: [{value: '', disabled: true}],
       allocationStatus: [{value: '', disabled: true}],
       account: [{value: '', disabled: true}],
-      name: [{value: '', disabled: true}],
+      name: [{value: '', disabled: true}, Validators.required],
       gender: [{value: '', disabled: true}, Validators.required],
       dob: [{value: '', disabled: true}, Validators.required],
       university: [{value: '', disabled: true}, Validators.required],
@@ -104,6 +105,7 @@ export class InformationComponent implements OnInit {
   }
 
   onUpdate(){
+    console.log(this.formatDataForSave(this.informationForm.getRawValue()))
     if(this.mode === 'view'){
       this.mode = 'edit';
       this.arrControlNameAllowEdit.forEach((name) =>{
@@ -112,6 +114,7 @@ export class InformationComponent implements OnInit {
     }else{
       const data = this.informationForm.getRawValue()
       this.formatDataForSave(data);
+      console.log(data);
       this.traineeDetailsFacade.update(this.emplId, data);
       this.traineeDetailsFacade.isUpdatedTrainee$.pipe(
         filter((loading) => !loading),
@@ -120,12 +123,12 @@ export class InformationComponent implements OnInit {
       .subscribe(() => {
         this.route.navigate(['/fa-management/trainee-management'])
       });
-      
     }
   }
 
   formatDataForSave (data: TraineeDetail) {
-    data.dob = moment(data.dob).format("DD/MM/YYYY") || '';
+    data.dob = data.dob ? moment(data.dob).format("DD/MM/YYYY") : '';
+    return data;
   }
 
   activeClass = '';
@@ -155,6 +158,10 @@ export class InformationComponent implements OnInit {
 
   selectionChange(event: any) {
     this.showInput = false;    
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(null);
   }
 
 }

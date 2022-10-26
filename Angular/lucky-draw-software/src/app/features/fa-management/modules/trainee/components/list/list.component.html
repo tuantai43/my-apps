@@ -1,7 +1,11 @@
 <h2 translate="traineeListing"></h2>
 <mat-divider></mat-divider>
 <app-trainee-search></app-trainee-search>
-<table mat-table [dataSource]="selectionTable.dataSource" matSort>
+<table 
+  mat-table 
+  [dataSource]="selectionTable.dataSource"
+  matSort
+  matSortActive="emplId">
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox
