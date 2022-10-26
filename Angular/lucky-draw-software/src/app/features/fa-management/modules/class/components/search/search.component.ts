@@ -9,7 +9,7 @@ import { ClassFacade, DataSearch } from '@app/features/fa-management/libs/store/
 export class SearchComponent implements OnInit {
   classNames$ = this.classFacade.classNames$;
   dataSearch: DataSearch = {
-    location: 0,
+    location: '',
     className: '',
     status: 0,
   };
@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
   onSearch() {
     this.classFacade.updateDataSearch({
-      location: Number(this.dataSearch.location),
+      location: this.dataSearch.location,
       className: this.dataSearch.className,
       status: Number(this.dataSearch.status),
     });

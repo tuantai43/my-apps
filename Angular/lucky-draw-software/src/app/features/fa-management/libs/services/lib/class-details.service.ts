@@ -9,4 +9,8 @@ export class ClassDetailsService extends BaseService {
   constructor(http: HttpClient) {
     super(http, 'class-details');
   }
+
+  submit(id: string) {
+    return this.http.get(`${this.api}/submit/${id}`);
+  }
 }

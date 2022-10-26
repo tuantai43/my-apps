@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   ConfirmationPopupComponent,
@@ -153,47 +153,65 @@ export class CreateComponent implements OnInit, OnDestroy {
       });
   }
 
-  openDialogConfirm(): MatDialogRef<ConfirmationPopupComponent, any> {
-    return this.dialog.open(ConfirmationPopupComponent, {
+  openDialogConfirm(): Observable<any> {
+    const dialogRef = this.dialog.open(ConfirmationPopupComponent, {
       minWidth: MIN_WIDTH,
       closeOnNavigation: true,
       data: {
         type: PopupType.Confirmation,
       },
     });
+    return dialogRef.afterClosed().pipe(
+      take(1),
+      filter((ok) => ok)
+    );
+  }
+
+  create(): void {
+    this.openDialogConfirm().subscribe(() => {
+      if (this.screenName === ScreenName.UpdateClass) {
+        this.classDetailsFacade.update(this.id, this.form.getRawValue());
+      } else {
+        this.classDetailsFacade.create(this.form.getRawValue());
+      }
+      merge(this.classDetailsFacade.isUpdatingClass$, this.classDetailsFacade.isCreatingClass$)
+        .pipe(
+          filter((loading) => !loading),
+          take(1)
+        )
+        .subscribe(() => {
+          this.router.navigate([RELATIVE_URL, this.id]);
+        });
+    });
+  }
+
+  goToUpdate(): void {
+    this.router.navigate([RELATIVE_URL, 'edit', this.id]);
   }
 
   submit(): void {
-    const dialogRef = this.openDialogConfirm();
-    dialogRef
-      .afterClosed()
-      .pipe(
-        take(1),
-        filter((ok) => ok)
-      )
-      .subscribe(() => {
-        if (this.screenName === ScreenName.UpdateClass) {
-          this.classDetailsFacade.update(this.id, this.form.getRawValue());
-        } else {
-          this.classDetailsFacade.create(this.form.getRawValue());
-        }
-        merge(this.classDetailsFacade.isUpdatingClass$, this.classDetailsFacade.isCreatingClass$)
-          .pipe(
-            filter((loading) => !loading),
-            take(1)
-          )
-          .subscribe(() => {
-            this.router.navigate([RELATIVE_URL, this.id]);
-          });
-      });
+    this.openDialogConfirm().subscribe(() => {
+      this.router.navigate([RELATIVE_URL]);
+    });
   }
 
-  update(): void {
-    this.router.navigate([RELATIVE_URL, 'edit', this.id]);
+  start(): void {
+    this.openDialogConfirm().subscribe(() => {
+      this.router.navigate([RELATIVE_URL]);
+    });
   }
 
   cancel(): void {
     this.classesFacade.cancel([this.id]);
+    this.classesFacade.cancelling$
+      .pipe(
+        takeUntil(this.destroy$),
+        filter((loading) => !loading),
+        take(1)
+      )
+      .subscribe(() => {
+        this.router.navigate([RELATIVE_URL]);
+      });
   }
 
   ngOnDestroy(): void {

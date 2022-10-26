@@ -56,17 +56,17 @@ export class AuditComponent implements OnInit {
         this.addAudit();
       });
       this.detailForm?.get('audits')?.patchValue(this.class.audits);
-      if (
-        this.screenName === ScreenName.ViewClass ||
-        (this.screenName === ScreenName.UpdateClass && this.class.status !== ClassStatus.InProgress)
-      ) {
-        this.detailForm.get('audits')?.disable();
-        this.disabledForm = true;
-      } else {
-        this.disabledForm = false;
-      }
     } else {
       this.detailForm?.get('audits')?.reset();
+    }
+    if (
+      this.screenName === ScreenName.ViewClass ||
+      (this.screenName === ScreenName.UpdateClass && this.class?.status !== ClassStatus.InProgress)
+    ) {
+      this.detailForm.get('audits')?.disable();
+      this.disabledForm = true;
+    } else {
+      this.disabledForm = false;
     }
   }
 

@@ -8,14 +8,14 @@ import { LocationFacade } from '@fa-management/store/location';
   styleUrls: ['./locations.component.scss'],
 })
 export class LocationsComponent {
-  @Input() selected: number | string = 0;
-  @Output() selectedChange = new EventEmitter<number>();
+  @Input() selected: string = '';
+  @Output() selectedChange = new EventEmitter<string>();
 
   locations$ = this.locationFacade.list$;
 
   constructor(private locationFacade: LocationFacade) {}
 
-  onChange(e: number | string) {
-    this.selectedChange.emit(Number(e));
+  onChange(e: string) {
+    this.selectedChange.emit(e);
   }
 }

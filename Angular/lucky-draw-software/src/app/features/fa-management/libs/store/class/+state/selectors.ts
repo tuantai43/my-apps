@@ -17,4 +17,5 @@ export const classQuery = {
   getStatuses: createSelector(getClassState, (state) => Array.from(new Set(state.list.map((i) => i.status).sort()))),
   getClassNames: createSelector(getClassState, (state) => Array.from(new Set(state.list.map((i) => i.name).sort()))),
   isLoadedList: createSelector(getClassState, (state) => state.isLoadedList),
+  cancelling: createSelector(getClassState, (state) => state.canceling),
 };

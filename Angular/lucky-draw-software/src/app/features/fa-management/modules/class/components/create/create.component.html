@@ -16,7 +16,7 @@
       mat-raised-button
       color="primary"
       *appActionButton="actionType.SubmitNewClass"
-      (click)="submit()"
+      (click)="create()"
       [disabled]="form.invalid">
       {{ 'submit' | translate }}
     </button>
@@ -26,7 +26,7 @@
       mat-raised-button
       class="color-icon primary"
       *appActionButton="actionType.UpdateClass"
-      (click)="update()"
+      (click)="goToUpdate()"
       [disabled]="form.invalid || (disableUpdate$ | async)">
       <mat-icon>arrow_circle_up</mat-icon>
       {{ 'updateClass' | translate }}
@@ -35,6 +35,7 @@
       mat-raised-button
       class="color-icon accent"
       *appActionButton="actionType.SubmitClass"
+      (click)="submit()"
       [disabled]="disableSubmmitClass$ | async">
       <mat-icon>upgrade</mat-icon>
       {{ 'submitClass' | translate }}
@@ -43,6 +44,7 @@
       mat-raised-button
       class="color-icon start-class"
       *appActionButton="actionType.StartClass"
+      (click)="start()"
       [disabled]="disableStartClass$ | async">
       <mat-icon>play_arrow</mat-icon>
       {{ 'startClass' | translate }}
@@ -56,7 +58,12 @@
       <mat-icon>block</mat-icon>
       {{ 'removeClass' | translate }}
     </button>
-    <button mat-raised-button color="primary" *appActionButton="actionType.StartClass" [disabled]="form.invalid">
+    <button
+      mat-raised-button
+      color="primary"
+      *appActionButton="actionType.StartClass"
+      [disabled]="form.invalid"
+      (click)="start()">
       {{ 'startClass' | translate }}
     </button>
   </ng-template>
