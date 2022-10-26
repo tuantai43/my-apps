@@ -90,12 +90,17 @@
     mat-raised-button
     class="color-icon accent"
     *appActionButton="actionType.UpdateClass"
-    [disabled]="allowUpdate"
+    [disabled]="disableUpdate"
     (click)="update()">
     <mat-icon>edit</mat-icon>
     {{ 'updateClass' | translate }}
   </button>
-  <button mat-raised-button class="color-icon warn" *appActionButton="actionType.CancelClass">
+  <button
+    mat-raised-button
+    class="color-icon warn"
+    *appActionButton="actionType.CancelClass"
+    [disabled]="disableCancel"
+    (click)="cancel()">
     <mat-icon>block</mat-icon>
     {{ 'removeClass' | translate }}
   </button>

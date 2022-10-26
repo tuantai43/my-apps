@@ -30,7 +30,7 @@ export const initialClass = (): ClassView => ({
 });
 
 export interface DataSearch {
-  location: number;
+  location: string;
   className: string;
   status: number;
 }
@@ -46,7 +46,7 @@ const initialState = (): InitState => ({
   list: [],
   isLoadedList: false,
   dataSearch: {
-    location: 0,
+    location: '',
     className: '',
     status: 0,
   },

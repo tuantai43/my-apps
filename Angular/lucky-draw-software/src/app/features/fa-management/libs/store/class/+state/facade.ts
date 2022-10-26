@@ -9,6 +9,7 @@ import { classQuery } from './selectors';
 export class ClassFacade extends BaseFacade<InitState, ClassView> {
   statuses$ = this.store.select(classQuery.getStatuses);
   classNames$ = this.store.select(classQuery.getClassNames);
+  cancelling$ = this.store.select(classQuery.cancelling);
 
   constructor(store: Store<InitState>) {
     super(store, store.select(classQuery.getLoadedList), store.select(classQuery.isLoadedList));
@@ -27,7 +28,7 @@ export class ClassFacade extends BaseFacade<InitState, ClassView> {
       new UpdateDataSearch({
         className: '',
         status: 0,
-        location: 0,
+        location: '',
       })
     );
   }
